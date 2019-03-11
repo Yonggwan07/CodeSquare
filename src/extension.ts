@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 		let dirList = fs.readdirSync(jsFilePath);
 
 		for (let i = 0; i < dirList.length; i++) {
-			if (dirList[i].includes("park.js-picker-") == true) {
+			if (dirList[i].includes("yonggwan.codesquare-") == true) {
 				jsFilePath += dirList[i];
 				break;
 			}
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// 파싱된 데이터를 통해 임시파일 생성
 		let originName = originDoc.fileName;
 		let jsFile = originName.replace(/.xml/, ".js");
-		jsFile = [jsFile.slice(0, jsFile.length - 3), " (JS-Picker)", jsFile.slice(jsFile.length - 3)].join('');
+		jsFile = [jsFile.slice(0, jsFile.length - 3), " (CodeSquare)", jsFile.slice(jsFile.length - 3)].join('');
 		jsFile = jsFile.substring(jsFile.lastIndexOf("\\"), jsFile.length);
 
 		jsFilePath += jsFile;
@@ -90,7 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let jsDoc = vscode.window.activeTextEditor.document;
 
-		if (jsDoc.fileName.match("(JS-Picker)") == null)
+		if (jsDoc.fileName.match("(CodeSquare)") == null)
 			return;
 
 		let we = new vscode.WorkspaceEdit();
@@ -102,7 +102,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		for (let i = 0; i < originDocs.length; i++) {
 
-			let fileName = jsDoc.fileName.replace(" (JS-Picker)", '');
+			let fileName = jsDoc.fileName.replace(" (CodeSquare)", '');
 			fileName = fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length);
 			fileName = fileName.replace(".js", ".xml");
 
