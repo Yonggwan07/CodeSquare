@@ -1,0 +1,563 @@
+<?xml-stylesheet href="/common/css/comStyle.css" type="text/css"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:w2="http://www.inswave.com/websquare" xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+    	<w2:type>DEFAULT</w2:type>
+        <w2:buildDate/>
+        <xf:model>
+            <xf:instance>
+                <data xmlns=""/>
+            </xf:instance>
+            <w2:dataCollection baseNode="map">
+            	<w2:dataList id="dtlTM_USERXM" baseNode="list" saveRemovedData="true" repeatNode="map">
+            		<w2:columnInfo>
+            			<w2:column id="CHK" name="선택" dataType="text"></w2:column>
+            			<w2:column id="USER_IDXX" name="사용자ID" dataType="text"></w2:column>
+            			<w2:column id="EMPL_NUMB" name="사원번호" dataType="text"></w2:column>
+            			<w2:column id="EMPL_NAME" name="성명" dataType="text"></w2:column>
+            			<w2:column id="DEPT_NAME" name="부서" dataType="text"></w2:column>
+            			<w2:column id="CPOS_CDNM" name="직급" dataType="text"></w2:column>
+            			<w2:column id="DUTY_CDNM" name="직무" dataType="text"></w2:column>
+            		</w2:columnInfo>
+            	</w2:dataList>
+            	<w2:dataMap baseNode="map" id="dtmSEARCH02">
+            		<w2:keyInfo>
+            			<w2:key id="USER_IDXX" name="사원번호" dataType="text"></w2:key>
+            			<w2:key id="DEPT_CODE" name="부서코드" dataType="text"></w2:key>
+            		</w2:keyInfo>
+            	</w2:dataMap>
+            </w2:dataCollection>
+            <w2:workflowCollection>
+            </w2:workflowCollection>
+        </xf:model>
+        <script type="text/javascript"><![CDATA[
+/***************************************************************************************************
+*                                    초기화 부분                                     			   *
+***************************************************************************************************/
+/*-----------------------------------+
+|  01.화면변수 선언  |
++------------------------------------*/
+scwin.globalVal = {
+	  sBUTTONLIST : 'TFFTFTT'	//공통기능정의(조회, 입력, 삭제, 저장, 인쇄, 엑셀, 종료)
+    , bRowPosChange : true
+    , prevGrupIdxx : ""
+    , newValue : ""
+};    
+        
+/*-----------------------------------+
+|  02.최초 화면 Load時 처리 할 사항  |
+	@parameter : 
+	@return :
++------------------------------------*/  
+scwin.initScreen = function() {       
+	
+   	//초기화 및 권한체크 
+   	comLib.FormLoadSetting(sFORMCAPTION, sFORMLOCATION, scwin.globalVal.sBUTTONLIST, sUSERAUTH);
+   	
+   	//권한적용
+	switch(GBL_AUTH_LEVEL) {
+		
+		case '1':	//관리자
+			break;
+			
+		case '2':	//소속 담당자
+			imgHelpSHRDEPT_CODE.setDisabled(true);
+			iptSHRDEPT_NAME.setDisabled(true);
+			iptSHRDEPT_CODE.setValue(GBL_SECT_CODE);
+			iptSHRDEPT_NAME.setValue(GBL_SECT_NAME);
+			break;
+			
+		case '3':
+			break;
+			
+		case '4':	//부서담당자
+			imgHelpSHRDEPT_CODE.setDisabled(true);
+			iptSHRDEPT_NAME.setDisabled(true);
+			iptSHRDEPT_CODE.setValue(GBL_DEPT_CODE);
+			iptSHRDEPT_NAME.setValue(GBL_DEPT_NAME);
+			break;
+			
+		case '5':	//개인
+			imgHelpSHRDEPT_CODE.setDisabled(true);
+			imgHelpSHRUSER_IDXX.setDisabled(true);
+			iptSHRDEPT_NAME.setDisabled(true);
+			iptSHRUSER_NAME.setDisabled(true);
+			iptSHRUSER_IDXX.setValue(GBL_USER_IDXX);
+			iptSHRUSER_NAME.setValue(GBL_EMPL_NAME);
+			break;
+			
+		default:
+			break;
+	}
+	
+	//초기값 세팅   			
+ 			 			      			
+	//그룹초기화
+			
+	//조회
+	//scwin.setSubmitArg("SEARCH00");
+	scwin.setSubmitArg("SEARCH02");
+	
+};
+
+/***************************************************************************************************
+*                                   공통버튼 Event 처리 부분                          			   *
+***************************************************************************************************/			  		
+/*-----------------------------------+
+|  03.조회 버튼 클릭 時  |
+	@parameter : rtnValue (콜백요청시 true/false)
+	@return :
++------------------------------------*/   
+scwin.getCommonSearch = function (rtnValue) {
+	
+	if (rtnValue == false) return;
+	
+	//변경여부 체크
+   	//if (valLib.checkModified([grdTM_GROUPG, grdTM_GROUPU]) && rtnValue != true) {
+
+	//	comLib.Message("TMM006",true, "getCommonSearch");
+		
+	//} else {
+		//필수조회조건체크
+		if (!scwin.checkSearchItem()) return;
+		
+		//scwin.setSubmitArg("SEARCH00");
+		scwin.setSubmitArg("SEARCH02");
+	//}
+      
+};
+
+/*-----------------------------------+
+|  04.입력 버튼 클릭 時  |		
+	@parameter : 
+	@return :
++------------------------------------*/
+scwin.setCommonInput = function () {
+	//기능없음.
+};
+
+/*-----------------------------------+
+|  05.삭제 버튼 클릭 時  |		
+	@parameter : rtnValue (콜백요청시 true/false)
+	@return :
++------------------------------------*/
+scwin.setCommonDelete = function (rtnValue) {
+	//기능없음.
+};
+       	
+/*-----------------------------------+
+|  06.저장 버튼 클릭 時  |		
+	@parameter : 
+	@return :
++------------------------------------*/    
+scwin.setCommonSave = function () {
+	
+};
+
+/*-----------------------------------+
+|  07.인쇄 버튼 클릭 時  |		
+	@parameter : 
+	@return :
++------------------------------------*/
+scwin.getCommonPrint = function () {
+	//기능없음.
+};
+
+/***************************************************************************************************
+*                                   공통 Event/Function 처리 부분                          		   *
+***************************************************************************************************/  
+/*-----------------------------------+
+|  08.서브미션 호출 시 넘어 갈 Argument 생성 및 서브미션 호출  |		
+	@parameter : sMethodName(Task함수명)
+	@return :
++------------------------------------*/  
+scwin.setSubmitArg = function (sMethodName) { 
+	
+	var option;
+	
+	switch (sMethodName) {
+	
+		// 사수조 조회
+		case 'SEARCH00' :
+			option = { 
+				  id : sMethodName
+				, action : "/TMMT0090/SEARCH00.do"
+				, ref : "data:json, {'id':'dtmSEARCH00', 'key':'param'}"
+				, target : "data:json, {'id':'dtlTM_ATGPXM', 'key':'data'}"
+				, submitDoneHandler : "setPostProcess" 
+			};
+						 
+			break;
+			
+		// 사수조 조원 조회
+		case 'SEARCH01' :
+		
+			break;
+			
+		// 사용자 조회
+		case 'SEARCH02' :
+			dtmSEARCH02.set( "DEPT_CODE", iptSHRDEPT_CODE.getValue());	//부서코드
+			dtmSEARCH02.set( "USER_IDXX", iptSHRUSER_IDXX.getValue());	//사원번호
+			option = { 
+				  id : sMethodName
+				, action : "/TMMT0090/SEARCH02.do"
+				, ref : "data:json, {'id':'dtmSEARCH02', 'key':'param'}"
+				, target : "data:json, {'id':'dtlTM_USERXM', 'key':'data'}"
+				, submitDoneHandler : "setPostProcess" 
+			};
+			
+			break;
+		
+		default :
+       		break;
+	}
+	
+	ajaxLib.executeSubmission(option);	 //서브미션 실행!
+};
+
+/*-----------------------------------+
+|  09.서브미션 Transaction 후 Post Process  |		
+	@parameter : sMethodName(Task함수명), e(서브미션 호출 후 리턴 Doc)
+	@return :
++------------------------------------*/
+scwin.setPostProcess = function (sMethodName, e) {
+	
+	if(ajaxLib.IsWarning(e)) {
+		return;					
+	}
+	
+	switch (sMethodName) {
+	 
+		case 'SEARCH00' :
+		
+			scwin.setSubmitArg("SEARCH01");
+			scwin.setSubmitArg("SEARCH02");
+				
+			comLib.Information(optInformation, e, "S");
+			
+			break;
+			
+		case 'SEARCH02' :
+		
+			grdTM_USERXM.setHeaderValue("HD_CHK", 0);
+			grdTM_USERXM.setFocusedCell(0, "USER_IDXX", false);
+			
+			comLib.Information(optInformation2, e, "S");
+			
+			break;
+		
+		default :
+       		break;
+	}
+	
+};
+
+/*-----------------------------------+
+|  10.공통팝업 오픈  |		
+	@parameter : obj(그리드 또는 컨트롤), sFromGrd(그리드 onChange 에서 호출할 경우 true) 
+	@return :
++------------------------------------*/
+scwin.openHelpDialog = function (obj, sFromGrd) {
+	
+	if(!comLib.bUsePopup) return;
+	
+	if(typeof obj == "object"|| typeof obj == "undefined") {
+		obj = this;
+	};
+			
+	var param = new Array();  
+	var arrParam = new Array();
+
+	if(obj.id == "imgHelpSHRUSER_IDXX" || obj.id == "iptSHRUSER_NAME") {
+		
+		param[0] = new Array("USER_IDXX", iptSHRUSER_NAME.getValue());	//사원번호
+		param[1] = new Array("USEX_YSNO", "1");							//사용여부
+		
+		arrParam[0] = "TMM1002";
+		arrParam[1] = param;
+		arrParam[2] = "iptSHRUSER_IDXX,iptSHRUSER_NAME";
+		arrParam[3] = "USER_IDXX,USER_NAME";
+		arrParam[4] = "M";
+		
+		comLib.HelpDialog(obj, arrParam);
+		
+	} else if(obj.id == "imgHelpSHRDEPT_CODE" || obj.id == "iptSHRDEPT_NAME") {
+	
+		param[0] = new Array("DEPT_NAME", iptSHRDEPT_NAME.getValue());	//사원번호
+		param[1] = new Array("USEX_YSNO", "1");							//사용여부
+		
+		arrParam[0] = "TMM0004";
+		arrParam[1] = param;
+		arrParam[2] = "iptSHRDEPT_CODE,iptSHRDEPT_NAME";
+		arrParam[3] = "DEPT_CODE,DEPT_NAME";
+		
+		comLib.HelpDialog(obj, arrParam);
+	
+	}
+	
+};
+
+
+/*-----------------------------------+
+|  14.조회 필수 조건 체크   |		
+	@parameter : 
+	@return :bool
++------------------------------------*/		
+scwin.checkSearchItem = function () {
+	
+	return true;
+			
+};
+
+//화면 로딩 후 초기화 실행
+scwin.initScreen();
+
+//javascript 함수 선언부 끝
+]]></script>
+    </head>
+    <body>
+    	<xf:group id="grpScreen" style="position:absolute;top:0px;left:0px;width:1300px;height:788px;" class="screenGroup">
+    		<xf:group id="grpboth8px" style="" class="grpMainlayout">
+    			<xf:group tagname="table" id="tblMainLayout" style="position: relative;height:100%;width:100%;" class="tb_layout">
+    				<w2:attributes>
+    					<w2:summary></w2:summary>
+    				</w2:attributes>
+    				<xf:group tagname="colgroup">
+    					<xf:group style="width:100.00%" tagname="col"></xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" id="ML1btnGroup">
+    					<xf:group style="" class="w2tb_td" tagname="td">
+    						<xf:group id="group2" style="" class="tb_user_btn_layout">
+    							
+    						</xf:group>
+    					<w2:wframe id="wfrButtonList" style="" class="tb_common_btn_layout" src="/ws/cmm/lib/combutton.xml"></w2:wframe></xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" id="ML4mainContents" style="height:100%;">
+    					<xf:group style="" class="w2tb_td" tagname="td">
+    						<xf:group tagname="table" id="" style="width:99.61%;height:100%;" class="tb_layout">
+    							<w2:attributes>
+    								<w2:summary></w2:summary>
+    							</w2:attributes>
+    							<xf:group tagname="colgroup">
+    								<xf:group style="width:40%;" tagname="col"></xf:group>
+    								<xf:group style="width:60%;" tagname="col"></xf:group>
+    								<xf:group style="width:30px;" tagname="col"></xf:group>
+    								<xf:group style="width:600px;" tagname="col"></xf:group>
+    							</xf:group>
+    							<xf:group tagname="tr" style="">
+    								<xf:group style="" class="w2tb_td" tagname="td"></xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td"></xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td"></xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td"><xf:group tagname="table" id="" style="position: relative ;width:100%;height: 100%;" class="tb_layout">
+    										<w2:attributes>
+    											<w2:summary></w2:summary>
+    										</w2:attributes>
+    										<xf:group tagname="colgroup">
+    											<xf:group style="width:100.00%" tagname="col"></xf:group>
+    										</xf:group>
+    										<xf:group tagname="tr" id="ML2searchArea">
+    											<xf:group style="" class="" tagname="td" id="grpSearchZone">
+    												<xf:group id="" style="" class="grpCopyBlockClass">
+    													<xf:group tagname="table" id="" style="" class="tb_search_layout">
+    														<w2:attributes>
+    															<w2:summary></w2:summary>
+    														</w2:attributes>
+    														<xf:group tagname="colgroup">
+    															<xf:group style="width:100.00%" tagname="col"></xf:group>
+    														</xf:group>
+    														<xf:group tagname="tr">
+    															<xf:group style="" class="" tagname="td">
+    																<xf:output label="" id="" style="width:40px;"
+    																	class="stLabel_searchArea">
+    																	<xf:label><![CDATA[부서]]></xf:label>
+    																</xf:output>
+    																<xf:group tagname="table" id="" style="width:200px;"
+    																	class="tb_component_grp_layout">
+    																	<w2:attributes>
+    																		<w2:summary></w2:summary>
+    																	</w2:attributes>
+    																	<xf:group tagname="colgroup">
+    																		<xf:group style="" tagname="col" class="tbcol_col_helpcode1"></xf:group>
+    																		<xf:group style="" tagname="col" class="tbcol_col_helpcode2"></xf:group>
+    																		<xf:group style="" tagname="col" class="tbcol_col_helpcode3"></xf:group>
+    																	</xf:group>
+    																	<xf:group tagname="tr" style="">
+    																		<xf:group style="" class="w2tb_td tbtd_td_helpcode1"
+    																			tagname="td">
+    																			<xf:input id="iptSHRDEPT_CODE" style="" class="inputCommon"
+    																				dataType="text" onFocusClass="inputCommonF" readOnly="true" readOnlyClass="inputReadonly" ref="data:dtmSEARCH02.DEPT_CODE">
+    																			</xf:input>
+    																		</xf:group>
+    																		<xf:group style="" class="w2tb_td tbtd_td_helpcode2"
+    																			tagname="td">
+    																			<w2:anchor id="imgHelpSHRDEPT_CODE" style=""
+    																				outerDiv="false" class="anchor_btnfix_helppopup_call" ev:onclick="scwin.openHelpDialog">
+    																				<xf:label><![CDATA[]]></xf:label>
+    																			</w2:anchor>
+    																		</xf:group>
+    																		<xf:group style="" class="w2tb_td tbtd_td_helpcode3"
+    																			tagname="td">
+    																			<xf:input id="iptSHRDEPT_NAME" style="" class="inputCommon"
+    																				dataType="text" maxByteLength="50" onFocusClass="inputCommonF" readOnlyClass="inputReadonly" ev:onviewchange="scwin.openHelpDialog">
+    																			</xf:input>
+    																		</xf:group>
+    																	</xf:group>
+    																</xf:group>
+    																<xf:output label="" id="" style="width:50px;"
+    																	class="stLabel_searchArea">
+    																	<xf:label><![CDATA[사용자]]></xf:label>
+    																</xf:output>
+    																<xf:group class="tb_component_grp_layout" id="" style="width:200px;"
+    																	tagname="table">
+    																	<w2:attributes>
+    																		<w2:summary></w2:summary>
+    																	</w2:attributes>
+    																	<xf:group tagname="colgroup">
+    																		<xf:group class="tbcol_col_helpcode1" style="" tagname="col"></xf:group>
+    																		<xf:group class="tbcol_col_helpcode2" style="" tagname="col"></xf:group>
+    																		<xf:group class="tbcol_col_helpcode3" style="" tagname="col"></xf:group>
+    																	</xf:group>
+    																	<xf:group style="" tagname="tr">
+    																		<xf:group class="w2tb_td tbtd_td_helpcode1" style=""
+    																			tagname="td">
+    																			<xf:input class="inputCommon" dataType="text"
+    																				id="iptSHRUSER_IDXX" onFocusClass="inputCommonF" readOnly="true" readOnlyClass="inputReadonly" style="" ref="data:dtmSEARCH02.EMPL_NUMB">
+    																			</xf:input>
+    																		</xf:group>
+    																		<xf:group class="w2tb_td tbtd_td_helpcode2" style=""
+    																			tagname="td">
+    																			<w2:anchor class="anchor_btnfix_helppopup_call"
+    																				id="imgHelpSHRUSER_IDXX" outerDiv="false" style="" ev:onclick="scwin.openHelpDialog">
+    																				<xf:label></xf:label>
+    																			</w2:anchor>
+    																		</xf:group>
+    																		<xf:group class="w2tb_td tbtd_td_helpcode3" style=""
+    																			tagname="td">
+    																			<xf:input class="inputCommon" dataType="text"
+    																				id="iptSHRUSER_NAME" maxByteLength="50" onFocusClass="inputCommonF" readOnlyClass="inputReadonly" style="" ev:onviewchange="scwin.openHelpDialog">
+    																			</xf:input>
+    																		</xf:group>
+    																	</xf:group>
+    																</xf:group>
+    															</xf:group>
+    														</xf:group>
+    														
+    													</xf:group>
+    												</xf:group>
+    											</xf:group>
+    										</xf:group>
+    									</xf:group></xf:group>
+    							</xf:group>
+    							<xf:group tagname="tr" id="infoLabel">
+    								<xf:group style="" class="w2tb_td" tagname="td">
+    									<xf:output label="" id="optInformation" style="" class="infoLabel_grid">
+    										<xf:label><![CDATA[※ 00 건이 조회 되었습니다!]]></xf:label>
+    									</xf:output>
+    								</xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td">
+    									<xf:output label="" id="optInformation1" style="" class="infoLabel_grid">
+    										<xf:label><![CDATA[※ 00 건이 조회 되었습니다!]]></xf:label>
+    									</xf:output>
+    								</xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td"></xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td">
+    									<xf:output label="" id="optInformation2" style="" class="infoLabel_grid">
+    										<xf:label><![CDATA[※ 00 건이 조회 되었습니다!]]></xf:label>
+    									</xf:output>
+    								</xf:group>
+    							</xf:group>
+    							<xf:group tagname="tr" style="height:100%;" id="Contents">
+    								<xf:group style="padding-right:4px;" class="w2tb_td" tagname="td">
+    									<w2:gridView dataList="" scrollByColumn="" scrollByColumnAdaptive="" id="grdTM_GROUPG"
+    										style="" ignoreCellClick="" ignoreToggleOnDisabled=""
+    										fixedColumnWithHidden="" useShiftKey="true" autoFit="allColumn" editModeEvent="ondblclick" keyMoveEditMode="true" readOnlyTabIgnore="true" resize="true" rowStatusVisible="true" sortable="true">
+    									</w2:gridView>
+    								</xf:group>
+    								<xf:group style="padding-left:4px;" class="w2tb_td" tagname="td">
+    									<w2:gridView dataList="" scrollByColumn="" scrollByColumnAdaptive="" id="grdTM_GROUPU"
+    										style="" ignoreCellClick="" ignoreToggleOnDisabled=""
+    										fixedColumnWithHidden="" useShiftKey="true" autoFit="allColumn" editModeEvent="ondblclick" keyMoveEditMode="true" readOnlyTabIgnore="true" resize="true" rowStatusVisible="true" sortable="true">
+    									</w2:gridView>
+    								</xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td">
+    									<xf:group id="" style="position: relative;margin-left:2px;">
+    										<xf:image ev:onclick="scwin.btnMoveLeft_onclick" id="btnMoveLeft"
+    											src="/images/button/btn_left_arrow.gif" style="position: absolute ;cursor:pointer;height:25px;width:25px;">
+    										</xf:image>
+    										<xf:image ev:onclick="scwin.btnMoveRight_onclick" id="btnMoveRight"
+    											src="/images/button/btn_right_arrow.gif" style="position: absolute ;cursor:pointer;height:25px;width:25px;top:35px;">
+    										</xf:image>
+    									</xf:group>
+    								</xf:group>
+    								<xf:group style="" class="w2tb_td" tagname="td">
+    									<w2:gridView dataList="dtlTM_USERXM" scrollByColumn="" scrollByColumnAdaptive="" id="grdTM_USERXM"
+    										style="" ignoreCellClick="" ignoreToggleOnDisabled="" fixedColumnWithHidden="" useShiftKey="true" autoFit="allColumn"
+    										editModeEvent="ondblclick" keyMoveEditMode="true" readOnlyTabIgnore="true" resize="true" rowStatusVisible="false"
+    										sortable="true" tooltipDisplay="true">
+    										<w2:header id="header1" style="">
+    											<w2:row id="row1" style="">
+    												<w2:column colSpan="6" id="HD_GRD_TITLE" inputType="text" style="height:20px;"
+    													value="사용자 목록" valueType="binary" width="505">
+    												</w2:column>
+    											</w2:row>
+    											<w2:row id="row2" style="">
+    												<w2:column blockSelect="" id="HD_CHK" style="height:20px" inputType="checkbox"
+    													width="40" displayMode="" value="CHK" defaultValue="0" falseValue="0" trueValue="1" valueType="binary">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="HD_USER_IDXX" style="height:20px" inputType="text"
+    													width="70" displayMode="label" value="사용자ID">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="column9" style="height:20px" inputType="text"
+    													width="70" displayMode="label" value="사원번호" hidden="true">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="HD_EMPL_NAME" style="height:20px" inputType="text"
+    													width="70" displayMode="label" value="성명">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="HD_DEPT_NAME" style="height:20px" inputType="text"
+    													width="115" displayMode="label" value="부서">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="column3" style="height:20px" inputType="text"
+    													width="70" displayMode="label" value="직급" hidden="true">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="column1" style="height:20px" width="70"
+    													inputType="text" displayMode="label" value="직무" hidden="true">
+    												</w2:column>
+    											</w2:row>
+    										</w2:header>
+    										<w2:gBody id="gBody1" style="">
+    											<w2:row id="row2" style="">
+    												<w2:column blockSelect="" id="CHK" style="height:20px" inputType="checkbox" width="40"
+    													displayMode="" defaultValue="0" falseValue="0" readOnly="false" trueValue="1" valueType="binary">
+    												</w2:column>
+    												<w2:column blockSelect="" id="USER_IDXX" style="height:20px" inputType="text"
+    													width="70" displayMode="" readOnly="true" valueType="binary">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="EMPL_NUMB" style="height:20px" inputType="text"
+    													width="70" displayMode="label">
+    												</w2:column>
+    												<w2:column blockSelect="" id="EMPL_NAME" style="height:20px" inputType="text"
+    													width="70" displayMode="" readOnly="true" valueType="binary">
+    												</w2:column>
+    												<w2:column blockSelect="" id="DEPT_NAME" style="height:20px" inputType="text"
+    													width="115" displayMode="" textAlign="left" valueType="binary" readOnly="true">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="CPOS_CDNM" style="height:20px" inputType="text"
+    													width="70" displayMode="label">
+    												</w2:column>
+    												<w2:column blockSelect="false" id="DUTY_CDNM" style="height:20px" width="70"
+    													inputType="text" displayMode="label">
+    												</w2:column>
+    											</w2:row>
+    										</w2:gBody>
+    									</w2:gridView>
+    								</xf:group>
+    							</xf:group>
+    						</xf:group>
+    					</xf:group>
+    				</xf:group>
+    			</xf:group>
+    		</xf:group>
+    	</xf:group>
+    </body>
+</html>
