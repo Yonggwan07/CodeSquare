@@ -1,0 +1,40 @@
+{
+    "DataList": {
+        "description": [
+            "Data통신 및 화면에서 사용 할 다건의 데이터를 저장하는 객체이다.",
+            "DataCollectoin 하위에 생성되며 데이터의 구조를 정의하는 Column Info 영역과 초기값을 정의하는 Data 영역으로 나뉘어 있다.",
+            "Column Info 영역(source : <w2:columnInfo>)은 column의 정보가 있으며 id 속성에 column의 이름을 정의한다. 그 밖에 데이터 가공등을 위한 속성들을 정의 할 수 있다.",
+            "Data 영역(source : <w2:data>)은 column의 초기값을 정의하는 곳이며 use data가 체크되어있어야(source : <w2:data use=\"true\">) 초기값이 적용된다.",
+            "DataList는 row 마다 사용자 제어에 따른 삽입/수정/삭제 등의 상태값을 가지고 있으며 getter API로 상태별 데이터를 꺼내올 수 있다. 상세 내용은 아래와 같다.",
+            "status : R / statusValue : 0 - 초기 상태. (변화없음)",
+            "status : U / statusValue : 1 - 갱신. (update API 호출 시)",
+            "status : C / statusValue : 2 - 삽입. (insert API 호출 시)",
+            "status : D / statusValue : 3 - 삭제. (delete API 호출 시)",
+            "status : V / statusValue : 4 - 삽입 후 삭제. (insert API 후 delete API 호출)",
+            "status : E / statusValue : 5 - 제거. (remove API 호출 시)"
+        ],
+        "property": {
+
+        },
+        "event": {
+
+        },
+        "methods": [
+            {
+                "name": "bind",
+                "definition": "bind( eventType , function )",
+                "description": "dataList의 이벤트를 동적으로 할당한다."
+            },
+            {
+                "name": "clearSort",
+                "definition": "clearSort( )",
+                "description": "Data의 정렬을 취소하며 GridView 컴포넌트의 정렬도 함께 취소된다."
+            },
+            {
+                "name": "deleteRow",
+                "definition": "deleteRow( rowIndex )",
+                "description": "rowInex에 해당하는 행이 삭제되지 않으며 상태 값만 삭제(D)로 변경된다."
+            }
+        ]
+    }
+}
