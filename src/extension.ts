@@ -310,8 +310,21 @@ export function completion() {
 			for (let i = 0; i < commitCharacterCompletions.length; i++) {
 				commitCharacterCompletions[i].commitCharacters = ['.'];
 
-				commitCharacterCompletions[i].documentation = new vscode.MarkdownString(
-					'(' + objects[i]['type'] + ') ' + objects[i]['id']);
+				commitCharacterCompletions[i].detail = '(' + objects[i]['type'] + ') ' + objects[i]['id'];
+
+				let objD = objects[i]['objDetail'];
+
+				if (objD.length > 0) {
+					let md = new vscode.MarkdownString();
+					md.appendMarkdown("|id|name|DataType|  \n");
+					md.appendMarkdown("|---|---|---|  \n");
+
+					for (let i = 0; i < objD.length; i++) {
+						md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
+					}
+
+					commitCharacterCompletions[i].documentation = md;
+				}
 			}
 
 			return commitCharacterCompletions;
