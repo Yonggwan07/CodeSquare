@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as xml2js from 'xml2js';
 import fs = require('fs');
 import os = require('os');
 
@@ -9,9 +10,17 @@ const endWord = "]]></script>";
 let originDocs: vscode.TextDocument[] = [];		// 원본 xml 파일
 let jsDocs: vscode.TextDocument[] = [];			// 임시 js 파일
 
+let documentation: any;
+
+let dataLists: string[] = [];
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+
+	documentation = require('../documentation.json');
+
+	completion();
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -25,6 +34,9 @@ export function activate(context: vscode.ExtensionContext) {
 		// 현재 활성화된 document를 확인
 		if (!vscode.window.activeTextEditor)
 			return;
+
+		// Websquare Object Parsing
+		parseXML();
 
 		// 원본 xml 파일에서 javascript 부분만 파싱
 		let originDoc = vscode.window.activeTextEditor.document;
@@ -194,4 +206,162 @@ export function deactivate() {
 
 	for (let i = 0; i < jsDocs.length; i++)
 		fs.unlink(jsDocs[i].fileName, (err) => { });
+}
+
+export function parseXML() {
+
+	if (!vscode.window.activeTextEditor)
+		return undefined;
+
+	var parser = new xml2js.Parser();
+
+	var xml = fs.readFileSync(vscode.window.activeTextEditor.document.fileName, 'utf-8');
+
+	parser.parseString(xml, function (err: Object, result: string) {
+
+		let json = JSON.parse(JSON.stringify(result));
+
+		let dtl = json['html']['head'][0]['xf:model'][0]['w2:dataCollection'][0]['w2:dataList'];
+
+		for (let i = 0; i < dtl.length; i++) {
+			dataLists.push(dtl[i]['$']['id']);
+		}
+	});
+}
+
+export function completion() {
+
+	// completion (object)
+	vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'javascript' }, {
+		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position,
+			token: vscode.CancellationToken, context: vscode.CompletionContext) {
+
+			if (document.fileName.match("(CodeSquare)") == null)
+				return;
+
+			const commitCharacterCompletions: vscode.CompletionItem[] = [];
+
+			for (let i = 0; i < dataLists.length; i++) {
+				commitCharacterCompletions.push(new vscode.CompletionItem(
+					dataLists[i], vscode.CompletionItemKind.Variable));
+			}
+
+			for (let i = 0; i < commitCharacterCompletions.length; i++) {
+				commitCharacterCompletions[i].commitCharacters = ['.'];
+				commitCharacterCompletions[i].documentation = new vscode.MarkdownString("(DataList) " + dataLists[i]);
+			}
+
+			return commitCharacterCompletions;
+		}
+	});
+
+	// completion (method, event, property)
+	vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'javascript' }, {
+		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
+			if (document.fileName.match("(CodeSquare)") == null)
+				return;
+
+			let linePrefix = document.lineAt(position).text.substr(0, position.character);
+
+			let dataListChk = false;
+
+			for (let i = 0; i < dataLists.length; i++) {
+
+				if (linePrefix.endsWith(dataLists[i] + '.')) {
+					dataListChk = true;
+				}
+			}
+
+			if (!dataListChk) {
+				return undefined;
+			}
+
+			const commitCharacterCompletions: vscode.CompletionItem[] = [];
+
+			const methods = documentation['DataList']['methods'];
+
+			for (let i = 0; i < methods.length; i++) {
+				commitCharacterCompletions.push(new vscode.CompletionItem(
+					methods[i]['name'], vscode.CompletionItemKind.Method));
+			}
+
+			for (let i = 0; i < commitCharacterCompletions.length; i++) {
+				let mks = new vscode.MarkdownString();
+				let desc = methods[i]['documentation'];
+
+				for (let j = 0; j < desc.length; j++) {
+					mks.appendMarkdown(desc[j] + '  \n   \n');
+				}
+
+				commitCharacterCompletions[i].documentation = mks;
+				commitCharacterCompletions[i].detail = "(method) " + methods[i]['label'];
+			}
+
+			return commitCharacterCompletions;
+		}
+	},
+		'.'	// triggered whenever a '.' is being typed
+	);
+
+	// signature help
+	vscode.languages.registerSignatureHelpProvider({ scheme: 'file', language: 'javascript' }, {
+		provideSignatureHelp(document: vscode.TextDocument, position: vscode.Position,
+			token: vscode.CancellationToken, context: vscode.SignatureHelpContext) {
+
+			if (document.fileName.match("(CodeSquare)") == null)
+				return;
+
+			let linePrefix = document.lineAt(position).text.substr(0, position.character);
+
+			let dataListChk = false;
+
+			for (let i = 0; i < dataLists.length; i++) {
+
+				if (linePrefix.match(dataLists[i] + '.')) {
+					dataListChk = true;
+				}
+			}
+
+			if (!dataListChk) {
+				return undefined;
+			}
+
+			let methodIdx = -1;
+			const methods = documentation['DataList']['methods'];
+
+			for (let i = 0; i < methods.length; i++) {
+
+				if (linePrefix.match(methods[i]['name'])) {
+					methodIdx = i;
+				}
+			}
+
+			if (methodIdx < 0) {
+				return undefined;
+			}
+
+			const sigHelp = new vscode.SignatureHelp();
+
+			let sign = new vscode.SignatureInformation(methods[methodIdx]['label'],
+				methods[methodIdx]['documentation'][0])
+
+			const params = methods[methodIdx]['parameters'];
+
+			for (let i = 0; i < params.length; i++) {
+				sign.parameters.push(params[i]['label']);
+			}
+
+			sigHelp.activeParameter = params.length;
+			sigHelp.activeSignature = 0;
+			sigHelp.signatures = [
+				sign
+			];
+
+			return sigHelp;
+		}
+	}, {
+			triggerCharacters: ['('],
+			retriggerCharacters: [',']
+		});
 }
