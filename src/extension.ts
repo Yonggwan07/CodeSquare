@@ -3,6 +3,23 @@ import * as xml2js from 'xml2js';
 import fs = require('fs');
 import os = require('os');
 
+// DataList, DataMap 등의 Object 정보를 저장
+export interface IObjects {
+	type: string;
+	id: string;
+	objDetail: IObjectDetail[];
+}
+
+// DataList, DataMap의 세부 컬럼, 키 정보를 저장
+export interface IObjectDetail {
+	id: string;
+	name: string;
+	dataType: string;
+}
+
+// Websquare Objects (ex. dataMap, dataList...)
+let objects: IObjects[] = [];
+
 const startWords: string[] = ["<script type=\"javascript\"><![CDATA[",
 	"<script type=\"text/javascript\"><![CDATA["];
 const endWord = "]]></script>";
@@ -11,8 +28,6 @@ let originDocs: vscode.TextDocument[] = [];		// 원본 xml 파일
 let jsDocs: vscode.TextDocument[] = [];			// 임시 js 파일
 
 let documentation: any;
-
-let dataLists: string[] = [];
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -221,10 +236,56 @@ export function parseXML() {
 
 		let json = JSON.parse(JSON.stringify(result));
 
+		// parse datalist
 		let dtl = json['html']['head'][0]['xf:model'][0]['w2:dataCollection'][0]['w2:dataList'];
 
 		for (let i = 0; i < dtl.length; i++) {
-			dataLists.push(dtl[i]['$']['id']);
+
+			let dtlCols = dtl[i]['w2:columnInfo'][0]['w2:column'];
+
+			let objDetails: IObjectDetail[] = [];
+
+			for (let i = 0; i < dtlCols.length; i++) {
+				objDetails[i] = {
+					id: dtlCols[i]['$']['id'],
+					name: dtlCols[i]['$']['name'],
+					dataType: dtlCols[i]['$']['dataType'],
+				}
+			}
+
+			let obj: IObjects = {
+				type: "DataList",
+				id: dtl[i]['$']['id'],
+				objDetail: objDetails
+			};
+
+			objects.push(obj);
+		}
+
+		// parse datamap
+		let dtm = json['html']['head'][0]['xf:model'][0]['w2:dataCollection'][0]['w2:dataMap'];
+
+		for (let i = 0; i < dtm.length; i++) {
+
+			let dtmKeys = dtm[i]['w2:keyInfo'][0]['w2:key'];
+
+			let objDetails: IObjectDetail[] = [];
+
+			for (let i = 0; i < dtmKeys.length; i++) {
+				objDetails[i] = {
+					id: dtmKeys[i]['$']['id'],
+					name: dtmKeys[i]['$']['name'],
+					dataType: dtmKeys[i]['$']['dataType'],
+				}
+			}
+
+			let obj: IObjects = {
+				type: "DataMap",
+				id: dtm[i]['$']['id'],
+				objDetail: objDetails
+			};
+
+			objects.push(obj);
 		}
 	});
 }
@@ -241,14 +302,16 @@ export function completion() {
 
 			const commitCharacterCompletions: vscode.CompletionItem[] = [];
 
-			for (let i = 0; i < dataLists.length; i++) {
+			for (let i = 0; i < objects.length; i++) {
 				commitCharacterCompletions.push(new vscode.CompletionItem(
-					dataLists[i], vscode.CompletionItemKind.Variable));
+					objects[i]['id'], vscode.CompletionItemKind.Variable));
 			}
 
 			for (let i = 0; i < commitCharacterCompletions.length; i++) {
 				commitCharacterCompletions[i].commitCharacters = ['.'];
-				commitCharacterCompletions[i].documentation = new vscode.MarkdownString("(DataList) " + dataLists[i]);
+
+				commitCharacterCompletions[i].documentation = new vscode.MarkdownString(
+					'(' + objects[i]['type'] + ') ' + objects[i]['id']);
 			}
 
 			return commitCharacterCompletions;
@@ -264,22 +327,22 @@ export function completion() {
 
 			let linePrefix = document.lineAt(position).text.substr(0, position.character);
 
-			let dataListChk = false;
+			let objType = undefined;
 
-			for (let i = 0; i < dataLists.length; i++) {
+			for (let i = 0; i < objects.length; i++) {
 
-				if (linePrefix.endsWith(dataLists[i] + '.')) {
-					dataListChk = true;
+				if (linePrefix.endsWith(objects[i]['id'] + '.')) {
+					objType = objects[i]['type'];
 				}
 			}
 
-			if (!dataListChk) {
+			if (!objType) {
 				return undefined;
 			}
 
 			const commitCharacterCompletions: vscode.CompletionItem[] = [];
 
-			const methods = documentation['DataList']['methods'];
+			const methods = documentation[objType]['methods'];
 
 			for (let i = 0; i < methods.length; i++) {
 				commitCharacterCompletions.push(new vscode.CompletionItem(
@@ -314,21 +377,21 @@ export function completion() {
 
 			let linePrefix = document.lineAt(position).text.substr(0, position.character);
 
-			let dataListChk = false;
+			let objType = undefined;
 
-			for (let i = 0; i < dataLists.length; i++) {
+			for (let i = 0; i < objects.length; i++) {
 
-				if (linePrefix.match(dataLists[i] + '.')) {
-					dataListChk = true;
+				if (linePrefix.match(objects[i]['id'] + '.')) {
+					objType = objects[i]['type'];
 				}
 			}
 
-			if (!dataListChk) {
+			if (!objType) {
 				return undefined;
 			}
 
 			let methodIdx = -1;
-			const methods = documentation['DataList']['methods'];
+			const methods = documentation[objType]['methods'];
 
 			for (let i = 0; i < methods.length; i++) {
 
@@ -364,4 +427,132 @@ export function completion() {
 			triggerCharacters: ['('],
 			retriggerCharacters: [',']
 		});
+
+	vscode.languages.registerHoverProvider({ scheme: 'file', language: 'javascript' }, {
+		provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
+
+			if (document.fileName.match("(CodeSquare)") == null)
+				return;
+
+			let isObj = true;
+			let type = undefined;
+			let objIdx = -1;
+			let method = '';
+
+			let word = wordExtract(document, position);
+
+			if (!word)
+				return undefined;
+
+			// 추출된 문구가 Object인지 Method 인지 구분
+			if (word.indexOf('(') > 0) {
+				isObj = false;
+
+				// Method인 경우 호출한 Object를 확인
+				const documentLine = document.lineAt(position.line).text;
+				let words: string[] = [];
+				let preWords: string[] = [];
+
+				let point = documentLine.indexOf(word) - 2;
+
+				for (let i = point; i > -1; i--) {
+					const w = documentLine[i];
+					if (w == '.' || w == ' ') {
+						break;
+					} else {
+						words.push(w);
+					}
+				}
+
+				method = word;
+				word = words.reverse().join('');
+			}
+
+			// object check
+			for (let i = 0; i < objects.length; i++) {
+
+				if (word.match(objects[i]['id'])) {
+					type = objects[i]['type'];
+					objIdx = i;
+				}
+			}
+
+			if (!type)
+				return undefined;
+
+			// Websquare Object 인 경우
+			if (isObj) {
+				let md = new vscode.MarkdownString();
+				md.appendMarkdown('(' + objects[objIdx]['type'] + ') ' + objects[objIdx]['id'] + '  \n  \n');
+
+				//let desc = methods[methodIdx]['documentation'];
+
+				md.appendMarkdown("|id|name|DataType|  \n");
+				md.appendMarkdown("|---|---|---|  \n");
+
+				let objD = objects[objIdx]['objDetail'];
+
+				for (let i = 0; i < objD.length; i++) {
+					md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
+				}
+
+				return new vscode.Hover(md);
+			} else {
+				// method
+				let methodIdx = -1;
+				const methods = documentation[type]['methods'];
+
+				for (let i = 0; i < methods.length; i++) {
+
+					if (method.match(methods[i]['name'])) {
+						methodIdx = i;
+					}
+				}
+
+				if (methodIdx < 0) {
+					return undefined;
+				}
+
+				let md = new vscode.MarkdownString();
+				md.appendCodeblock(objects[objIdx]['type'] + '.' + methods[methodIdx]['label']);
+
+				let desc = methods[methodIdx]['documentation'];
+
+				for (let j = 0; j < desc.length; j++) {
+					md.appendMarkdown(desc[j] + '  \n   \n');
+				}
+
+				return new vscode.Hover(md);
+			}
+		}
+	})
+}
+
+// hover시의 단어
+function wordExtract(document: vscode.TextDocument, position: vscode.Position) {
+	const line = position.line;
+	const documentLine = document.lineAt(line).text;
+	const lineLength = documentLine.length;
+	const linePoint = position.character;
+
+	let words: string[] = [];
+	let preWords: string[] = [];
+
+	for (let i = 0; i <= lineLength; i++) {
+		const w = documentLine[i];
+		if (/[a-zA-Z0-9_()]/.test(w)) {
+			words.push(w);
+		} else {
+			preWords = words;
+			words = [];
+		}
+
+		if (i >= linePoint && words.length === 0) {
+			return preWords.join('');
+		}
+		if (lineLength === i) {
+			return words.join('');
+		}
+	}
+	return undefined;
 }
