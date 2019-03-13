@@ -1,48 +1,44 @@
 {
-    "DataList": {
-        "property": {},
-        "event": {},
-        "methods": [
-            {
-                "name": "bind",
-                "label": "bind(eventType: string , function)",
-                "documentation": [
-                    "dataList의 이벤트를 동적으로 할당한다.",
-                    "*@param* `eventType` &mdash; 동적으로 할당할 이벤트의 이름",
-                    "*@param* `function` &mdash; 동적으로 할당 할 이벤트의 핸들러 함수"
-                ],
-                "parameters": [
-                    {
-                        "label": "eventType"
-                    },
-                    {
-                        "label": "function"
-                    }
-                ]
-            },
-            {
-                "name": "clearSort",
-                "label": "clearSort()",
-                "documentation": [
-                    "Data의 정렬을 취소하며 GridView 컴포넌트의 정렬도 함께 취소된다."
-                ]
-            },
-            {
-                "name": "deleteRow",
-                "label": "deleteRow(rowIndex: number)",
-                "documentation": [
-                    "rowInex에 해당하는 행이 삭제되지 않으며 상태 값만 삭제(D)로 변경된다.",
-                    "*@param* `rowIndex` &mdash; 삭제상태로 변경 할 행의 index"
-                ]
-            },
-            {
-                "name": "getAllArray",
-                "label": "getAllArray(): JSON",
-                "documentation": [
-                    "DataList의 전체 data를 column의 정보와 1차원 배열로 변환 된 실 Data를 JSON에 담아 반환한다.",
-                    "*@return*  \ncolumn 정보와 data가 담긴 JSON"
-                ]
-            }
-        ]
-    }
+    "DataList": [
+        {
+            "name": "bind",
+            "label": "bind(eventType: string , function)",
+            "documentation": [
+                "dataList의 이벤트를 동적으로 할당한다.",
+                "*@param* `eventType` &mdash; 동적으로 할당할 이벤트의 이름",
+                "*@param* `function` &mdash; 동적으로 할당 할 이벤트의 핸들러 함수"
+            ],
+            "params": [
+                {
+                    "label": "eventType"
+                },
+                {
+                    "label": "function"
+                }
+            ]
+        },
+        {
+            "name": "clearSort",
+            "label": "clearSort()",
+            "documentation": [
+                "Data의 정렬을 취소하며 GridView 컴포넌트의 정렬도 함께 취소된다."
+            ]
+        },
+        {
+            "name": "deleteRow",
+            "label": "deleteRow(rowIndex: number)",
+            "documentation": [
+                "rowInex에 해당하는 행이 삭제되지 않으며 상태 값만 삭제(D)로 변경된다.",
+                "*@param* `rowIndex` &mdash; 삭제상태로 변경 할 행의 index"
+            ]
+        },
+        {
+            "name": "getAllArray",
+            "label": "getAllArray(): JSON",
+            "documentation": [
+                "DataList의 전체 data를 column의 정보와 1차원 배열로 변환 된 실 Data를 JSON에 담아 반환한다.",
+                "*@return*  \ncolumn 정보와 data가 담긴 JSON"
+            ]
+        }
+    ]
 }

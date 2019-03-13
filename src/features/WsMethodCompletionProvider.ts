@@ -24,7 +24,7 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
         }
 
         // Method 목록
-        const methods = documentation[objType]['methods'];
+        const methods = documentation[objType];
 
         for (let i = 0; i < methods.length; i++) {
             let comItem = new CompletionItem(methods[i]['name'], CompletionItemKind.Method);
