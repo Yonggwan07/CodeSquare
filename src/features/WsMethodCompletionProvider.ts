@@ -27,7 +27,7 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
         const methods = documentation[objType];
 
         for (let i = 0; i < methods.length; i++) {
-            let comItem = new CompletionItem(methods[i]['name'], CompletionItemKind.Method);
+            let comItem = new CompletionItem(methods[i]['label'].substring(0, methods[i]['label'].indexOf('(')), CompletionItemKind.Method);
             let mks = new MarkdownString();
             let desc = methods[i]['documentation'];
 

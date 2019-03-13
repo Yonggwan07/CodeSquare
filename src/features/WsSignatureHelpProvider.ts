@@ -31,7 +31,7 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
         // Method 목록에서 해당되는 Method를 검색
         for (let i = 0; i < methods.length; i++) {
 
-            if (linePrefix.match(methods[i]['name'])) {
+            if (linePrefix.match(methods[i]['label'].substring(0, methods[i]['label'].indexOf('(')))) {
                 mIdx = i;
             }
         }

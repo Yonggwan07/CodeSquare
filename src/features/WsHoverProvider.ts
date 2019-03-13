@@ -89,7 +89,7 @@ export class WsHoverProvider implements HoverProvider {
 
                 for (let i = 0; i < methods.length; i++) {
 
-                    if (methodName.match(methods[i]['name'])) {
+                    if (methodName.match(methods[i]['label'].substring(0, methods[i]['label'].indexOf('(')))) {
                         mIdx = i;
                     }
                 }
