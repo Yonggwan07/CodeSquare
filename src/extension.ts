@@ -27,7 +27,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.languages.registerSignatureHelpProvider(
 			'javascript', new WsSignatureHelpProvider(), {
-				triggerCharacters: ['('], retriggerCharacters: [','] }
+				triggerCharacters: ['('], retriggerCharacters: [',']
+			}
 		)
 	);
 
@@ -46,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// Websquare Object Parsing
 		wsParseObjectInfo();
 
-		if(docObjects.length <= 0)
+		if (docObjects.length <= 0)
 			return;
 
 		// 원본 xml 파일에서 javascript 부분만 파싱

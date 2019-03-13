@@ -135,7 +135,7 @@ function parseDataList(json: any, objects: IObject[]) {
     }
 }
 
-function parseDataMap(json: any, objects:IObject[]) {
+function parseDataMap(json: any, objects: IObject[]) {
     let dtm = json['html']['head'][0]['xf:model'][0]['w2:dataCollection'][0]['w2:dataMap'];
 
     for (let i = 0; i < dtm.length; i++) {

@@ -8,14 +8,14 @@ import { getObjectsByDocName, getObjectType } from '../util';
 export class WsSignatureHelpProvider implements SignatureHelpProvider {
 
     provideSignatureHelp(document: TextDocument, position: Position): ProviderResult<SignatureHelp> {
-       
+
         const documentation = require('../../documentation.json');
         const retSign = new SignatureHelp();    // return될 Signature Help
         const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
         if (objs.length <= 0)
             return undefined;
-        
+
         // Object's Type Check
         const objType = getObjectType(document, position, objs);
 
@@ -29,7 +29,7 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
 
         // Method 목록에서 해당되는 Method를 검색
         for (let i = 0; i < methods.length; i++) {
-            
+
             if (linePrefix.match(methods[i]['name'])) {
                 mIdx = i;
             }

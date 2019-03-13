@@ -23,7 +23,7 @@ export class WsHoverProvider implements HoverProvider {
         let objIdx = -1;
         let methodName = '';
 
-        if(!word)
+        if (!word)
             return undefined;
 
         // Hover중인 word가 Object인지 Method인지 구분
@@ -62,12 +62,12 @@ export class WsHoverProvider implements HoverProvider {
             }
         }
 
-        if(objType == '' || objIdx < 0)
+        if (objType == '' || objIdx < 0)
             return undefined;
 
         let md = new MarkdownString();
 
-        switch(wordType){
+        switch (wordType) {
             case "Object":
                 md.appendMarkdown('(' + objs[objIdx]['type'] + ') ' + objs[objIdx]['id'] + '  \n  \n');
                 md.appendMarkdown("|id|name|DataType|  \n");

@@ -28,7 +28,7 @@ export function getObjectsByDocName(document: TextDocument): IObject[] {
 
 // Object의 Type을 확인 (DataList인지 DataMap인지 등등...)
 export function getObjectType(document: TextDocument, position: Position, objs: IObject[]): string | undefined {
-    
+
     let lineText = document.lineAt(position).text.substr(0, position.character);
     let objType = undefined;
 
