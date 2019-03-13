@@ -1,8 +1,9 @@
 'use strict';
 
-import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation } from 'vscode';
+import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation } from 'vscode';
 import { IObject } from '../structure';
 import { getObjectsByDocName, getObjectType } from '../util';
+import { stringify } from 'querystring';
 
 // Websquare Signature Help Provider Class
 export class WsSignatureHelpProvider implements SignatureHelpProvider {
@@ -39,13 +40,23 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
             return undefined;
         }
 
-        let signInfo = new SignatureInformation(methods[mIdx]['label'],
-            methods[mIdx]['documentation'][0]);
+        let docs = methods[mIdx]['documentation'];
+        let signInfo = new SignatureInformation(methods[mIdx]['label'], docs[0]);
 
-        const params = methods[mIdx]['params'];     // Method의 Parameter 목록
+        // Method의 Parameter 목록
+        let params: string[] = [];
+        let paramDocs: string[] = [];
+
+        for (let i = 1; i < docs.length; i++) {
+            if(docs[i].match("@param")) {
+                params.push(docs[i].substring(docs[i].indexOf('`') + 1, docs[i].lastIndexOf('`')));
+                paramDocs.push(docs[i].substring(
+                    docs[i].indexOf("&mdash; ") + new String("&mdash; ").length, docs[i].length));
+            }
+        }
 
         for (let i = 0; i < params.length; i++) {
-            signInfo.parameters.push(params[i]['label']);
+            signInfo.parameters.push(new ParameterInformation(params[i], paramDocs[i]));
         }
 
         retSign.activeParameter = params.length;
