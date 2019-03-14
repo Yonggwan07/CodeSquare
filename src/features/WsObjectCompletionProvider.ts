@@ -23,7 +23,7 @@ export class WsObjectCompletionProvider implements CompletionItemProvider {
             // DataList, DataMap인 경우 ID, NAME, DataType을 표 형태로 출력
             let objD = objs[i]['objDetail'];
 
-            if (objD.length > 0) {
+            if (objD != undefined && objD.length > 0) {
                 let md = new MarkdownString();
                 md.appendMarkdown("|id|name|DataType|  \n");
                 md.appendMarkdown("|---|---|---|  \n");

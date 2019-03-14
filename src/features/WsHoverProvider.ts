@@ -75,8 +75,10 @@ export class WsHoverProvider implements HoverProvider {
 
                 let objD = objs[objIdx]['objDetail'];
 
-                for (let i = 0; i < objD.length; i++) {
-                    md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
+                if (objD != undefined) {
+                    for (let i = 0; i < objD.length; i++) {
+                        md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
+                    }
                 }
 
                 retHover = new Hover(md);

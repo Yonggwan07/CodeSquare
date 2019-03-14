@@ -11,7 +11,7 @@ export interface IDocObject {
 export interface IObject {
     type: string;   // Object Type (ex. DataList, DataMap, Input...)
     id: string;     // Object ID
-    objDetail: IObjectDetail[];     // DataList's Columns, DataMap's Keys
+    objDetail?: IObjectDetail[];     // DataList's Columns, DataMap's Keys
 }
 
 // DataList, DataMap의 세부 컬럼, 키 정보를 저장
