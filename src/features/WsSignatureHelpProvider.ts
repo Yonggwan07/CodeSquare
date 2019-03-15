@@ -3,7 +3,6 @@
 import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation } from 'vscode';
 import { IObject } from '../structure';
 import { getObjectsByDocName, getObjectType } from '../util';
-import { stringify } from 'querystring';
 
 // Websquare Signature Help Provider Class
 export class WsSignatureHelpProvider implements SignatureHelpProvider {
