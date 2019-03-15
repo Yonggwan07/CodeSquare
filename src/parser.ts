@@ -12,6 +12,12 @@ export const startWords: string[] = ["<script type=\"javascript\"><![CDATA[",
     "<script type=\"text/javascript\"><![CDATA["];
 export const endWord = "]]></script>";
 
+// 파싱하고자 하는 Websquare Component List
+const ws = require('../wsComponent.json');
+const wsComponents = ws['components'];
+
+let searchedObj: any[] = [];    // Websquare Page Xml 파일로부터 Key 값을 통해 검색된 Object 배열
+
 /**
  * Websquare Page Xml 문서로부터 JavaScript 부분만 Parsing
  */
@@ -79,23 +85,82 @@ export function wsParseObjectInfo() {
         return [];
 
     const fileName = window.activeTextEditor.document.fileName;
-    const parser = new xml2js.Parser();
+    const parser = new xml2js.Parser({ explicitArray: false });
     const xml = fs.readFileSync(fileName, 'utf-8');
 
     let objects: IObject[] = [];
 
-    parser.parseString(xml, function (err: Object, result: string) {
+    parser.parseString(xml, function (err: string, result: string) {
 
         let parsedJson = JSON.parse(JSON.stringify(result));
 
-        // parse datalist
-        parseDataList(parsedJson, objects);
+        for (let i = 0; i < wsComponents.length; i++) {
 
-        // parse datamap
-        parseDataMap(parsedJson, objects);
+            // 매 반복마다 searchedObj 초기화
+            searchedObj = [];
 
-        // parse ....
+            let resultObj = [];
 
+            // Key 값에 따른 Object 검색
+            searchByKey(parsedJson, wsComponents[i]['Tag']);
+
+            for (let j = 0; j < searchedObj.length; j++) {
+                if (getNodeType(searchedObj[j][0]) == 'String') {
+                    if (getNodeType(searchedObj[j][1]) != 'Array')
+                        resultObj.push(searchedObj[j][1]);
+                    else {
+                        for (let k = 0; k < searchedObj[j][1].length; k++)
+                            resultObj.push(searchedObj[j][1][k]);
+                    }
+                }
+            }
+
+            let objs = resultObj;
+
+            if (objs.length == 0)
+                continue;
+
+            for (var obj of objs) {
+
+                if (obj['$']['id'] == '' || obj['$']['id'] == undefined)
+                    continue;
+
+                let objDetails = undefined;
+
+                if (wsComponents[i]['Name'] == 'DataList') {
+                    let dtlCols = obj['w2:columnInfo']['w2:column'];
+
+                    let colInfo: IObjectDetail[] = [];
+
+                    for (let k = 0; k < dtlCols.length; k++) {
+                        colInfo[k] = {
+                            id: dtlCols[k]['$']['id'],
+                            name: dtlCols[k]['$']['name'],
+                            dataType: dtlCols[k]['$']['dataType'],
+                        }
+                    }
+
+                    objDetails = colInfo;
+
+                } else if (wsComponents[i]['Name'] == 'DataMap') {
+                    let dtmKeys = obj['w2:keyInfo']['w2:key'];
+
+                    let keyInfo: IObjectDetail[] = [];
+
+                    for (let k = 0; k < dtmKeys.length; k++) {
+                        keyInfo[k] = {
+                            id: dtmKeys[k]['$']['id'],
+                            name: dtmKeys[k]['$']['name'],
+                            dataType: dtmKeys[k]['$']['dataType'],
+                        }
+                    }
+
+                    objDetails = keyInfo;
+                }
+
+                objects.push({ type: wsComponents[i]['Name'], id: obj['$']['id'], objDetail: objDetails });
+            }
+        }
 
         // Create DocObject
         let docObj: IDocObject = {
@@ -107,57 +172,94 @@ export function wsParseObjectInfo() {
     });
 }
 
-function parseDataList(json: any, objects: IObject[]) {
+/**
+ * JSON Object 내에서 특정 Key의 Object를 반환
+ * 
+ * @param jsonObj JSON Object
+ * @param k 검색할 Key Name
+ */
+function searchByKey(jsonObj: any, k: string): any {
+    for (var key of Object.keys(jsonObj)) {
 
-    let dtl = json['html']['head'][0]['xf:model'][0]['w2:dataCollection'][0]['w2:dataList'];
+        let value = jsonObj[key];
 
-    for (let i = 0; i < dtl.length; i++) {
-
-        let dtlCols = dtl[i]['w2:columnInfo'][0]['w2:column'];
-
-        let objDetails: IObjectDetail[] = [];
-
-        for (let i = 0; i < dtlCols.length; i++) {
-            objDetails[i] = {
-                id: dtlCols[i]['$']['id'],
-                name: dtlCols[i]['$']['name'],
-                dataType: dtlCols[i]['$']['dataType'],
-            }
+        if (k == key) {
+            // key 값과 일치하는 Object (검색결과)
+            searchedObj.push([k, value]);
         }
 
-        let obj: IObject = {
-            type: "DataList",
-            id: dtl[i]['$']['id'],
-            objDetail: objDetails
-        };
+        // 일치하는 Object가 나올 때까지 하위 Node를 검색
+        if (getNodeType(value) == "Object") {
 
-        objects.push(obj);
+            var y = getSubNode(searchByKey(value, k));
+
+            if (y && y[0] == k) {
+                searchByKey(y, k);  // 한번 더 searchByKey를 호출하여 searchedObj에 push
+            }
+
+        } else if (getNodeType(value) == "Array") {
+
+            for (var i = 0; i < value.length; ++i) {
+
+                var x = getSubNode(searchByKey(value[i], k));
+
+                if (x && x[0] == k) {
+                    searchByKey(x, k);
+                }
+            }
+
+        } else {
+            continue;   // 검색되지 않은 경우 다음 Node로 이동
+        }
     }
 }
 
-function parseDataMap(json: any, objects: IObject[]) {
-    let dtm = json['html']['head'][0]['xf:model'][0]['w2:dataCollection'][0]['w2:dataMap'];
+/**
+ * [0] : Key Name (string)
+ * 
+ * [1] : Object Value Array
+ * 
+ * component Object 배열을 입력받아 위 구조의 배열이 나올 때 까지 하위 원소들을 검색하고
+ * 
+ * 위 구조의 배열이 검색되면 Object Value Array만 return
+ */
+function getSubNode(value: any): any {
 
-    for (let i = 0; i < dtm.length; i++) {
+    if (value == undefined)
+        return undefined;
 
-        let dtmKeys = dtm[i]['w2:keyInfo'][0]['w2:key'];
+    if (getNodeType(value) == 'Array' && value.length > 0 && getNodeType(value[0]) == 'String') {
 
-        let objDetails: IObjectDetail[] = [];
+        // value[0]이 string인 경우 검색하고자 한 Object
+        return value;
 
-        for (let i = 0; i < dtmKeys.length; i++) {
-            objDetails[i] = {
-                id: dtmKeys[i]['$']['id'],
-                name: dtmKeys[i]['$']['name'],
-                dataType: dtmKeys[i]['$']['dataType'],
-            }
+    } else {
+        if (getNodeType(value) == 'Array' && value.length < 1)
+            return undefined;
+        else {
+            // value[0]이 string인 경우 검색하고자 한 Object가
+            // 아닌 경우 하위 원소에서 다시 검색
+            return getSubNode(value[0]);
         }
+    }
+}
 
-        let obj: IObject = {
-            type: "DataMap",
-            id: dtm[i]['$']['id'],
-            objDetail: objDetails
-        };
+function getNodeType(object: any) {
+    var stringConstructor = "test".constructor;
+    var arrayConstructor = [].constructor;
+    var objectConstructor = {}.constructor;
 
-        objects.push(obj);
+    if (object === null) {
+        return "null";
+    } else if (object === undefined) {
+        return "undefined";
+    } else if (object.constructor === stringConstructor) {
+        return "String";
+    } else if (object.constructor === arrayConstructor) {
+        return "Array";
+    } else if (object.constructor === objectConstructor) {
+        return "Object";
+    } else {
+        return "null";
     }
 }

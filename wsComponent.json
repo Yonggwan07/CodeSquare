@@ -1,0 +1,32 @@
+{
+    "components": [
+        {
+            "Name": "Anchor",
+            "Tag": "w2:anchor"
+        },
+        {
+            "Name": "DataList",
+            "Tag": "w2:dataList"
+        },
+        {
+            "Name": "DataMap",
+            "Tag": "w2:dataMap"
+        },
+        {
+            "Name": "GridView",
+            "Tag": "w2:gridView"
+        },
+        {
+            "Name": "Group",
+            "Tag": "xf:group"
+        },
+        {
+            "Name": "Input",
+            "Tag": "xf:input"
+        },
+        {
+            "Name": "Output",
+            "Tag": "xf:output"
+        }
+    ]
+}
