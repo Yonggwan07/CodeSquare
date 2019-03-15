@@ -70,12 +70,13 @@ export class WsHoverProvider implements HoverProvider {
         switch (wordType) {
             case "Object":
                 md.appendMarkdown('(' + objs[objIdx]['type'] + ') ' + objs[objIdx]['id'] + '  \n  \n');
-                md.appendMarkdown("|id|name|DataType|  \n");
-                md.appendMarkdown("|---|---|---|  \n");
-
+            
                 let objD = objs[objIdx]['objDetail'];
 
                 if (objD != undefined) {
+                    md.appendMarkdown("|id|name|DataType|  \n");
+                    md.appendMarkdown("|---|---|---|  \n");
+
                     for (let i = 0; i < objD.length; i++) {
                         md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
                     }
