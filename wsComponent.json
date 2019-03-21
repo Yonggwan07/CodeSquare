@@ -1,32 +1,252 @@
 {
     "components": [
         {
-            "Name": "Anchor",
+            "Name": "anchor",
             "Tag": "w2:anchor"
         },
         {
-            "Name": "DataList",
+            "Name": "autoComplete",
+            "Tag": "w2:autoComplete"
+        },
+        {
+            "Name": "body",
+            "Tag": "body"
+        },
+        {
+            "Name": "calendar",
+            "Tag": "w2:calendar"
+        },
+        {
+            "Name": "chart",
+            "Tag": "w2:chart"
+        },
+        {
+            "Name": "checkbox",
+            "Tag": "w2:checkbox"
+        },
+        {
+            "Name": "checkcombobox",
+            "Tag": "xf:checkcombobox"
+        },
+        {
+            "Name": "dataList",
             "Tag": "w2:dataList"
         },
         {
-            "Name": "DataMap",
+            "Name": "dataMap",
             "Tag": "w2:dataMap"
         },
         {
-            "Name": "GridView",
+            "Name": "editor",
+            "Tag": "w2:editor"
+        },
+        {
+            "Name": "fliptoggle",
+            "Tag": "w2:fliptoggle"
+        },
+        {
+            "Name": "floatingLayer",
+            "Tag": "w2:floatingLayer"
+        },
+        {
+            "Name": "fusionChart",
+            "Tag": "w2:fusionChart"
+        },
+        {
+            "Name": "fwBulletChart",
+            "Tag": "w2:fwBulletChart"
+        },
+        {
+            "Name": "fwFunnelChart",
+            "Tag": "w2:fwFunnelChart"
+        },
+        {
+            "Name": "fwGanttChart",
+            "Tag": "w2:fwGanttChart"
+        },
+        {
+            "Name": "fwGaugeChart",
+            "Tag": "w2:fwGaugeChart"
+        },
+        {
+            "Name": "fwPyramidChart",
+            "Tag": "w2:fwPyramidChart"
+        },
+        {
+            "Name": "fwRealtimeChart",
+            "Tag": "w2:fwRealtimeChart"
+        },
+        {
+            "Name": "fwSparkChart",
+            "Tag": "w2:fwSparkChart"
+        },
+        {
+            "Name": "gauge",
+            "Tag": "w2:gauge"
+        },
+        {
+            "Name": "generator",
+            "Tag": "w2:generator"
+        },
+        {
+            "Name": "grid",
+            "Tag": "w2:grid"
+        },
+        {
+            "Name": "gridView",
             "Tag": "w2:gridView"
         },
         {
-            "Name": "Group",
+            "Name": "group",
             "Tag": "xf:group"
         },
         {
-            "Name": "Input",
+            "Name": "iframe",
+            "Tag": "w2:iframe"
+        },
+        {
+            "Name": "image",
+            "Tag": "w2:image"
+        },
+        {
+            "Name": "input",
             "Tag": "xf:input"
         },
         {
-            "Name": "Output",
+            "Name": "inputCalendar",
+            "Tag": "w2:inputCalendar"
+        },
+        {
+            "Name": "linkedDataList",
+            "Tag": "w2:linkedDataList"
+        },
+        {
+            "Name": "mapchart",
+            "Tag": "w2:mapchart"
+        },
+        {
+            "Name": "menu",
+            "Tag": "w2:menu"
+        },
+        {
+            "Name": "multiselect",
+            "Tag": "xf:multiselect"
+        },
+        {
+            "Name": "multiupload",
+            "Tag": "w2:multiupload"
+        },
+        {
+            "Name": "output",
             "Tag": "xf:output"
+        },
+        {
+            "Name": "pageControl",
+            "Tag": "w2:pageControl"
+        },
+        {
+            "Name": "pageInherit",
+            "Tag": "w2:pageInherit"
+        },
+        {
+            "Name": "pageList",
+            "Tag": "w2:pageList"
+        },
+        {
+            "Name": "panelContainer",
+            "Tag": "w2:panelContainer"
+        },
+        {
+            "Name": "pivotTable",
+            "Tag": "w2:pivotTable"
+        },
+        {
+            "Name": "radio",
+            "Tag": "xf:select1"
+        },
+        {
+            "Name": "repeat",
+            "Tag": "xf:repeat"
+        },
+        {
+            "Name": "roundRectangle",
+            "Tag": "w2:roundRectangle"
+        },
+        {
+            "Name": "scrollView",
+            "Tag": "w2:scrollView"
+        },
+        {
+            "Name": "searchbox",
+            "Tag": "w2:searchbox"
+        },
+        {
+            "Name": "secret",
+            "Tag": "xf:secret"
+        },
+        {
+            "Name": "selectbox",
+            "Tag": "xf:select1"
+        },
+        {
+            "Name": "slideHide",
+            "Tag": "w2:slideHide"
+        },
+        {
+            "Name": "slider",
+            "Tag": "w2:slider"
+        },
+        {
+            "Name": "span",
+            "Tag": "w2:span"
+        },
+        {
+            "Name": "spinner",
+            "Tag": "w2:spinner"
+        },
+        {
+            "Name": "tabContainer",
+            "Tag": "w2:tabContainer"
+        },
+        {
+            "Name": "tabControl",
+            "Tag": "w2:tabControl"
+        },
+        {
+            "Name": "textarea",
+            "Tag": "xf:textarea"
+        },
+        {
+            "Name": "textbox",
+            "Tag": "w2:textbox"
+        },
+        {
+            "Name": "treeview",
+            "Tag": "w2:treeview"
+        },
+        {
+            "Name": "trigger",
+            "Tag": "xf:trigger"
+        },
+        {
+            "Name": "upload",
+            "Tag": "w2:upload"
+        },
+        {
+            "Name": "wframe",
+            "Tag": "w2:wframe"
+        },
+        {
+            "Name": "windowContainer",
+            "Tag": "w2:windowContainer"
+        },
+        {
+            "Name": "xhtml",
+            "Tag": "w2:xhtml"
+        },
+        {
+            "Name": "xsl",
+            "Tag": "w2:xsl"
         }
     ]
 }
