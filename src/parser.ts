@@ -32,14 +32,24 @@ export function wsParseJavascript(): string {
 
     let startIdx = -1;
 
-    if (pickedDoc.indexOf(startWords[0]) > -1) {
-        startIdx = pickedDoc.indexOf(startWords[0])	// javascript
-            + new String(startWords[0]).length;
-    } else {
-        startIdx = pickedDoc.indexOf(startWords[1])	// text/javascript
-            + new String(startWords[1]).length;
+    if (pickedDoc.indexOf(startWords[0]) != -1 ||
+        pickedDoc.indexOf(startWords[1]) != -1) {
+
+        if (pickedDoc.indexOf(startWords[0]) > -1) {
+            startIdx = pickedDoc.indexOf(startWords[0])	// javascript
+                + new String(startWords[0]).length;
+        } else {
+            startIdx = pickedDoc.indexOf(startWords[1])	// text/javascript
+                + new String(startWords[1]).length;
+        }
+
     }
     let endIdx = pickedDoc.indexOf(endWord);
+
+    if(startIdx == -1) {
+        window.showErrorMessage("This is not Websquare Format document.");
+        return '';
+    }
 
     let pickedJS = pickedDoc.substring(startIdx, endIdx);
     pickedJS = pickedJS.substring(0, pickedJS.lastIndexOf("\n"));
