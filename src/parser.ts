@@ -122,7 +122,10 @@ export function wsParseObjectInfo() {
 
             for (var obj of objs) {
 
-                if (obj['$']['id'] == '' || obj['$']['id'] == undefined)
+                if (obj['$'] == undefined)
+                    continue;
+
+                if (obj['$']['id'] == undefined || obj['$']['id'] == '')
                     continue;
 
                 let objDetails = undefined;
