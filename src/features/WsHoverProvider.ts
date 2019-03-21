@@ -70,7 +70,7 @@ export class WsHoverProvider implements HoverProvider {
         switch (wordType) {
             case "Object":
                 md.appendMarkdown('(' + objs[objIdx]['type'] + ') ' + objs[objIdx]['id'] + '  \n  \n');
-            
+
                 let objD = objs[objIdx]['objDetail'];
 
                 if (objD != undefined) {
@@ -134,7 +134,14 @@ export class WsHoverProvider implements HoverProvider {
         for (let i = 0; i <= lineLength; i++) {
             const w = documentLine[i];
             if (/[a-zA-Z0-9_()]/.test(w)) {
-                words.push(w);
+
+                if (w == '(' && i < linePoint) {
+                    preWords = words;
+                    words = [];
+                } else {
+                    words.push(w);
+                }
+                
             } else {
                 preWords = words;
                 words = [];
