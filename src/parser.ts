@@ -130,7 +130,7 @@ export function wsParseObjectInfo() {
 
                 let objDetails = undefined;
 
-                if (wsComponents[i]['Name'] == 'DataList') {
+                if (wsComponents[i]['Name'] == 'dataList') {
                     let dtlCols = obj['w2:columnInfo']['w2:column'];
 
                     let colInfo: IObjectDetail[] = [];
@@ -145,7 +145,7 @@ export function wsParseObjectInfo() {
 
                     objDetails = colInfo;
 
-                } else if (wsComponents[i]['Name'] == 'DataMap') {
+                } else if (wsComponents[i]['Name'] == 'dataMap') {
                     let dtmKeys = obj['w2:keyInfo']['w2:key'];
 
                     let keyInfo: IObjectDetail[] = [];
