@@ -143,6 +143,12 @@ export function wsParseObjectInfo() {
                 if (wsComponents[i]['Name'] == 'dataList') {
                     let dtlCols = obj['w2:columnInfo']['w2:column'];
 
+                    if (typeof dtlCols === 'undefined') {    // comlumn이 없는 경우
+                        dtlCols = [];
+                    } else if (dtlCols.constructor !== [].constructor) {    // comlumn이 1개인 경우
+                        dtlCols = [dtlCols];
+                    }
+
                     let colInfo: IObjectDetail[] = [];
 
                     for (let k = 0; k < dtlCols.length; k++) {
@@ -157,6 +163,12 @@ export function wsParseObjectInfo() {
 
                 } else if (wsComponents[i]['Name'] == 'dataMap') {
                     let dtmKeys = obj['w2:keyInfo']['w2:key'];
+
+                    if (typeof dtmKeys === 'undefined') {    // key가 없는 경우
+                        dtmKeys = [];
+                    } else if (dtmKeys.constructor !== [].constructor) {    // key가 1개인 경우
+                        dtmKeys = [dtmKeys];
+                    }
 
                     let keyInfo: IObjectDetail[] = [];
 
