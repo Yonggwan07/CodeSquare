@@ -46,7 +46,8 @@ export class WsHoverProvider implements HoverProvider {
             }
 
             methodName = word;  // Hover중인 Method 명
-            objName = words.reverse().join(''); // Hover중인 Method를 호출한 Object 명
+            methodName = methodName.split('(')[0];
+            objName = words.reverse().join('').trim(); // Hover중인 Method를 호출한 Object 명
 
         } else {
             wordType = "Object";
@@ -56,7 +57,7 @@ export class WsHoverProvider implements HoverProvider {
         // Object의 Type과 Index를 확인
         for (let i = 0; i < objs.length; i++) {
 
-            if (objName.match(objs[i]['id'])) {
+            if (objName == objs[i]['id']) {
                 objType = objs[i]['type'];
                 objIdx = i;
 
@@ -94,8 +95,9 @@ export class WsHoverProvider implements HoverProvider {
 
                 for (let i = 0; i < methods.length; i++) {
 
-                    if (methodName.match(methods[i]['label'].substring(0, methods[i]['label'].indexOf('(')))) {
+                    if (methodName == methods[i]['label'].substring(0, methods[i]['label'].indexOf('('))) {
                         mIdx = i;
+                        break;
                     }
                 }
 
