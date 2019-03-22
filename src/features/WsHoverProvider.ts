@@ -59,6 +59,8 @@ export class WsHoverProvider implements HoverProvider {
             if (objName.match(objs[i]['id'])) {
                 objType = objs[i]['type'];
                 objIdx = i;
+
+                break;
             }
         }
 
