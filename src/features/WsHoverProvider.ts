@@ -38,7 +38,7 @@ export class WsHoverProvider implements HoverProvider {
 
             for (let i = point; i > -1; i--) {
                 const w = lineText[i];
-                if (w == '.' || w == ' ') {
+                if (w == '.' || w == ' ' || w == '(' || w == '[' || w == '{') {
                     break;
                 } else {
                     words.push(w);
