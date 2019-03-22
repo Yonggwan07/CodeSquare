@@ -87,6 +87,8 @@ export class WorkspaceContext {
 
             if (tests > -1) {
                 endLine = lineNumber;
+
+                break;
             }
         }
 
