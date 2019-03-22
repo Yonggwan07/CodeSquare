@@ -38,7 +38,7 @@ export class WorkspaceContext {
 
         let jsDoc = window.activeTextEditor.document;
 
-        if (jsDoc.fileName.match("(CodeSquare)") == null)
+        if (jsDoc.fileName.indexOf("(CodeSquare)") == -1)
             return;
 
         let we = new WorkspaceEdit();
