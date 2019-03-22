@@ -72,7 +72,7 @@ export class WsHoverProvider implements HoverProvider {
 
         switch (wordType) {
             case "Object":
-                md.appendMarkdown('(' + objs[objIdx]['type'] + ') ' + objs[objIdx]['id'] + '  \n  \n');
+                md.appendCodeblock('(' + objs[objIdx]['type'] + ') ' + objs[objIdx]['id'] + '  \n  \n');
 
                 let objD = objs[objIdx]['objDetail'];
 
@@ -105,7 +105,7 @@ export class WsHoverProvider implements HoverProvider {
                     return undefined;
                 }
 
-                md.appendCodeblock(objs[objIdx]['type'] + '.' + methods[mIdx]['label']);
+                md.appendCodeblock("(method) " + objs[objIdx]['type'] + '.' + methods[mIdx]['label']);
 
                 let desc = methods[mIdx]['documentation'];
 
