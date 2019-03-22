@@ -46,7 +46,7 @@ export function wsParseJavascript(): string {
     }
     let endIdx = pickedDoc.indexOf(endWord);
 
-    if(startIdx == -1) {
+    if (startIdx == -1) {
         window.showErrorMessage("This is not Websquare Format document.");
         return '';
     }
@@ -183,7 +183,22 @@ export function wsParseObjectInfo() {
                     objDetails = keyInfo;
                 }
 
-                objects.push({ type: wsComponents[i]['Name'], id: obj['$']['id'], objDetail: objDetails });
+                // 같은 xf:select1 태그를 사용하는 radio, selectbox에 대한 구분 처리
+                if (wsComponents[i]['Name'] == 'radio') {
+
+                    switch (obj['$']['appearance']) {
+                        case "full":
+                            objects.push({ type: 'radio', id: obj['$']['id'], objDetail: objDetails });
+                            break;
+
+                        case "minimal":
+                            objects.push({ type: 'selectbox', id: obj['$']['id'], objDetail: objDetails });
+                            break;
+                    }
+
+                } else {
+                    objects.push({ type: wsComponents[i]['Name'], id: obj['$']['id'], objDetail: objDetails });
+                }
             }
         }
 

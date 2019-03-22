@@ -162,7 +162,8 @@
         },
         {
             "Name": "radio",
-            "Tag": "xf:select1"
+            "Tag": "xf:select1",
+            "comment": "radio, selectbox 공통으로 xf:select1을 사용하므로 함께 처리 (appearance 속성으로 구분)"
         },
         {
             "Name": "repeat",
@@ -183,10 +184,6 @@
         {
             "Name": "secret",
             "Tag": "xf:secret"
-        },
-        {
-            "Name": "selectbox",
-            "Tag": "xf:select1"
         },
         {
             "Name": "slideHide",
