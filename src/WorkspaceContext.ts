@@ -100,8 +100,8 @@ export class WorkspaceContext {
 
         workspace.applyEdit(we);
         
-        // 파일 저장시 원본 xml 파일도 함께 저장
-        workspace.saveAll();
+        // 파일 저장시 원본 xml 파일도 함께 저장 (미작동)
+        originDoc.save();
     }
  
     public static onClose(doc: TextDocument) {
