@@ -99,9 +99,9 @@ export class WorkspaceContext {
             originDoc.lineAt(startLine).text.split(' ').length - 1, endLine, 0), jsText);
 
         workspace.applyEdit(we);
-
-        // 파일 저장시 원본 xml 파일도 함께 저장 (미작동)
-        originDoc.save();
+        
+        // 파일 저장시 원본 xml 파일도 함께 저장
+        workspace.saveAll();
     }
  
     public static onClose(doc: TextDocument) {
