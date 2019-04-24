@@ -105,14 +105,10 @@ export class WorkspaceContext {
     }
  
     public static onClose(doc: TextDocument) {
-        if (doc.uri.scheme == 'git') {
-            return;
-        }
-
         let jsDoc = null;
 
         for (let i = 0; i < jsDocs.length; i++) {
-            if (jsDocs[i].fileName == doc.fileName) {
+            if (jsDocs[i].fileName == doc.fileName.replace(".git", "")) {
                 jsDoc = jsDocs[i];
 
                 originDocs.splice(i, 1);
@@ -126,10 +122,7 @@ export class WorkspaceContext {
         if (!doc.isClosed)
             return;
 
-        let we = new WorkspaceEdit();
-
-        we.deleteFile(jsDoc.uri);
-        workspace.applyEdit(we);
+        fs.unlink(jsDoc.fileName, (err) => { });
     }
 
     public static deactivate() {
