@@ -152,9 +152,15 @@ export class WsHoverProvider implements HoverProvider {
             }
 
             if (i >= linePoint && words.length === 0) {
+                if (preWords.indexOf(')') != -1)
+                    preWords.splice(preWords.indexOf(')'), 1);
+
                 return preWords.join('');
             }
             if (lineLength === i) {
+                if (words.indexOf(')') != -1)
+                    words.splice(words.indexOf(')'), 1);
+
                 return words.join('');
             }
         }
