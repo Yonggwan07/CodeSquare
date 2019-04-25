@@ -105,10 +105,14 @@ export class WorkspaceContext {
     }
  
     public static onClose(doc: TextDocument) {
+        if (doc.uri.scheme == 'git') {
+            return;
+        }
+
         let jsDoc = null;
 
         for (let i = 0; i < jsDocs.length; i++) {
-            if (jsDocs[i].fileName == doc.fileName.replace(".git", "")) {
+            if (jsDocs[i].fileName == doc.fileName) {
                 jsDoc = jsDocs[i];
 
                 originDocs.splice(i, 1);
