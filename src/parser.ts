@@ -52,7 +52,7 @@ export function wsParseJavascript(): string {
     }
 
     let pickedJS = pickedDoc.substring(startIdx, endIdx);
-    pickedJS = pickedJS.substring(0, pickedJS.lastIndexOf("\n"));
+    pickedJS = pickedJS.trimRight();
 
     if (pickedJS == null)
         return '';
