@@ -44,7 +44,7 @@ export function wsParseJavascript(): string {
         }
 
     }
-    let endIdx = pickedDoc.indexOf(endWord);
+    let endIdx = pickedDoc.indexOf(endWord, startIdx);
 
     if (startIdx == -1) {
         window.showErrorMessage("This is not Websquare Format document.");
