@@ -1,6 +1,6 @@
 'use strict';
 
-import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation } from 'vscode';
+import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation, Range } from 'vscode';
 import { IObject } from '../structure';
 import { getObjectsByDocName, getObjectType } from '../util';
 
@@ -16,6 +16,13 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
 
         if (objs.length <= 0)
             return undefined;
+
+        const txt = document.getText(new Range(new Position(0, 0), position));
+        const nowChar = txt.substring(txt.length - 1);
+
+        if (nowChar === ')' || nowChar === ';') {
+            return undefined;
+        }
 
         // Object's Type Check
         const objType = getObjectType(document, position, objs);
@@ -59,7 +66,11 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
             signInfo.parameters.push(new ParameterInformation(params[i], paramDocs[i]));
         }
 
-        retSign.activeParameter = params.length;
+        // get active parameter
+        let lineText = document.lineAt(position.line).text;
+        lineText = lineText.substring(lineText.substring(0, position.character).lastIndexOf('('), lineText.length);
+        
+        retSign.activeParameter = (lineText.match(/,/g) || []).length;
         retSign.activeSignature = 0;
         retSign.signatures = [
             signInfo
