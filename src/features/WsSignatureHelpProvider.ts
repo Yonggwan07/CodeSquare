@@ -4,12 +4,13 @@ import { SignatureHelpProvider, TextDocument, Position, ProviderResult, Signatur
 import { IObject } from '../structure';
 import { getObjectsByDocName, getObjectType } from '../util';
 
+const documentation = require('../../documentation.json');
+
 // Websquare Signature Help Provider Class
 export class WsSignatureHelpProvider implements SignatureHelpProvider {
 
     provideSignatureHelp(document: TextDocument, position: Position): ProviderResult<SignatureHelp> {
 
-        const documentation = require('../../documentation.json');
         const retSign = new SignatureHelp();    // return될 Signature Help
         const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 

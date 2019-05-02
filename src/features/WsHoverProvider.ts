@@ -4,12 +4,13 @@ import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownS
 import { IObject } from "../structure";
 import { getObjectsByDocName } from "../util";
 
+const documentation = require('../../documentation.json');
+
 // Websquare Hover Provider Class
 export class WsHoverProvider implements HoverProvider {
 
     provideHover(document: TextDocument, position: Position): ProviderResult<Hover> {
 
-        const documentation = require('../../documentation.json');
         let retHover = undefined;      // return될 Hover
         const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
