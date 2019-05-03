@@ -9,7 +9,49 @@
     "scopeName": "text.xml",
     "patterns": [
         {
-            
+            "begin": "(<)(script) (type)=(\"(?:text/)?javascript\")(>)(<!\\[CDATA\\[)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.xml"
+                },
+                "2": {
+                    "name": "entity.name.tag.xml"
+                },
+                "3": {
+                    "name": "entity.other.attribute-name.namespace.xml"
+                },
+                "4": {
+                    "name": "string.quoted.double.xml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.xml"
+                },
+                "6": {
+                    "name": "string.unquoted.cdata.xml"
+                }
+            },
+            "end": "(\\]\\]>)(</)(script)(>)",
+            "endCaptures": {
+                "1": {
+                    "name": "string.unquoted.cdata.xml"
+                },
+                "2": {
+                    "name": "punctuation.definition.tag.xml"
+                },
+                "3": {
+                    "name": "entity.name.tag.xml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.xml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.js"
+                }
+            ]
+        },
+        {
             "begin": "(<\\?)\\s*([-_a-zA-Z0-9]+)",
             "captures": {
                 "1": {

@@ -24,6 +24,16 @@
 				"command": "extension.CodeSquare",
 				"title": "CodeSquare"
 			}
+		],
+		"grammars": [
+			{
+				"language": "xml",
+				"scopeName": "text.xml",
+				"path": "./syntaxes/xml.tmLanguage.json",
+				"embeddedLanguages": {
+					"source.js": "javascript"
+				}
+			}
 		]
 	},
 	"scripts": {
