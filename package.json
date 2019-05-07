@@ -15,7 +15,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.CodeSquare"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
