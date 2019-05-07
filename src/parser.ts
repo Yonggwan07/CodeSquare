@@ -1,9 +1,8 @@
-import { window, TextDocument } from "vscode";
+import { window } from "vscode";
 import { IObject, IObjectDetail } from './structure'
 
 import * as xml2js from 'xml2js';
 import fs = require('fs');
-import { print } from "util";
 
 export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 
