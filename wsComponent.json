@@ -106,7 +106,7 @@
         },
         {
             "Name": "image",
-            "Tag": "w2:image"
+            "Tag": "xf:image"
         },
         {
             "Name": "input",
