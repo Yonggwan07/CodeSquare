@@ -2,9 +2,7 @@
 
 import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation, Range } from 'vscode';
 import { getObjectType } from '../util';
-import { docObjects } from '../parser';
-
-const documentation = require('../../documentation.json');
+import { docObjects, documentation } from '../parser';
 
 // Websquare Signature Help Provider Class
 export class WsSignatureHelpProvider implements SignatureHelpProvider {

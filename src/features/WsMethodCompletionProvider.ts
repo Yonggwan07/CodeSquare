@@ -2,9 +2,7 @@
 
 import { CompletionItemProvider, TextDocument, ProviderResult, CompletionItem, CompletionList, Position, CompletionItemKind, MarkdownString } from "vscode";
 import { getObjectType } from "../util";
-import { docObjects } from "../parser";
-
-const documentation = require('../../documentation.json');
+import { docObjects, documentation } from "../parser";
 
 // Websquare Object's Method Completion Provider Class
 export class WsMethodCompletionProvider implements CompletionItemProvider {

@@ -1,9 +1,7 @@
 'use strict'
 
 import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownString } from "vscode";
-import { docObjects } from "../parser";
-
-const documentation = require('../../documentation.json');
+import { docObjects, documentation } from "../parser";
 
 // Websquare Hover Provider Class
 export class WsHoverProvider implements HoverProvider {

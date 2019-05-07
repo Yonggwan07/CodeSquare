@@ -4,6 +4,9 @@ import { IObject, IObjectDetail } from './structure'
 import * as xml2js from 'xml2js';
 import fs = require('fs');
 
+const docJson = require('../../documentation.json');
+export const documentation = docJson;
+
 export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 
 // 파싱하고자 하는 Websquare Component List
