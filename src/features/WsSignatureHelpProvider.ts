@@ -1,7 +1,8 @@
 'use strict';
 
 import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation, Range } from 'vscode';
-import { getObjectType, objs } from '../util';
+import { getObjectType } from '../util';
+import { docObjects } from '../parser';
 
 const documentation = require('../../documentation.json');
 
@@ -11,9 +12,8 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
     provideSignatureHelp(document: TextDocument, position: Position): ProviderResult<SignatureHelp> {
 
         const retSign = new SignatureHelp();    // return될 Signature Help
-        //const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
-        if (objs.length <= 0)
+        if (docObjects.length <= 0)
             return undefined;
 
         const txt = document.getText(new Range(new Position(0, 0), position));
@@ -24,7 +24,7 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
         }
 
         // Object's Type Check
-        const objType = getObjectType(document, position, objs);
+        const objType = getObjectType(document, position, docObjects);
 
         if (!objType) {
             return undefined;

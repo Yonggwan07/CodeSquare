@@ -1,17 +1,11 @@
 import { window, TextDocument } from "vscode";
-import { IDocObject, IObject, IObjectDetail } from './structure'
+import { IObject, IObjectDetail } from './structure'
 
 import * as xml2js from 'xml2js';
 import fs = require('fs');
-import os = require('os');
 import { print } from "util";
 
-export let docObjects: IDocObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
-export let originDocs: TextDocument[] = []; // 원본 xml 파일
-
-export const startWords: string[] = ["<script type=\"javascript\"><![CDATA[",
-    "<script type=\"text/javascript\"><![CDATA["];
-export const endWord = "]]></script>";
+export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 
 // 파싱하고자 하는 Websquare Component List
 const ws = require('../wsComponent.json');
@@ -28,6 +22,8 @@ export function wsParseObjectInfo() {
 
     if (!window.activeTextEditor)
         return [];
+
+    docObjects = [];
 
     const fileName = window.activeTextEditor.document.fileName;
     const parser = new xml2js.Parser({ explicitArray: false });
@@ -137,16 +133,13 @@ export function wsParseObjectInfo() {
             }
         }
 
-        // Create DocObject
-        let docObj: IDocObject = {
-            docName: fileName,
-            objects: objects
-        }
-
-        docObjects.push(docObj);
+        docObjects = objects;
     });
 }
 
+/**
+ * 현재 활성화된 Document가 WebSquare Document 인지 확인
+ */
 export function isWsDocument(): Boolean {
 
     let retVal = false;

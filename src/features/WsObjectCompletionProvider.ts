@@ -1,7 +1,7 @@
 'use strict';
 
 import { TextDocument, ProviderResult, CompletionItem, CompletionItemProvider, CompletionItemKind, MarkdownString } from "vscode";
-import { objs } from '../util';
+import { docObjects } from '../parser';
 
 // Websquare Object Completion Provider Class
 export class WsObjectCompletionProvider implements CompletionItemProvider {
@@ -9,18 +9,17 @@ export class WsObjectCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(document: TextDocument): ProviderResult<CompletionItem[]> {
 
         const retCompletionItems: CompletionItem[] = [];   // return될 completion item 배열
-        //const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
-        if (objs.length <= 0)
+        if (docObjects.length <= 0)
             return undefined;
 
-        for (let i = 0; i < objs.length; i++) {
-            let comItem = new CompletionItem(objs[i]['id'], CompletionItemKind.Variable);
+        for (let i = 0; i < docObjects.length; i++) {
+            let comItem = new CompletionItem(docObjects[i]['id'], CompletionItemKind.Variable);
 
-            comItem.detail = '(' + objs[i]['type'] + ') ' + objs[i]['id'];
+            comItem.detail = '(' + docObjects[i]['type'] + ') ' + docObjects[i]['id'];
 
             // DataList, DataMap인 경우 ID, NAME, DataType을 표 형태로 출력
-            let objD = objs[i]['objDetail'];
+            let objD = docObjects[i]['objDetail'];
 
             if (objD != undefined && objD.length > 0) {
                 let md = new MarkdownString();

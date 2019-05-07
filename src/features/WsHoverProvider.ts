@@ -1,7 +1,7 @@
 'use strict'
 
 import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownString } from "vscode";
-import { objs } from "../util";
+import { docObjects } from "../parser";
 
 const documentation = require('../../documentation.json');
 
@@ -11,9 +11,8 @@ export class WsHoverProvider implements HoverProvider {
     provideHover(document: TextDocument, position: Position): ProviderResult<Hover> {
 
         let retHover = undefined;      // return될 Hover
-        //const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
-        if (objs.length <= 0)
+        if (docObjects.length <= 0)
             return undefined;
 
         let word = this.wordExtract(document, position);    // Hover중인 문구
@@ -55,10 +54,10 @@ export class WsHoverProvider implements HoverProvider {
         }
 
         // Object의 Type과 Index를 확인
-        for (let i = 0; i < objs.length; i++) {
+        for (let i = 0; i < docObjects.length; i++) {
 
-            if (objName == objs[i]['id']) {
-                objType = objs[i]['type'];
+            if (objName == docObjects[i]['id']) {
+                objType = docObjects[i]['type'];
                 objIdx = i;
 
                 break;
@@ -72,9 +71,9 @@ export class WsHoverProvider implements HoverProvider {
 
         switch (wordType) {
             case "Object":
-                md.appendCodeblock('(' + objs[objIdx]['type'] + ') ' + objs[objIdx]['id'] + '  \n  \n');
+                md.appendCodeblock('(' + docObjects[objIdx]['type'] + ') ' + docObjects[objIdx]['id'] + '  \n  \n');
 
-                let objD = objs[objIdx]['objDetail'];
+                let objD = docObjects[objIdx]['objDetail'];
 
                 if (objD != undefined) {
                     md.appendMarkdown("|id|name|DataType|  \n");
@@ -105,7 +104,7 @@ export class WsHoverProvider implements HoverProvider {
                     return undefined;
                 }
 
-                md.appendCodeblock("(method) " + objs[objIdx]['type'] + '.' + methods[mIdx]['label']);
+                md.appendCodeblock("(method) " + docObjects[objIdx]['type'] + '.' + methods[mIdx]['label']);
 
                 let desc = methods[mIdx]['documentation'];
 
