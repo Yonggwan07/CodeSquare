@@ -37,7 +37,7 @@ export class WsHoverProvider implements HoverProvider {
 
             for (let i = point; i > -1; i--) {
                 const w = lineText[i];
-                if (w == '.' || w == ' ' || w == '(' || w == '[' || w == '{' || w == '!') {
+                if (w == '.' || w == ' ' || w == '(' || w == '[' || w == '{' || w == '!' || w == ',') {
                     break;
                 } else {
                     words.push(w);
@@ -138,7 +138,8 @@ export class WsHoverProvider implements HoverProvider {
             const w = documentLine[i];
             if (/[a-zA-Z0-9_()]/.test(w)) {
 
-                if (w == '(' && i < linePoint) {
+                if (w == '(') {
+                    words.push(w)
                     preWords = words;
                     words = [];
                 } else {
