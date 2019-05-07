@@ -24,7 +24,7 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
         }
 
         // Object's Type Check
-        const objType = getObjectType(document, position, docObjects);
+        const objType = getObjectType(document, position);
 
         if (!objType) {
             return undefined;

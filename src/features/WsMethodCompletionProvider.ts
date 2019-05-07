@@ -17,7 +17,7 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
             return undefined;
 
         // Object's Type Check
-        const objType = getObjectType(document, position, docObjects);
+        const objType = getObjectType(document, position);
 
         if (!objType) {
             return undefined;
