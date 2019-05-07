@@ -12,11 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.workspace.onDidOpenTextDocument(didOpenTextDocument);
 
-	function didOpenTextDocument(document: vscode.TextDocument): void {
-
-		if (document.languageId !== 'xml') {
-			return;
-		}
+	function didOpenTextDocument(): void {
 
 		if (isWsDocument()) {
 			wsParseObjectInfo();
