@@ -2,17 +2,19 @@ import { TextDocument, Position } from "vscode";
 import { IObject } from './structure'
 import { docObjects } from "./parser";
 
-export function getObjectsByDocName(document: TextDocument): IObject[] {
+export let objs: IObject[] = [];
+
+export function getObjectsByDocName(document: TextDocument) {
 
     // Websquare Page인지 확인
-    if (!document.fileName.match("(CodeSquare)"))
-        return [];
+    // if (!document.fileName.match("(CodeSquare)"))
+    //     return [];
 
     // 현재 페이지 이름에서 파일명만 추출
     const docName = document.fileName.substring(
-        document.fileName.lastIndexOf('\\') + 1, document.fileName.length - 16);
+        document.fileName.lastIndexOf('\\') + 1, document.fileName.length - 4);
 
-    let objs: IObject[] = [];   // 해당 파일의 Objects
+    //let objs: IObject[] = [];   // 해당 파일의 Objects
 
     // 현재 페이지의 Objects를 가져옴
     for (let i = 0; i < docObjects.length; i++) {
@@ -20,10 +22,10 @@ export function getObjectsByDocName(document: TextDocument): IObject[] {
             objs = docObjects[i]['objects'];
     }
 
-    if (objs.length <= 0)
-        return [];
-    else
-        return objs;
+    // if (objs.length <= 0)
+    //     return [];
+    // else
+    //     return objs;
 }
 
 // Object의 Type을 확인 (DataList인지 DataMap인지 등등...)

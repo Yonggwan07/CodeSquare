@@ -1,8 +1,7 @@
 'use strict';
 
 import { TextDocument, ProviderResult, CompletionItem, CompletionItemProvider, CompletionItemKind, MarkdownString } from "vscode";
-import { IObject } from '../structure';
-import { getObjectsByDocName } from '../util';
+import { objs } from '../util';
 
 // Websquare Object Completion Provider Class
 export class WsObjectCompletionProvider implements CompletionItemProvider {
@@ -10,7 +9,7 @@ export class WsObjectCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(document: TextDocument): ProviderResult<CompletionItem[]> {
 
         const retCompletionItems: CompletionItem[] = [];   // return될 completion item 배열
-        const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
+        //const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
         if (objs.length <= 0)
             return undefined;

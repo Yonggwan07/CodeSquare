@@ -1,8 +1,7 @@
 'use strict';
 
 import { CompletionItemProvider, TextDocument, ProviderResult, CompletionItem, CompletionList, Position, CompletionItemKind, MarkdownString } from "vscode";
-import { IObject } from '../structure';
-import { getObjectsByDocName, getObjectType } from "../util";
+import { getObjectType, objs } from "../util";
 
 const documentation = require('../../documentation.json');
 
@@ -12,7 +11,7 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(document: TextDocument, position: Position): ProviderResult<CompletionItem[] | CompletionList> {
 
         const retCompletionItems: CompletionItem[] = [];   // return될 completion item 배열
-        const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
+        //const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
         if (objs.length <= 0)
             return undefined;

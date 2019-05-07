@@ -4,59 +4,55 @@ import { WsObjectCompletionProvider } from './features/WsObjectCompletionProvide
 import { WsMethodCompletionProvider } from './features/WsMethodCompletionProvider';
 import { WsSignatureHelpProvider } from './features/WsSignatureHelpProvider';
 import { WsHoverProvider } from './features/WsHoverProvider';
-import { WorkspaceContext } from './WorkspaceContext';
+import { wsParseObjectInfo, isWsDocument } from './parser';
+import { getObjectsByDocName } from './util';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	context.subscriptions.push(
-		vscode.languages.registerCompletionItemProvider(
-			{ scheme: 'file', language: 'javascript' }, new WsObjectCompletionProvider()
-		)
-	);
+	vscode.workspace.onDidOpenTextDocument(didOpenTextDocument);
 
-	context.subscriptions.push(
-		vscode.languages.registerCompletionItemProvider(
-			{ scheme: 'file', language: 'javascript' }, new WsMethodCompletionProvider(), '.'
-		)
-	);
+	function didOpenTextDocument(document: vscode.TextDocument): void {
 
-	context.subscriptions.push(
-		vscode.languages.registerSignatureHelpProvider(
-			{ scheme: 'file', language: 'javascript' }, new WsSignatureHelpProvider(), {
-				triggerCharacters: ['('], retriggerCharacters: [',']
-			}
-		)
-	);
+		if (document.languageId !== 'xml') {
+			return;
+		}
 
-	context.subscriptions.push(
-		vscode.languages.registerHoverProvider(
-			{ scheme: 'file', language: 'javascript' }, new WsHoverProvider()
-		)
-	);
+		if (isWsDocument()) {
+			wsParseObjectInfo();
+			getObjectsByDocName(document);
 
-	context.subscriptions.push(
-		vscode.commands.registerCommand(
-			'extension.CodeSquare', WorkspaceContext.openNewWsPage)
-	);
+			context.subscriptions.push(
+				vscode.languages.registerCompletionItemProvider(
+					{ scheme: 'file', language: 'xml' }, new WsObjectCompletionProvider()
+				)
+			);
 
-	// 문서 저장시
-	// 임시 js 파일인지 확인하고 임시 js 파일인 경우
-	// 변경된 내용을 원본 xml 파일의 js 부분에 적용
-	context.subscriptions.push(
-		vscode.workspace.onDidSaveTextDocument(WorkspaceContext.onSave)
-	);
+			context.subscriptions.push(
+				vscode.languages.registerCompletionItemProvider(
+					{ scheme: 'file', language: 'xml' }, new WsMethodCompletionProvider(), '.'
+				)
+			);
 
-	// 문서 닫을시
-	// 임시 js 파일인지 확인
-	// uri scheme가 git인 것은 무시하고 file인 것만 처리
-	context.subscriptions.push(
-		vscode.workspace.onDidCloseTextDocument((doc) => WorkspaceContext.onClose(doc))
-	);
+			context.subscriptions.push(
+				vscode.languages.registerSignatureHelpProvider(
+					{ scheme: 'file', language: 'xml' }, new WsSignatureHelpProvider(), {
+						triggerCharacters: ['('], retriggerCharacters: [',']
+					}
+				)
+			);
+
+			context.subscriptions.push(
+				vscode.languages.registerHoverProvider(
+					{ scheme: 'file', language: 'xml' }, new WsHoverProvider()
+				)
+			);
+		}
+	}
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {
-	WorkspaceContext.deactivate();
+
 }

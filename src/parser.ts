@@ -4,6 +4,7 @@ import { IDocObject, IObject, IObjectDetail } from './structure'
 import * as xml2js from 'xml2js';
 import fs = require('fs');
 import os = require('os');
+import { print } from "util";
 
 export let docObjects: IDocObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 export let originDocs: TextDocument[] = []; // 원본 xml 파일
@@ -17,72 +18,6 @@ const ws = require('../wsComponent.json');
 const wsComponents = ws['components'];
 
 let searchedObj: any[] = [];    // Websquare Page Xml 파일로부터 Key 값을 통해 검색된 Object 배열
-
-/**
- * Websquare Page Xml 문서로부터 JavaScript 부분만 Parsing
- */
-export function wsParseJavascript(): string {
-    if (!window.activeTextEditor)
-        return '';
-
-    let originDoc = window.activeTextEditor.document;
-
-    originDocs.push(originDoc);
-    let pickedDoc = originDoc.getText();
-
-    let startIdx = -1;
-
-    if (pickedDoc.indexOf(startWords[0]) != -1 ||
-        pickedDoc.indexOf(startWords[1]) != -1) {
-
-        if (pickedDoc.indexOf(startWords[0]) > -1) {
-            startIdx = pickedDoc.indexOf(startWords[0])	// javascript
-                + new String(startWords[0]).length;
-        } else {
-            startIdx = pickedDoc.indexOf(startWords[1])	// text/javascript
-                + new String(startWords[1]).length;
-        }
-
-    }
-    let endIdx = pickedDoc.indexOf(endWord, startIdx);
-
-    if (startIdx == -1) {
-        window.showErrorMessage("This is not Websquare Format document.");
-        return '';
-    }
-
-    let pickedJS = pickedDoc.substring(startIdx, endIdx);
-    pickedJS = pickedJS.trimRight();
-
-    if (pickedJS == null)
-        return '';
-
-    // vscode extension 폴더에 임시 파일 생성
-    let jsFilePath = "C:\\Users\\" + os.userInfo().username + "\\.vscode\\extensions\\";
-
-    let dirList = fs.readdirSync(jsFilePath);
-
-    for (let i = 0; i < dirList.length; i++) {
-        if (dirList[i].includes("yonggwan.codesquare-") == true) {
-            jsFilePath += dirList[i];
-            break;
-        }
-    }
-
-    // 파싱된 데이터를 통해 임시파일 생성
-    let originName = originDoc.fileName;
-    let jsFile = originName.replace(/.xml/, ".js");
-    jsFile = [jsFile.slice(0, jsFile.length - 3), " (CodeSquare)", jsFile.slice(jsFile.length - 3)].join('');
-    jsFile = jsFile.substring(jsFile.lastIndexOf("\\"), jsFile.length);
-
-    jsFilePath += jsFile;
-
-    fs.writeFile(jsFilePath, pickedJS, (err) => {
-        if (err) throw err;
-    });
-
-    return jsFilePath;
-}
 
 /**
  * Websquare Page Xml 문서로부터 Object 정보를 Parsing  
@@ -210,6 +145,35 @@ export function wsParseObjectInfo() {
 
         docObjects.push(docObj);
     });
+}
+
+export function isWsDocument(): Boolean {
+
+    let retVal = false;
+
+    if (!window.activeTextEditor)
+        return retVal;
+
+    const fileName = window.activeTextEditor.document.fileName;
+    const parser = new xml2js.Parser({ explicitArray: false });
+    const xml = fs.readFileSync(fileName, 'utf-8');
+
+    parser.parseString(xml, function (err: string, result: string) {
+
+        let parsedJson = JSON.parse(JSON.stringify(result));
+
+        try {
+
+            if (parsedJson['html']['$']['xmlns:w2'] == 'http://www.inswave.com/websquare')
+                retVal = true;
+
+        } catch (error) {
+            return retVal;
+        }
+        
+    });
+
+    return retVal;
 }
 
 /**

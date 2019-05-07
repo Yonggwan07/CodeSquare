@@ -1,8 +1,7 @@
 'use strict'
 
 import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownString } from "vscode";
-import { IObject } from "../structure";
-import { getObjectsByDocName } from "../util";
+import { objs } from "../util";
 
 const documentation = require('../../documentation.json');
 
@@ -12,7 +11,7 @@ export class WsHoverProvider implements HoverProvider {
     provideHover(document: TextDocument, position: Position): ProviderResult<Hover> {
 
         let retHover = undefined;      // return될 Hover
-        const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
+        //const objs: IObject[] = getObjectsByDocName(document);   // 해당 파일의 Objects
 
         if (objs.length <= 0)
             return undefined;
