@@ -92,7 +92,7 @@ export class WorkspaceContext {
             }
         }
 
-        let jsText = jsDoc.getText();
+        let jsText = jsDoc.getText() + '\n';
 
         we.replace(originDoc.uri, new Range(
             startLine, startWord.length +
