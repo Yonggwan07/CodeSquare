@@ -3479,7 +3479,7 @@
             "documentation": [
                 "DataMap에 정의 된 Key ID에 value를 셋팅한다.",
                 "*@param* `KeyID` &mdash; Key의 ID",
-                "*@param* `KeyID` &mdash; Key에 할당 할 value"
+                "*@param* `KeyValue` &mdash; Key에 할당 할 value"
             ]
         },
         {
