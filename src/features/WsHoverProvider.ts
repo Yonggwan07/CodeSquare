@@ -1,7 +1,7 @@
 'use strict'
 
 import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownString } from "vscode";
-import { docObjects, documentation } from "../parser";
+import { docObjects, documentation, docLink, docPrefix } from "../parser";
 
 // Websquare Hover Provider Class
 export class WsHoverProvider implements HoverProvider {
@@ -104,11 +104,14 @@ export class WsHoverProvider implements HoverProvider {
 
                 md.appendCodeblock("(method) " + docObjects[objIdx]['type'] + '.' + methods[mIdx]['label']);
 
-                let desc = methods[mIdx]['documentation'];
+                const desc = methods[mIdx]['documentation'];
 
                 for (let j = 0; j < desc.length; j++) {
                     md.appendMarkdown(desc[j] + '  \n   \n');
                 }
+
+                md.appendMarkdown("@Link &mdash; [" + methodName + "](" 
+                    + docLink + docPrefix + objType + "/" + docPrefix + objType + ".html#" + methodName + ")");
 
                 retHover = new Hover(md);
 

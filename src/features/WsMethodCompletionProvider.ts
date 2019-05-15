@@ -2,7 +2,7 @@
 
 import { CompletionItemProvider, TextDocument, ProviderResult, CompletionItem, CompletionList, Position, CompletionItemKind, MarkdownString } from "vscode";
 import { getObjectType } from "../util";
-import { docObjects, documentation } from "../parser";
+import { docObjects, documentation, docLink, docPrefix } from "../parser";
 
 // Websquare Object's Method Completion Provider Class
 export class WsMethodCompletionProvider implements CompletionItemProvider {
@@ -25,15 +25,19 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
         const methods = documentation[objType];
 
         for (let i = 0; i < methods.length; i++) {
-            let comItem = new CompletionItem(methods[i]['label'].substring(0, methods[i]['label'].indexOf('(')), CompletionItemKind.Method);
-            let mks = new MarkdownString();
-            let desc = methods[i]['documentation'];
-
+            const methodName = methods[i]['label'].substring(0, methods[i]['label'].indexOf('('));
+            let comItem = new CompletionItem(methodName, CompletionItemKind.Method);
+            let md = new MarkdownString();
+            const desc = methods[i]['documentation'];
+            
             for (let j = 0; j < desc.length; j++) {
-                mks.appendMarkdown(desc[j] + '  \n   \n');
+                md.appendMarkdown(desc[j] + '  \n   \n');
             }
 
-            comItem.documentation = mks;
+            md.appendMarkdown("@Link &mdash; [" + methodName + "]("
+                + docLink + docPrefix + objType + "/" + docPrefix + objType + ".html#" + methodName + ")");
+
+            comItem.documentation = md;
             comItem.detail = "(method) " + methods[i]['label'];
 
             retCompletionItems.push(comItem);

@@ -8,6 +8,9 @@ import os = require('os');
 const docJson = require('../documentation.json');
 export const documentation = docJson;
 
+export const docLink = "https://docs.inswave.com/support/api/w5_sp2/5.0_2.3503B.20190305.163115/";
+export const docPrefix = "WebSquare.uiplugin.";
+
 export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 
 export let originDocs: TextDocument[] = []; // 원본 xml 파일
