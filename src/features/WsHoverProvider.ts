@@ -102,7 +102,7 @@ export class WsHoverProvider implements HoverProvider {
                     return undefined;
                 }
 
-                md.appendCodeblock("(method) " + docObjects[objIdx]['type'] + '.' + methods[mIdx]['label']);
+                md.appendCodeblock("(method) " + docObjects[objIdx]['type'] + '.' + methods[mIdx]['label'], 'javascript');
 
                 const desc = methods[mIdx]['documentation'];
 
