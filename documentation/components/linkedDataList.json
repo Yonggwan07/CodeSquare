@@ -1,0 +1,570 @@
+[
+    {
+        "label": "clearFilter()",
+        "documentation": [
+            "linkedDataList에 설정되어 있는 filter상태를 초기화합니다."
+        ]
+    },
+    {
+        "label": "clearSort()",
+        "documentation": [
+            "linkedDataList의 모든 정렬을 취소해줍니다."
+        ]
+    },
+    {
+        "label": "clearSortFilter()",
+        "documentation": [
+            "linkedDataList에 설정된 sort상태의 filter를 초기상태로 합니다."
+        ]
+    },
+    {
+        "label": "getAllData(): Object",
+        "documentation": [
+            "linkedDataList의 모든 data를 배열로 반환합니다.",
+            "*@return*  \nlinkedDataList의 data 배열 (1차원 배열)"
+        ]
+    },
+    {
+        "label": "getAllFilteredData(): Object",
+        "documentation": [
+            "linkedDataList에서 filterRowIndex 순서의 모든 fliteredData를 배열로 반환합니다.",
+            "*@return*  \nlinkedDataList의 data 배열 (1차원 배열)"
+        ]
+    },
+    {
+        "label": "getAllFilteredJSON(): Object",
+        "documentation": [
+            "linkedDataList에 filteredRow 순서의 모든 filteredData를 JSON객체로 반환합니다.",
+            "*@return*  \nlinkedDataList의 JSON객체 data"
+        ]
+    },
+    {
+        "label": "getAllFilteredXML(options: Object): Xml Element",
+        "documentation": [
+            "linkedDataList에 filteredRow의 순서의 모든 filteredData를 XML로 반환합니다.",
+            "*@param* `options` &mdash; ",
+            "*@return*  \nlinkedDataList의 data"
+        ]
+    },
+    {
+        "label": "getAllJSON(): Object",
+        "documentation": [
+            "linkedDataList의 모든 data를 JSON객체로 반환합니다.",
+            "*@return*  \nlinkedDataList의 JSON객체 data"
+        ]
+    },
+    {
+        "label": "getAllNoFilteredData(): Object",
+        "documentation": [
+            "linkedDataList의 filter상태가 되지 않은 상태의 모든 데이터를 가져옵니다.",
+            "*@return*  \nlinkedDataList의 data 배열 (1차원 배열)"
+        ]
+    },
+    {
+        "label": "getAllXML(): Xml Element",
+        "documentation": [
+            "linkedDataList의 모든 data를 XML로 반환합니다.",
+            "*@return*  \nlinkedDataList의 data"
+        ]
+    },
+    {
+        "label": "getCellData(rowIndex: Number, colIndex: String): String",
+        "documentation": [
+            "rowIndex와 colIndex에 해당하는 셀의 데이터를 반환합니다.",
+            "*@param* `rowIndex` &mdash; 셀의 행 번호",
+            "*@param* `colIndex` &mdash; 셀의 컬럼 번호 혹은 컬럼의 아이디",
+            "*@return*  \nrowIndex와 colIndex에 해당하는 셀의 데이터"
+        ]
+    },
+    {
+        "label": "getColData(colID: Number): Object",
+        "documentation": [
+            "colIndex에 해당하는 열의 데이터(filter나 sort처리되지 않은)를 배열로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 가져올 열 번호 혹은 컬럼 아이디",
+            "*@return*  \ncolIndex에 해당하는 열의 데이터의 배열"
+        ]
+    },
+    {
+        "label": "getColumnDistinctDataArray(colIndex: Number): Object",
+        "documentation": [
+            "해당 colIndex에 존재하는 중복된 항목을 제거한 data를 배열을 정렬하여 보여줍니다.",
+            "*@param* `colIndex` &mdash; 중복된 항목을 제거한 data를 검색 col의 Index",
+            "*@return*  \ndata를 저장한 배열"
+        ]
+    },
+    {
+        "label": "getDataLength(): number",
+        "documentation": [
+            "현재 화면에 보이는 행의 수를 반환합니다. getRowCount()와 동일.",
+            "*@return*  \n행의 수"
+        ]
+    },
+    {
+        "label": "getDataRow(filteredRowIndex: Number): Object",
+        "documentation": [
+            "rowIndex에 해당하는 행의 데이터를 컬럼의 아이디를 키로 하는 해쉬 형태로 반환합니다.",
+            "*@param* `filteredRowIndex` &mdash; 데이터를 가져올 행 번호",
+            "*@return*  \nfilteredRowIndex에 해당하는 행의 데이터의 배열"
+        ]
+    },
+    {
+        "label": "getDeletedData(): Object",
+        "documentation": [
+            "삭제 상태인 행들을 배열로 반환합니다.",
+            "*@return*  \n삭제 상태인 행들의 데이터 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getDeletedIndex(): Object",
+        "documentation": [
+            "삭제 상태인 행의 번호를 배열로 반환합니다.",
+            "*@return*  \n삭제 상태인 행의 번호의 배열"
+        ]
+    },
+    {
+        "label": "getDeletedJSON(): Object",
+        "documentation": [
+            "삭제 상태인 행들의 데이터를 JSON객체로 반환합니다.",
+            "*@return*  \n삭제 상태인 행들의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getDeletedXML(): XML Element",
+        "documentation": [
+            "삭제 상태인 행들의 데이터를 XML로 반환합니다.",
+            "*@return*  \n삭제 상태인 행들의 데이터 XML"
+        ]
+    },
+    {
+        "label": "getFilteredColData(colIndex: number): Object",
+        "documentation": [
+            "FilteredRow에 해당하는 Col의 데이터를 배열로 반환합니다.",
+            "*@param* `colIndex` &mdash; ",
+            "*@return*  \ncolIndex에 해당하는 열의 filter데이터의 배열"
+        ]
+    },
+    {
+        "label": "getFilteredRowIndex(realRowIndex: Number)",
+        "documentation": [
+            "RowIndex에 대한 filteredRowIndex를 리턴한다.",
+            "*@param* `realRowIndex` &mdash; "
+        ]
+    },
+    {
+        "label": "getFusionChartData(chartType: String, labelColumn: String, seriesColumns: String): Object",
+        "documentation": [
+            "linkedDataList를 fusionChart의 json데이터로 반환합니다",
+            "*@param* `chartType` &mdash; fusionChart의 차트타입",
+            "*@param* `labelColumn` &mdash; fusionChart의 lable 데이터로 사용할 DataCollection의 column의 ID값",
+            "*@param* `seriesColumns` &mdash; fusionChart의 series 데이터로 사용할 DataCollection column 정보로 배열형식의 문자열",
+            "*@return*  \nfusionChart_Data 변환된 fusionChart data(json)"
+        ]
+    },
+    {
+        "label": "getID(): String",
+        "documentation": [
+            "linkedDataList 객체의 id를 반환합니다.",
+            "*@return*  \nlinkedDataList 객체의 id를 반환합니다."
+        ]
+    },
+    {
+        "label": "getInsertedData(): Object",
+        "documentation": [
+            "삽입 상태인 행들의 데이터를 배열로 반환합니다.",
+            "*@return*  \n삽입 상태인 행들의 데이터 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getInsertedIndex(): Object",
+        "documentation": [
+            "삽입 상태인 행의 번호를 배열로 반환합니다.",
+            "*@return*  \n삽입 상태인 행의 번호의 배열"
+        ]
+    },
+    {
+        "label": "getInsertedJSON(): Object",
+        "documentation": [
+            "삽입 상태인 행들의 데이터를 JSON객체로 반환합니다.",
+            "*@return*  \n삽입 상태인 행들의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getInsertedXML(): XML Element",
+        "documentation": [
+            "삽입 상태인 행들의 데이터를 XML로 반환합니다.",
+            "*@return*  \n삽입 상태인 행들의 데이터 XML"
+        ]
+    },
+    {
+        "label": "getLinkedRealRowIndex(filteredRowIndex: Number): Number",
+        "documentation": [
+            "linkedDataList를 독립적인 0번째부터 시작하는 data set으로 가정했을때의 realRowIndex, 즉 linkedDataList 세계에서의 realRowIndex. drilldown에서 주로 사용",
+            "*@param* `filteredRowIndex` &mdash; ",
+            "*@return*  \nlinkedDataList 내부의 realRowIndex"
+        ]
+    },
+    {
+        "label": "getMatchedColumnData(matchCol: Number, dataValue: String, targetCol: Number, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colIndex의 값이 dataValue와 같은 행들을 찾아서 targetCol에 해당하는 열의 값들을 배열로 반환합니다.",
+            "*@param* `matchCol` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colIndex해당하는 열의 값과 비교할 data",
+            "*@param* `targetCol` &mdash; 데이터를 가져올 열번호",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \ntargetCol에 해당하는 열의 값을 가지고 있는 배열 (1차원 배열)"
+        ]
+    },
+    {
+        "label": "getMatchedData(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colID 값이 dataValue와 같은 행들의 data를 배열로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colIndex해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안의 data를 가지고 있는 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getMatchedIndex(colID: String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colID의 값이 dataValue와 같은 행들의 index를 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안에 일치하는 index를 가지고 있는 배열"
+        ]
+    },
+    {
+        "label": "getMatchedJSON(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colID의 값이 dataValue와 같은 행들의 data를 JSON객체로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안의 data를 가지고 있는 JSON객체"
+        ]
+    },
+    {
+        "label": "getMatchedXML(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Xml element",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colID의 값이 dataValue와 같은 행들의 data를 XML로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안의 data를 가지고 있는 XML"
+        ]
+    },
+    {
+        "label": "getModifiedData(): Object",
+        "documentation": [
+            "변경(삽입, 갱신, 삭제) 행들의 데이터를 배열로 반환합니다.",
+            "*@return*  \n변경(삽입, 갱신, 삭제) 행들의 데이터 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getModifiedIndex(): Object",
+        "documentation": [
+            "추가나 삭제 상태인 행의 번호를 배열로 반환합니다.",
+            "*@return*  \n추가나 삭제 상태인 행의 번호의 배열"
+        ]
+    },
+    {
+        "label": "getModifiedJSON(): Object",
+        "documentation": [
+            "변경(삽입, 갱신, 삭제) 행들의 데이터를 JSON객체로 반환합니다.",
+            "*@return*  \n변경(삽입, 갱신, 삭제) 행들의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getModifiedXML(): Xml Element",
+        "documentation": [
+            "변경(삽입, 갱신, 삭제) 행들의 데이터를 XML로 반환합니다.",
+            "*@return*  \n변경(삽입, 갱신, 삭제) 행들의 데이터 XML"
+        ]
+    },
+    {
+        "label": "getObjectType(): String",
+        "documentation": [
+            "dataCollection의 Type을 반환합니다.",
+            "*@return*  \ndataCollection의 타입을 반환합니다.[dataMap, linkedDataList, linkedDataList]"
+        ]
+    },
+    {
+        "label": "getOption(attr: String): String",
+        "documentation": [
+            "linkedDataList 객체의 옵션을 조회하는 API",
+            "*@param* `attr` &mdash; 조회하는 옵션의 이름",
+            "*@return*  \n조회한 객체의 옵션이 존재할 경우 옵션의 value를 반환합니다."
+        ]
+    },
+    {
+        "label": "getOriginalCellData(filteredRowIndex: Number, colID: String): String",
+        "documentation": [
+            "filteredRowIndex와 colID에 해당하는 셀의 데이터를 반환합니다.",
+            "*@param* `filteredRowIndex` &mdash; 셀의 초기 행 번호",
+            "*@param* `colID` &mdash; 셀의 초기 컬럼 번호 혹은 컬럼의 아이디",
+            "*@return*  \nrowIndex와 colIndex에 해당하는 셀의 데이터"
+        ]
+    },
+    {
+        "label": "getParentRealRowIndex(linkedRealRowIndex: Number): Number",
+        "documentation": [
+            "linkedRealRowIndex(linkedDataList 세계에서의 realRowIndex)를 통해 실제 realRowIndex(부모 dataList에 해당하는 rowIndex)를 반환한다.",
+            "*@param* `linkedRealRowIndex` &mdash; ",
+            "*@return*  \n부모 dataList의 rowIndex 즉 realRowIndex"
+        ]
+    },
+    {
+        "label": "getRangeData(from: Number, to: Number): Object",
+        "documentation": [
+            "from부터 to 까지의 범위의 행의 data를 배열로 반환합니다.",
+            "*@param* `from` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `to` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안의 data를 가지고 있는 배열 (1차원 배열)"
+        ]
+    },
+    {
+        "label": "getRangeJSON(from: Number, to: Number): Object",
+        "documentation": [
+            "from부터 to 까지의 범위의 행의 data를 JSON객체로 반환합니다.",
+            "*@param* `from` &mdash; 데이터를 가져오는 범위의 시작 행 번호",
+            "*@param* `to` &mdash; 데이터를 가져오는 범위의 끝 행 번호",
+            "*@return*  \nrowIndex에 해당하는 행의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getRangeXML(from: Number, to: Number): Xml Element",
+        "documentation": [
+            "from부터 to 까지의 범위의 행의 data를 xml로 반환합니다.",
+            "*@param* `from` &mdash; 데이터를 가져오는 범위의 시작 행 번호",
+            "*@param* `to` &mdash; 데이터를 가져오는 범위의 끝 행 번호",
+            "*@return*  \nrowIndex에 해당하는 행의 xml데이터"
+        ]
+    },
+    {
+        "label": "getRealRowIndex(filteredRowIndex: Number)",
+        "documentation": [
+            "filteredRowIndex에 대한 실제 데이터의 filteredRowIndex를 리턴한다.",
+            "*@param* `filteredRowIndex` &mdash; 현재 표시되고 있는 셀의 행 번호"
+        ]
+    },
+    {
+        "label": "getRowCount(): Number",
+        "documentation": [
+            "linkedDataList의 데이터 row의 건수를 반환합니다.",
+            "*@return*  \nlinkedDataList의 데이터 row의 건수"
+        ]
+    },
+    {
+        "label": "getRowData(filteredRowIndex: Number): Object",
+        "documentation": [
+            "rowIndex에 해당하는 행의 데이터를 배열로 반환합니다.",
+            "*@param* `filteredRowIndex` &mdash; 데이터를 가져올 행 번호",
+            "*@return*  \nrowIndex에 해당하는 행의 데이터의 배열"
+        ]
+    },
+    {
+        "label": "getRowIndexByStatus(statusStr: String): Object",
+        "documentation": [
+            "statusStr과 상태가 일치하는 행의 번호를 배열로 반환합니다.",
+            "*@param* `statusStr` &mdash; 상태가 일치하는 행을 찾기 위한 문자열",
+            "*@return*  \nstatusStr과 상태가 일치하는 행의 번호의 배열"
+        ]
+    },
+    {
+        "label": "getRowJSON(filteredRowIndex: Number): Object",
+        "documentation": [
+            "filteredRowIndex에 해당하는 행의 data를 JSON객체로 반환합니다.",
+            "*@param* `filteredRowIndex` &mdash; 데이터를 가져올 행 번호",
+            "*@return*  \n해당 행의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getRowStatus(filteredRowIndex: Number): String",
+        "documentation": [
+            "filteredRowIndex에 해당하는 행의 상태를 반환합니다. (초기상태:\"R\", 갱신:\"U\", 삽입:\"C\", 삭제:\"D\", 삽입 후 삭제:\"V\")",
+            "*@param* `filteredRowIndex` &mdash; 상태를 반환할 행 번호",
+            "*@return*  \n행의 상태를 나타내는 문자 (초기상태:\"R\", 갱신:\"U\", 삽입:\"C\", 삭제:\"D\", 삽입 후 삭제:\"V\")"
+        ]
+    },
+    {
+        "label": "getRowStatusValue(filteredRowIndex: Number): Number",
+        "documentation": [
+            "filteredRowIndex에 해당하는 행의 상태를 숫자로 반환합니다. (초기상태:0, 갱신:1, 삽입:2, 삭제:3, 삽입 후 삭제:4)",
+            "*@param* `filteredRowIndex` &mdash; 상태를 반환할 행 번호",
+            "*@return*  \n행의 상태를 나타내는 숫자 (초기상태:0, 갱신:1, 삽입:2, 삭제:3, 삽입 후 삭제:4)"
+        ]
+    },
+    {
+        "label": "getRowXML(filteredRowIndex: Number): XML Element",
+        "documentation": [
+            "filteredRowIndex에 해당하는 행의 data를 XML로 반환합니다.",
+            "*@param* `filteredRowIndex` &mdash; 데이터를 가져올 행 번호",
+            "*@return*  \n행의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getTotalCol(): Number",
+        "documentation": [
+            "컬럼의 개수를 반환 한다.",
+            "*@return*  \n컬럼의 개수"
+        ]
+    },
+    {
+        "label": "getTotalRow(): Number",
+        "documentation": [
+            "행의 개수를 반환 한다.",
+            "*@return*  \n행의 개수"
+        ]
+    },
+    {
+        "label": "getUnmatchedColumnData(matchCol: Number, dataValue: String, targetCol: Number, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colIndex의 값이 dataValue와 다른 행들을 찾아서 targetCol에 해당하는 열의 값들을 배열로 반환합니다.",
+            "*@param* `matchCol` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colIndex해당하는 열의 값과 비교할 data",
+            "*@param* `targetCol` &mdash; 데이터를 가져올 열번호",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \ntargetCol에 해당하는 열의 값을 가지고 있는 배열 (1차원 배열)"
+        ]
+    },
+    {
+        "label": "getUnmatchedData(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colID의 값이 dataValue와 다른 행들의 data를 배열로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안에 일치하는 data를 가지고 있는 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getUnmatchedIndex(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colID의 값이 dataValue와 다른 행들의 index를 배열로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안에 일치하는 index를 가지고 있는 배열"
+        ]
+    },
+    {
+        "label": "getUnmatchedJSON(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Object",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colID의 값이 dataValue와 다른 행들의 data를 JSON객체로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안에 일치하는 index를 가지고 있는 JSON객체"
+        ]
+    },
+    {
+        "label": "getUnmatchedXML(colID: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number: Number): Xml element",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colID의 값이 dataValue와 다른 행들의 data를 Xml로 반환합니다.",
+            "*@param* `colID` &mdash; 데이터를 검사할 열번호 혹은 컬럼 아이디",
+            "*@param* `dataValue` &mdash; colID해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 번호",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 번호",
+            "*@return*  \n범위안에 일치하는 index를 가지고 있는 Xml"
+        ]
+    },
+    {
+        "label": "getUpdatedData(): Object",
+        "documentation": [
+            "갱신 상태인 행들의 데이터를 배열로 반환합니다.",
+            "*@return*  \n갱신 상태인 행들의 데이터 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getUpdatedIndex(): Object",
+        "documentation": [
+            "갱신 상태인 행의 번호를 배열로 반환합니다.",
+            "*@return*  \n갱신 상태인 행의 번호의 배열"
+        ]
+    },
+    {
+        "label": "getUpdatedJSON(): Object",
+        "documentation": [
+            "갱신 상태인 행들의 데이터를 JSON객체로 반환합니다.",
+            "*@return*  \n갱신 상태인 행들의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getUpdatedXML(): Xml Element",
+        "documentation": [
+            "갱신 상태인 행들의 데이터를 XML로 반환합니다.",
+            "*@return*  \n갱신 상태인 행들의 데이터 XML"
+        ]
+    },
+    {
+        "label": "multisort(options: Object)",
+        "documentation": [
+            "option에 따라서 여러개의 열을 동시에 정렬해줍니다.",
+            "*@param* `options` &mdash; 정렬에 대한 옵션을 JSON형식으로 가지고 있는 object"
+        ]
+    },
+    {
+        "label": "removeColumnFilter(colID: Number)",
+        "documentation": [
+            "colID에 해당하는 열에 적용된 filter를 삭제합니다.",
+            "*@param* `colID` &mdash; filter를 삭제할 열 번호 혹은 컬럼 아이디"
+        ]
+    },
+    {
+        "label": "removeColumnFilterAll()",
+        "documentation": [
+            "모든 열에 적용된 filter를 삭제합니다."
+        ]
+    },
+    {
+        "label": "setColumnFilter(filterOptions: Object)",
+        "documentation": [
+            "colIndex에 해당하는 열에 filter를 적용합니다.",
+            "*@param* `filterOptions` &mdash; filter를 적용할 옵션 "
+        ]
+    },
+    {
+        "label": "setCondition(type: string, condition: string)",
+        "documentation": [
+            "linkedDataList의 filter or sort를 설정합니다.",
+            "*@param* `type` &mdash; filter / sort 설정할 상태 값.",
+            "*@param* `condition` &mdash; 정렬 상태의 조건을 입력합니다."
+        ]
+    },
+    {
+        "label": "setOption(key: String, value: String)",
+        "documentation": [
+            "linkedDataList 객체의 옵션을 설정하는 API",
+            "*@param* `key` &mdash; 조회하는 옵션의 이름",
+            "*@param* `value` &mdash; 조회한 옵션에 설정할 값"
+        ]
+    },
+    {
+        "label": "sort(bodyColumnID: String, sortType: Number)",
+        "documentation": [
+            "linkedDataList의 bodyColumnID에 해당하는 열을 정렬해줍니다.",
+            "*@param* `bodyColumnID` &mdash; 정렬시킬 열의 아이디",
+            "*@param* `sortType` &mdash; 정렬 옵션 0이면 오름차순 1이면 내림차순 2이면 정렬을 취소"
+        ]
+    }
+]

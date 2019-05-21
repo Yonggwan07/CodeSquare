@@ -1,0 +1,222 @@
+[
+    {
+        "label": "bind(eventType: String, function: Function)",
+        "documentation": [
+            "dataMap의 이벤트를 동적으로 할당한다.",
+            "*@param* `eventType` &mdash; 동적으로 할당할 이벤트의 이름",
+            "*@param* `function` &mdash; 동적으로 할당 할 이벤트의 핸들러 함수"
+        ]
+    },
+    {
+        "label": "get(key: String): Object",
+        "documentation": [
+            "KeyInfo에 정의되어있는 Key ID에 할당 된 value를 반환한다. value의 초기값은 \"\"(empty string)이다.",
+            "*@param* `key` &mdash; Key ID",
+            "*@return*   \nKey ID에 할당 된 value. (return type은 일반적으로 String이 대부분이며 초기 셋팅 한 data의 type 형태로 반환된다.)"
+        ]
+    },
+    {
+        "label": "getArray(): Array",
+        "documentation": [
+            "DataMap 전체 데이터를 KeyInfo에 정의 된 순서대로 array에 담아 반환한다.",
+            "*@return*   \nDataMap 전체 데이터가 담긴 1차원 Array"
+        ]
+    },
+    {
+        "label": "getCount(): Number",
+        "documentation": [
+            "DataMap에 정의 된 key의 개수를 반환한다.",
+            "*@return*   \nDataMap에 정의 된 key의 개수"
+        ]
+    },
+    {
+        "label": "getID(): String",
+        "documentation": [
+            "dataMap 객체의 id를 반환한다. 객체의 id 속성과 동일한 값을 반환한다.",
+            "*@return*   \ndataMap 객체의 ID"
+        ]
+    },
+    {
+        "label": "getIndex(keyID: String): Number",
+        "documentation": [
+            "key의 ID로 KeyInfo에 정의 된 key의 index를 반환한다.",
+            "*@param* `keyID` &mdash; KeyInfo에 정의 된 ID",
+            "*@return*   \nkeyID의 index"
+        ]
+    },
+    {
+        "label": "getInfo(): JSON",
+        "documentation": [
+            "dataMap의 세부 정보를 조회한다.",
+            "*@return*   \n{dataMapInfo: dataMap의 attribute값, keyInfo: 각 key의 attribute들을 모아둔 object} 형태의 json객체"
+        ]
+    },
+    {
+        "label": "getJSON(): JSON",
+        "documentation": [
+            "DataMap 전체 데이터를 JSON으로 반환한다.",
+            "*@return*   \nDataMap 전체 데이터의 json객체"
+        ]
+    },
+    {
+        "label": "getKey(keyIndex: Number): String",
+        "documentation": [
+            "key의 index를 받아 ID명을 반환한다.",
+            "*@param* `keyIndex` &mdash; KeyInfo에 정의 된 key의 index",
+            "*@return*   \nkey의 ID"
+        ]
+    },
+    {
+        "label": "getKeyInfo(key: String): JSON",
+        "documentation": [
+            "dataMap 특정 key의 세부 정보를 조회한다.",
+            "*@param* `key` &mdash; 조회하고자 하는 key",
+            "*@return*   \n해당 key의 attribute를 표현한 json 객체"
+        ]
+    },
+    {
+        "label": "getModifiedArray(): JSON",
+        "documentation": [
+            "DataMap의 original 데이터와 현재 데이터의 값이 다른 key array와 value array를 JSON으로 반환한다. DataMap의 firstSet속성과 연관되어있다.",
+            "*@return*   \noriginal 데이터와 현재 값이 다른 key array와 value array가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getModifiedData(): Array",
+        "documentation": [
+            "DataMap의 original 데이터와 현재 데이터의 값이 다른 key들의 value를 배열로 반환한다. DataMap의 firstSet속성과 연관되어있다.",
+            "*@return*   \noriginal 데이터와 현재값이 다른 key들의 value가 담긴 Array"
+        ]
+    },
+    {
+        "label": "getModifiedIndex(): Array",
+        "documentation": [
+            "DataMap의 original 데이터와 현재 데이터의 값이 다른 key들의 Index를 배열로 반환한다. DataMap의 firstSet속성과 연관되어있다.",
+            "*@return*   \noriginal 데이터와 현재값이 다른 key들의 Index가 담긴 Array"
+        ]
+    },
+    {
+        "label": "getModifiedJSON(): JSON",
+        "documentation": [
+            "DataMap의 original 데이터와 현재 데이터의 값이 다른 key들을 JSON으로 반환한다. DataMap의 firstSet속성과 연관되어있다.",
+            "*@return*   \nDataMap의 original 데이터와 현재 데이터의 값이 다른 key와 value가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getModifiedKey(): Array",
+        "documentation": [
+            "DataMap의 original 데이터와 현재 데이터의 값이 다른 Key들을 배열로 반환한다. DataMap의 firstSet속성과 연관되어있다.",
+            "*@return*   \noriginal 데이터와 현재값이 다른 key가 담긴 Array"
+        ]
+    },
+    {
+        "label": "getModifiedXML(): XML",
+        "documentation": [
+            "DataMap의 original 데이터와 현재 데이터의 값이 다른 key들을 XML로 반환합니다. DataMap의 firstSet속성과 연관되어있다.",
+            "*@return*   \nDataMap의 original 데이터와 현재 데이터의 값이 다른 key와 value가 담긴 XML"
+        ]
+    },
+    {
+        "label": "getName(keyID: String): String",
+        "documentation": [
+            "KeyInfo에 정의 된 key의 id로 name에 정의 된 값을 반환한다.",
+            "*@param* `keyID` &mdash; KeyInfo에 정의 된 Key ID",
+            "*@return*   \nKeyInfo에 정의 된 Key Name"
+        ]
+    },
+    {
+        "label": "getObjectType(): String",
+        "documentation": [
+            "dataCollection의 Type을 반환한다.",
+            "*@return*   \n[dataMap, dataList, linkedDataList] dataCollection의 타입"
+        ]
+    },
+    {
+        "label": "getOption(attr: String): String",
+        "documentation": [
+            "속성명으로 dataMap에 정의 된 속성의 값을 반환한다.",
+            "*@param* `attr` &mdash; 속성명",
+            "*@return*   \ndataMap에 정의 된 속성의 값"
+        ]
+    },
+    {
+        "label": "getOriginal(KeyID: String): Object",
+        "documentation": [
+            "KeyInfo에 정의 된 Key ID에 할당 된 초기값을 반환한다.",
+            "*@param* `KeyID` &mdash; Key ID",
+            "*@return*   \nKey ID에 할당 한 초기값. (return type은 일반적으로 String이 대부분이며 초기 셋팅 한 data의 type 형태로 반환된다.)"
+        ]
+    },
+    {
+        "label": "getType(KeyID: String): String",
+        "documentation": [
+            "KeyInfo에 정의 된 Key의 dataType 속성 값을 반환한다.",
+            "*@param* `KeyID` &mdash; Key ID",
+            "*@return*   \nKey의 dataType 속성 값"
+        ]
+    },
+    {
+        "label": "getXML(): XML",
+        "documentation": [
+            "DataMap의 전체 데이터를 XML 형태로 반환한다.",
+            "*@return*   \nXML 타입의 전체 데이터"
+        ]
+    },
+    {
+        "label": "reform()",
+        "documentation": [
+            "DataMap의 key의 상태를 초기화하고 original값을 현재의 key값으로 변경한다."
+        ]
+    },
+    {
+        "label": "set(KeyID: String, KeyValue: String)",
+        "documentation": [
+            "DataMap에 정의 된 Key ID에 value를 셋팅한다.",
+            "*@param* `KeyID` &mdash; Key의 ID",
+            "*@param* `KeyValue` &mdash; Key에 할당 할 value"
+        ]
+    },
+    {
+        "label": "setArray(arrayData: Array)",
+        "documentation": [
+            "DataMap의 전체 데이터를 Array로 셋팅한다. array의 value index(순서)는 DataMap에 정의 된 Key의 index(순서)와 동일해야한다.",
+            "*@param* `arrayData` &mdash; KeyInfo에 정의 된 key 순서/개수와 동일하고 value만 담긴 Array"
+        ]
+    },
+    {
+        "label": "setJSON(jsonData: JSON)",
+        "documentation": [
+            "DataMap의 전체 데이터를 JSON으로 셋팅한다. 전체 Key가 있을 필요는 없으며 DataMap에 정의 된 Key만 셋팅된다.",
+            "*@param* `jsonData` &mdash; JSON형태의 DataMap의 전체 데이터"
+        ]
+    },
+    {
+        "label": "setXML(xmlData: XML)",
+        "documentation": [
+            "DataMap의 전체 데이터를 XML로 셋팅한다. 전체 Key가 있을 필요는 없으며 DataMap에 정의 된 Key만 셋팅된다.",
+            "*@param* `jsonData` &mdash; XML형태의 DataMap의 전체 데이터"
+        ]
+    },
+    {
+        "label": "trigger(eventType: String, paramArray?: Array)",
+        "documentation": [
+            "dataMap에 등록 된 특정 이벤트를 직접 발생시킨다.",
+            "*@param* `eventType` &mdash; 발생시킬 이벤트 이름",
+            "*@param* `paramArray` &mdash; 이벤트 핸들러에 전달 할 파라미터 배열"
+        ]
+    },
+    {
+        "label": "unbind(eventType?: String, function?: Function)",
+        "documentation": [
+            "dataMap에 등록 된 특정 이벤트를 직접 발생시킨다.",
+            "*@param* `eventType` &mdash; 제거할 이벤트의 이름. 생략할 경우 모든 이벤트를 제거한다",
+            "*@param* `function` &mdash; 동적으로 event에 function을 할당 한 경우 제거 할 이벤트 핸들러 함수. 생략 할 경우 해당 이벤트 type으로 등록된 모든 핸들러 함수를 제거한다"
+        ]
+    },
+    {
+        "label": "undo()",
+        "documentation": [
+            "DataMap의 key value를 초기(original)값으로 변경한다."
+        ]
+    }
+]

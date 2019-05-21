@@ -1,0 +1,924 @@
+[
+    {
+        "label": "bind(eventType: String, function: Function)",
+        "documentation": [
+            "dataList의 이벤트를 동적으로 할당한다.",
+            "*@param* `eventType` &mdash; 동적으로 할당할 이벤트의 이름",
+            "*@param* `function` &mdash; 동적으로 할당 할 이벤트의 핸들러 함수"
+        ]
+    },
+    {
+        "label": "clearSort()",
+        "documentation": [
+            "Data의 정렬을 취소하며 GridView 컴포넌트의 정렬도 함께 취소된다."
+        ]
+    },
+    {
+        "label": "deleteRow(rowIndex: Number)",
+        "documentation": [
+            "rowInex에 해당하는 행이 삭제되지 않으며 상태 값만 삭제(D)로 변경된다.",
+            "*@param* `rowIndex` &mdash; 삭제상태로 변경 할 행의 index"
+        ]
+    },
+    {
+        "label": "getAllArray(): JSON",
+        "documentation": [
+            "DataList의 전체 data를 column의 정보와 1차원 배열로 변환 된 실 Data를 JSON에 담아 반환한다.",
+            "*@return*   \ncolumn 정보와 data가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getAllData(): Array",
+        "documentation": [
+            "DataList의 전체 data를 1차원 배열로 반환한다.",
+            "*@return*   \ndata가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "getAllJSON(): Array",
+        "documentation": [
+            "DataList의 1row의 값을 JSON으로 변환하여 전체 data를 1차원 배열에 담아 반환한다.",
+            "*@return*   \nJSON이 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "getAllXML(): XML",
+        "documentation": [
+            "DataList의 전체 data를 XML로 반환한다.",
+            "*@return*   \n전체 data가 담긴 XML"
+        ]
+    },
+    {
+        "label": "getCellData(rowIndex: Number , colInfo: Number||String): String ",
+        "documentation": [
+            "rowIndex와 colInfo( 컬럼의 index 또는 ID )에 해당하는 셀의 데이터를 반환한다.",
+            "*@param* `rowIndex` &mdash; 셀의 행 index",
+            "*@param* `colInfo` &mdash; 셀의 컬럼 index 혹은 컬럼의 ID",
+            "*@return*   \n셀의 데이터"
+        ]
+    },
+    {
+        "label": "getColData(colInfo: Number||String): Array",
+        "documentation": [
+            "컬럼의 index 또는 ID에 해당하는 열의 데이터(filter나 sort가 적용 되지 않은)를 배열로 반환한다.",
+            "*@param* `colInfo` &mdash; 데이터를 가져올 열 index 혹은 컬럼 ID",
+            "*@return*   \n열의 데이터가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "getColumnDistinctDataArray(colInfo: Number||String): Array",
+        "documentation": [
+            "컬럼의 index 또는 ID에 해당하는 컬럼의 데이터를 중복 데이터를 제거하여 오름차순으로 정렬 된 data를 배열로 반환한다.",
+            "*@param* `colInfo` &mdash; index 또는 ID",
+            "*@return*   \n중복된 데이터를 제거한 컬럼 데이터"
+        ]
+    },
+    {
+        "label": "getColumnID(colIndex: Number): String",
+        "documentation": [
+            "DataList에 정의 된 컬럼의 index를 받아 컬럼의 ID를 반환한다.",
+            "*@param* `colIndex` &mdash; DataList에 정의 된 컬럼 index",
+            "*@return*   \n컬럼의 ID"
+        ]
+    },
+    {
+        "label": "getColumnIndex(colID: String): Number",
+        "documentation": [
+            "DataList에 정의 된 컬럼의 ID를 받아 컬럼의 index를 반환한다.",
+            "*@param* `colID` &mdash; 그리드 컬럼 id",
+            "*@return*   \n그리드 컬럼의 index"
+        ]
+    },
+    {
+        "label": "getColumnInfo(columnID: String): JSON",
+        "documentation": [
+            "dataList 특정 column의 세부 정보를 조회한다.",
+            "*@param* `columnID` &mdash; 조회하고자 하는 column의 id",
+            "*@return*   \n해당 컬럼의 attribute를 표현한 json객체"
+        ]
+    },
+    {
+        "label": "getColumnName(columnInfo: String||Number): String",
+        "documentation": [
+            "DataList에 정의 된 컬럼의 index 또는 ID 를 받아 컬럼에 정의 된 name을 반환한다.",
+            "*@param* `columnInfo ` &mdash; 컬럼의 ID 또는 index",
+            "*@return*   \n컬럼의 name"
+        ]
+    },
+    {
+        "label": "getDataRow(rowIndex: Number): Object",
+        "documentation": [
+            "rowIndex에 해당하는 행의 데이터를 컬럼의 ID를 key로 하는 Hash형태로 반환한다.",
+            "*@param* `rowIndex ` &mdash; 데이터를 가져올 행 index",
+            "*@return*   \nrowIndex에 해당하는 행의 Hash형태의 객체"
+        ]
+    },
+    {
+        "label": "getDeletedArray(): JSON",
+        "documentation": [
+            "삭제 상태(상태값:D,E,V)인 행들의 정보가 담긴 JSON.",
+            "*@return*   \n삭제 상태인 행들의 정보가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getDeletedData(): Array",
+        "documentation": [
+            "삭제 상태(상태값:D,E,V)인 행들의 데이터가 담긴 2차원 배열.",
+            "*@return*   \n삭제 상태인 행들의 2차원 데이터 배열"
+        ]
+    },
+    {
+        "label": "getDeletedIndex(): Array",
+        "documentation": [
+            "삭제 상태(D,V,3,4)인 행의 index를 배열로 반환한다. (remove API로 삭제 된 E상태의 행은 반환되지 않는다)",
+            "*@return*   \n삭제 상태(D,V,3,4)인 행의 index가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "getDeletedJSON(): Array",
+        "documentation": [
+            "삭제 상태(상태값:D,E,V)인 행들의 데이터를 JSON으로 변환하여 배열에 담아 반환한다.",
+            "*@return*   \n삭제 상태인 행들의 JSON 데이터가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "getDeletedXML(): XML",
+        "documentation": [
+            "삭제 상태(상태값:D,E,V)인 행들의 데이터를 XML로 반환한다.",
+            "*@return*   \n삭제 상태인 행들의 XML"
+        ]
+    },
+    {
+        "label": "getFusionChartData(chartType: String, labelNode: String, seriesColumns: String): JSON",
+        "documentation": [
+            "dataList를 fusionChart의 json데이터로 반환한다.",
+            "*@param* `chartType` &mdash; fusionChart의 차트타입",
+            "*@param* `labelNode` &mdash; fusionChart의 lable 데이터로 사용할 DataCollection의 column의 ID값",
+            "*@param* `seriesColumns` &mdash; fusionChart의 series 데이터로 사용할 DataCollection column 정보로 배열형식의 문자열",
+            "*@return*   \n변환된 fusionChart data(json)"
+        ]
+    },
+    {
+        "label": "getFusionChartSimpleData(chartType: String, labelNode: String, seriesNode: String, valueNode: String): JSON",
+        "documentation": [
+            "DataList의 데이터를 fusionChart의 simple모드인 singleSerise, multiSeries 차트의 JSON데이터로 반환한다.",
+            "*@param* `chartType` &mdash; fusionChart의 차트유형",
+            "*@param* `labelNode` &mdash; fusionChart의 lable 데이터로 사용할 DataList column의 ID값",
+            "*@param* `seriesNode` &mdash; fusionChart의 series 데이터로 사용할 DataList column의 ID값",
+            "*@param* `valueNode` &mdash; fusionChart의 value 데이터로 사용할 DataList column의 ID값",
+            "*@return*   \n변환된 fusionChart data(json)"
+        ]
+    },
+    {
+        "label": "getID(): String",
+        "documentation": [
+            "dataList 객체의 id를 반환한다. 객체의 id 속성과 동일한 값을 반환한다.",
+            "*@return*   \ndataList 객체의 id를 반환한다"
+        ]
+    },
+    {
+        "label": "getInfo(): JSON",
+        "documentation": [
+            "dataList의 세부 정보를 조회한다.",
+            "*@return*   \n{dataListInfo : dataList의 attribute값, columnInfo : 각 colummn의 attribute들을 모아둔 object} 형태의 json객체"
+        ]
+    },
+    {
+        "label": "getInsertedArray(): JSON",
+        "documentation": [
+            "삽입 상태(상태값:C)인 행들의 정보가 담긴 JSON.",
+            "*@return*   \n삽입 상태인 행들의 정보가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getInsertedData(): Array",
+        "documentation": [
+            "삽입 상태(상태값:C)인 행들의 데이터가 담긴 2차원 배열.",
+            "*@return*   \n삽입 상태인 행들의 2차원 데이터 배열"
+        ]
+    },
+    {
+        "label": "getInsertedIndex(): Array",
+        "documentation": [
+            "삽입 상태(상태값:C)인 행의 index를 배열에 담아 반환한다.",
+            "*@return*   \n삽입 상태인 행 index가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getInsertedJSON(): Array",
+        "documentation": [
+            "삽입 상태(상태값:C)인 행들의 데이터를 JSON으로 변환하여 배열에 담아 반환한다.",
+            "*@return*   \n삽입 상태인 행들의 JSON 데이터가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "getInsertedXML(): XML",
+        "documentation": [
+            "삽입 상태(상태값:C)인 행들의 데이터를 XML로 반환한다.",
+            "*@return*   \n삽입 상태인 행들의 XML"
+        ]
+    },
+    {
+        "label": "getMatchedArray(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): JSON",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colInfo에 해당하는 값이 dataValue와 같은 행들의 컬럼 정보 및 data를 담은 JSON을 반환한다.",
+            "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
+            "*@param* `dataValue` &mdash; colInfo 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안의 data를 정보를 가진 JSON"
+        ]
+    },
+    {
+        "label": "getMatchedColumnData(matchCol: Number||String, dataValue: String, targetCol: Number||String, exactMatch?: Booleanm, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 matchCol에 해당하는 값이 dataValue와 같은 행들을 찾아서 targetCol에 해당하는 값을 1차원 배열로 반환한다.",
+            "*@param* `matchCol` &mdash; 데이터를 검색 할 컬럼 index 또는 컬럼 ID",
+            "*@param* `dataValue` &mdash; colInfo 해당하는 열의 값과 비교할 data",
+            "*@param* `targetCol` &mdash; 꺼내올 데이터의 컬럼 index 또는 컬럼 ID",
+            "*@param* `exactMatch` &mdash; [default:true, false] 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \ntargetCol에 해당하는 data가 담긴 1찬원 배열"
+        ]
+    },
+    {
+        "label": "getMatchedData(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colInfo의 값이 dataValue와 같은 행들의 data를 2차원 배열로 반환한다.",
+            "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
+            "*@param* `dataValue` &mdash; colInfo 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n검색 된 row의 배열 데이터가 담긴 배열.(2차원 배열)"
+        ]
+    },
+    {
+        "label": "getMatchedIndex(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 conInfo의 값이 dataValue와 같은 행들의 index를 반환한다.",
+            "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
+            "*@param* `dataValue` &mdash; colInfo 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안에 일치하는 index를 담은 1차원 배열"
+        ]
+    },
+    {
+        "label": "getMatchedJSON(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colInfo의 값이 dataValue와 같은 행들의 JSON 데이터를 배열에 담아 반환한다.",
+            "*@param* `colInfo` &mdash; 데이터를 검색할 열 index 또는 id",
+            "*@param* `dataValue` &mdash; colInfo 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 시작 행의 index",
+            "*@param* `lastRowIndex` &mdash; 끝 행의 index",
+            "*@return*   \n범위안에 일치하는 index를 담은 1차원 배열"
+        ]
+    },
+    {
+        "label": "getMatchedXML(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): XML",
+        "documentation": [
+            "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colInfo의 값이 dataValue와 같은 행들의 data를 XML로 반환한다.",
+            "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
+            "*@param* `dataValue` &mdash; colInfo 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getModifiedArray(): JSON",
+        "documentation": [
+            "변경 상태(상태값:C,U,D,E)행들의 정보가 담긴 JSON.",
+            "*@return*   \n변경 상태 행들의 정보가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getModifiedData(): Array",
+        "documentation": [
+            "변경 상태(상태값:C,U,D,E)행들의 데이터를 배열로 반환한다.",
+            "*@return*   \n변경 상태 행들의 데이터가 담긴 2차원 배열"
+        ]
+    },
+    {
+        "label": "getModifiedIndex(): Array",
+        "documentation": [
+            "변경 상태(상태값:C,U,D)행들의 index를 배열로 반환한다.",
+            "*@return*   \n변경 상태 행들의 index가 담긴 1차원배열"
+        ]
+    },
+    {
+        "label": "getModifiedJSON(option?: JSON): Array",
+        "documentation": [
+            "데이터가 삽입, 갱신, 삭제, 제거 된 상태(U,C,D,E,1,2,3,5)의 행들의 데이터를 JSON으로 변환하여 1차원 배열에 담아 반환한다.",
+            "*@param* `option` &mdash; 데이터 변경(삽입, 갱신, 삭제, 제거) 행들의 데이터의 반환 순서를 설정한다.",
+            "*@return*   \n삽입, 갱신, 삭제된 행들의 JSON 데이터가 담긴 1차원 Array"
+        ]
+    },
+    {
+        "label": "getModifiedXML(option?: JSON): XML",
+        "documentation": [
+            "데이터가 삽입, 갱신, 삭제, 제거 된 상태(U,C,D,E,1,2,3,5)의 행들의 데이터를 XML로 반환한다.",
+            "*@param* `option` &mdash; 데이터 변경(삽입, 갱신, 삭제, 제거) 행들의 반환될 데이터를 설정한다.",
+            "*@return*   \n삽입, 갱신, 삭제된 행들의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getObjectType(): String",
+        "documentation": [
+            "dataCollection의 Type을 반환한다.",
+            "*@return*   \n[dataMap, dataList, linkedDataList] dataCollection의 타입"
+        ]
+    },
+    {
+        "label": "getOnlyDeletedArray(): JSON",
+        "documentation": [
+            "삭제 상태(상태값:D,E)행들의 정보를 담은 JSON을 반환한다.",
+            "*@return*   \n삭제 상태 행들의 정보를 담은 JSON"
+        ]
+    },
+    {
+        "label": "getOnlyDeletedData(): Array",
+        "documentation": [
+            "삭제 상태(상태값:D,E)행들의 배열 데이터를 배열에 담아 반환한다.(2차원 배열)",
+            "*@return*   \n삭제 상태행들의 배열 데이터를 담은 배열"
+        ]
+    },
+    {
+        "label": "getOnlyDeletedIndex(): Array",
+        "documentation": [
+            "삭제 상태(상태값:D)행등의 index를 배열로 반환한다.",
+            "*@return*   \n삭제 상태인 행들의 index를 담은 배열"
+        ]
+    },
+    {
+        "label": "getOnlyDeletedJSON(): Array",
+        "documentation": [
+            "삭제 상태(상태값:D,E)행들의 JSON 데이터를 배열에 담아 반환한다.",
+            "*@return*   \n삭제 상태인 행들의 JSON 데이터를 담은 배열"
+        ]
+    },
+    {
+        "label": "getOnlyDeletedXML(): XML",
+        "documentation": [
+            "삭제 상태(상태값:D,E)행들의 데이터를 XML로 반환한다.",
+            "*@return*   \n삭제 상태인 행들의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getOption(attr: String): String",
+        "documentation": [
+            "속성명으로 dataList에 정의 된 속성의 값을 반환한다.",
+            "*@param* `attr` &mdash; 속성명",
+            "*@return*   \ndataList에 정의 된 속성의 값"
+        ]
+    },
+    {
+        "label": "getOriginalCellData(rowIndex: Number, colIndex: String||Number): String",
+        "documentation": [
+            "rowIndex와 colInfo에 해당하는 셀의 초기 데이터(최초에 설정된 데이터)를 반환한다.",
+            "*@param* `rowIndex` &mdash; 셀의 초기 행 index",
+            "*@param* `colIndex` &mdash; 컬럼의 ID 또는 컬럼의 index",
+            "*@return*   \n셀의 초기 데이터"
+        ]
+    },
+    {
+        "label": "getRangeArray(fromIdx: Number, toIdx: Number): JSON",
+        "documentation": [
+            "fromIdx부터 toIdx 까지 범위의 행들의 컬럼 정보 및 data를 담은 JSON을 반환한다.",
+            "*@param* `fromIdx` &mdash; 데이터를 가져오는 범위의 시작 행 index",
+            "*@param* `toIdx` &mdash; 데이터를 가져오는 범위의 끝 행 index",
+            "*@return*   \n범위안의 data를 정보를 가진 JSON"
+        ]
+    },
+    {
+        "label": "getRangeData(from: Number, to: Number): Array",
+        "documentation": [
+            "from부터 to 까지의 범위의 행의 data를 1차원 배열로 반환한다.",
+            "*@param* `fromIdx` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `toIdx` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안의 data를 가지고 있는 배열"
+        ]
+    },
+    {
+        "label": "getRangeJSON(from: Number, to: Number): Array",
+        "documentation": [
+            "from부터 to 까지의 범위의 행의 JSON data를 담은 1차원 배열.",
+            "*@param* `from` &mdash; 데이터를 가져오는 범위의 시작 행 index",
+            "*@param* `to` &mdash; 데이터를 가져오는 범위의 끝 행 index",
+            "*@return*   \n범위에 해당하는 행의 JSON객체를 담은 배열"
+        ]
+    },
+    {
+        "label": "getRangeXML(from: Number, to: Number): XML",
+        "documentation": [
+            "from부터 to 까지의 범위의 행의 data를 XML로 반환한다.",
+            "*@param* `from` &mdash; 데이터를 가져오는 범위의 시작 행 index",
+            "*@param* `to` &mdash; 데이터를 가져오는 범위의 끝 행 index",
+            "*@return*   \n범위에 해당하는 행의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getRowArray(rowIndex: Number): JSON",
+        "documentation": [
+            "rowIndex에 해당하는 행들의 정보가 담긴 JSON을 반환한다.",
+            "*@param* `rowIndex` &mdash; 데이터를 가져올 행의 index",
+            "*@return*   \n행들의 정보가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getRowCount(): Number",
+        "documentation": [
+            "화면에 보여지는 row의 건수를 반환하며 필터가 걸려있거나 GridView에 drilldown이 적용되어 있는 경우 접혀져 있는 데이터의 행의 수는 포함되지 않는다.   \n전체 데이터의 row건수는 getTotalRow API를 사용한다.",
+            "*@return*   \nrow의 건수"
+        ]
+    },
+    {
+        "label": "getRowData(rowIndex: Number): Array",
+        "documentation": [
+            "rowIndex에 해당하는 행의 데이터를 배열로 반환한다.",
+            "*@param* `rowIndex` &mdash; 데이터를 가져올 행의 index",
+            "*@return*   \nrowIndex에 해당하는 행의 데이터의 배열"
+        ]
+    },
+    {
+        "label": "getRowIndexByStatus(statusStr: String): Array",
+        "documentation": [
+            "상태값(코드)가 일치하는 행의 index를 배열로 반환한다.   \n단, 상태코드가 E인 경우는 반환되지 않는다.(removeRow와 같은 API를 호출 한 경우가 이에 해당된다.)   \n상태코드가 여러개의 경우 \"CU\"와 같이 상태코드를 붙여 파라메터로 넘기면 된다.",
+            "*@param* `statusStr` &mdash; [C,U,D,V,R]상태코드 문자열로 대문자로 표현",
+            "*@return*   \nstatusStr과 상태가 일치하는 행의 index가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getRowJSON(rowIndex: Number): JSON",
+        "documentation": [
+            "rowIndex에 해당하는 행의 data를 JSON객체로 반환한다.",
+            "*@param* `rowIndex` &mdash; 데이터를 가져올 행 index",
+            "*@return*   \n해당 행의 JSON객체 데이터"
+        ]
+    },
+    {
+        "label": "getRowPosition(): Number",
+        "documentation": [
+            "바인딩된 DataList의 현재 행 위치(클릭한 항목의 인덱스)를 확인.",
+            "*@return*   \nrowPosition 값"
+        ]
+    },
+    {
+        "label": "getRowStatus(rowIndex: Number): String",
+        "documentation": [
+            "rowIndex에 해당하는 행의 상태를 코드(문자)로 반환한다. (초기상태:\"R\", 갱신:\"U\", 삽입:\"C\", 삭제:\"D\", 삽입 후 삭제:\"V\")",
+            "*@param* `rowIndex` &mdash; 행의 index",
+            "*@return*   \n행의 상태코드 (초기상태:\"R\", 갱신:\"U\", 삽입:\"C\", 삭제:\"D\", 삽입 후 삭제:\"V\")"
+        ]
+    },
+    {
+        "label": "getRowStatusValue(rowIndex: Number): Number",
+        "documentation": [
+            "rowIndex에 해당하는 행의 상태를 숫자로 반환한다. (초기상태:0, 갱신:1, 삽입:2, 삭제:3, 삽입 후 삭제:4)",
+            "*@param* `rowIndex` &mdash; 행의 index",
+            "*@return*   \n행의 상태 숫자값 (초기상태:0, 갱신:1, 삽입:2, 삭제:3, 삽입 후 삭제:4)"
+        ]
+    },
+    {
+        "label": "getRowXML(rowIndex: Number): XML",
+        "documentation": [
+            "rowIndex에 해당하는 행의 data를 XML로 반환한다.",
+            "*@param* `rowIndex` &mdash; 행의 index",
+            "*@return*   \n행의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getTotalCol(): Number",
+        "documentation": [
+            "DataList에 정의 된 컬럼수를 반환한다.",
+            "*@return*   \nDataList의 컬럼수"
+        ]
+    },
+    {
+        "label": "getTotalRow(): Number",
+        "documentation": [
+            "dataList의 전체 row수를 반환한다.   \n필터가 걸려 있거나, drilldown이 적용되어 접혀있는 row가 있더라도 모두 포함한 수를 반환한다.    \n필터 적용이 되어있는 row의 건수는 getRowCount API를 사용한다.",
+            "*@return*   \n전체 row수"
+        ]
+    },
+    {
+        "label": "getUnmatchedArray(col: Number, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): JSON",
+        "documentation": [
+            "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex까지의 범위중에서 데이터가 dataValue와 다른 행들의 정보를 JSON으로 변환하여 반환한다.",
+            "*@param* `col` &mdash; 컬럼 index 또는 id",
+            "*@param* `dataValue` &mdash; 비교 data",
+            "*@param* `exactMatch` &mdash; [true, false]정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 끝낼 행 index",
+            "*@return*   \n범위안에 일치하는 index를 가지고 있는 JSONArray"
+        ]
+    },
+    {
+        "label": "getUnmatchedColumnData(matchCol: Number||String, dataValue: String, targetCol: Number||String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "documentation": [
+            "matchCol에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들을 찾아서 targetCol에 해당하는 컬럼의 데이터들를 배열로 반환한다.",
+            "*@param* `matchCol` &mdash; 데이터를 검사할 컬럼 index 또는 id",
+            "*@param* `dataValue` &mdash; matchCol에 해당하는 컬럼의 데이터와 비교할 문자열",
+            "*@param* `targetCol` &mdash; 데이터를 가져올 컬럼 index 또는 id",
+            "*@param* `exactMatch` &mdash; [true, false]정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \ntargetCol에 해당하는 컬럼의 데이터를 가지고 있는 1차원 배열"
+        ]
+    },
+    {
+        "label": "getUnmatchedData(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "documentation": [
+            "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 data를 배열 변환하여 배열에 담아 반환한다.",
+            "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
+            "*@param* `dataValue` &mdash; col에 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안에 일치하는 배열 데이터를 가진 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getUnmatchedIndex(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "documentation": [
+            "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 index를 배열로 반환한다.",
+            "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
+            "*@param* `dataValue` &mdash; col에 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안에 일치하는 index를 가지고 있는 배열"
+        ]
+    },
+    {
+        "label": "getUnmatchedJSON(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "documentation": [
+            "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 data를 JSON으로 변환하여 배열에 담아 반환한다.",
+            "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
+            "*@param* `dataValue` &mdash; col에 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n조건에 일치하는 row에 해당하는 JSON Data를 가지고 있는 1차원 배열"
+        ]
+    },
+    {
+        "label": "getUnmatchedXML(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): XML",
+        "documentation": [
+            "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 데이터를 XML로 반환한다.",
+            "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
+            "*@param* `dataValue` &mdash; col에 해당하는 열의 값과 비교할 data",
+            "*@param* `exactMatch` &mdash; 정확히 일치하는지 여부",
+            "*@param* `stRowIndex` &mdash; 데이터를 가져오는 것을 시작할 행 index",
+            "*@param* `lastRowIndex` &mdash; 데이터를 가져오는 것을 끝낼 행 index",
+            "*@return*   \n범위안에 일치하는 XML 데이터"
+        ]
+    },
+    {
+        "label": "getUpdatedArray(): JSON",
+        "documentation": [
+            "갱신 상태(1,U)인 행들의 데이터의 정보는 JSON으로 반환한다.   \n반환값의 columnInfo는 컬럼의 id가 담긴 배열을, data는 columnInfo에 명시된 컬럼의 순서대로 해당하는 데이터를 담은 배열이다.",
+            "*@return*   \n갱신 상태인 행들의 정보가 담긴 JSON 데이터"
+        ]
+    },
+    {
+        "label": "getUpdatedData(): Array",
+        "documentation": [
+            "갱신 상태(1,U)인 행들의 배열 데이터를 배열에 담아 반환한다.",
+            "*@return*   \n갱신 상태(1,U)인 행들의 배열 데이터 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getUpdatedIndex(): Array",
+        "documentation": [
+            "갱신 상태(1,U)인 행의 index를 배열로 반환한다.",
+            "*@return*   \n갱신 상태(1,U)인 행의 index를 담은 배열"
+        ]
+    },
+    {
+        "label": "getUpdatedJSON(): Array",
+        "documentation": [
+            "갱신 상태(1,U)인 행들의 데이터를 JSON으로 변환하여 배열에 담아 반환한다.",
+            "*@return*   \n갱신 상태(1,U)인 행들의 JSON 데이터가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getUpdatedXML(): XML",
+        "documentation": [
+            "갱신 상태(1,U)인 행들의 데이터를 XML로 반환한다.",
+            "*@return*   \n갱신 상태(1,U)인 행들의 XML 데이터"
+        ]
+    },
+    {
+        "label": "getVoidArray(): JSON",
+        "documentation": [
+            "삽입 후 삭제 상태(4,V)인 행들의 정보가 담긴 JSON을 반환한다.",
+            "*@return*   \n삽입 후 삭제 상태(4,V)인 행들의 정보가 담긴 JSON"
+        ]
+    },
+    {
+        "label": "getVoidData(): Array",
+        "documentation": [
+            "삽입 후 삭제 상태(4,V)인 행들을 배열 데이터를 배열에 담에 반환한다.",
+            "*@return*   \n삽입 후 삭제 상태인 행들의 배열 데이터가 담긴 배열 (2차원 배열)"
+        ]
+    },
+    {
+        "label": "getVoidIndex(): Array",
+        "documentation": [
+            "삽입 후 삭제 상태(4,V)인 행의 index를 배열로 반환한다.",
+            "*@return*   \n삽입 후 삭제 상태(4,V)인 행의 index를 담은 배열"
+        ]
+    },
+    {
+        "label": "getVoidJSON(): Array",
+        "documentation": [
+            "삽입 후 삭제 상태(4,V)인 행들의 JSON 데이터를 배열에 담아 반환한다.",
+            "*@return*   \n삽입 후 삭제 상태(4,V)인 행들의 JSON 데이터가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getVoidXML(): XML",
+        "documentation": [
+            "삽입후 삭제 상태(4,V)인 행들의 데이터를 XML로 반환한다.",
+            "*@return*   \n삽입 후 삭제 상태(4,V)인 행들의 XML 데이터"
+        ]
+    },
+    {
+        "label": "insertData(rowIndex: Number, dataObj: Array)",
+        "documentation": [
+            "rowIndex에 다건의 row를 1차원 Array로 삽입한다. 삽입 후 DataList의 oninsertrow 이벤트가 발생된다.",
+            "*@param* `rowIndex` &mdash; row의 index",
+            "*@param* `dataObj` &mdash; 데이터를 담고 있는 1차원 Array"
+        ]
+    },
+    {
+        "label": "insertJSON(rowIndex: Number, dataObj: Array)",
+        "documentation": [
+            "rowIndex에 다건의 row를 JSON객체로 삽입한다. 삽입 후 DataList의 oninsertrow 이벤트가 발생된다.",
+            "*@param* `rowIndex` &mdash; row의 index",
+            "*@param* `dataObj` &mdash; row에 해당하는 JSON객체를 담고 있는 1차원 array"
+        ]
+    },
+    {
+        "label": "insertRow(rowIndex: Number)",
+        "documentation": [
+            "rowIndex에 1건의 row를 삽입한다. 삽입 된 후 DataList의 oninsertrow 이벤트가 발생한다.",
+            "*@param* `rowIndex` &mdash; 삽입할 행의 index"
+        ]
+    },
+    {
+        "label": "insertXML(rowIndex: Number, dataObj: XML)",
+        "documentation": [
+            "rowIndex에 다건의 row를 XML 데이터로 삽입한다. 삽입 후 DataList의 oninsertrow 이벤트가 발생된다.",
+            "*@param* `rowIndex` &mdash; row의 index",
+            "*@param* `dataObj` &mdash; 데이터를 담고 있는 XML"
+        ]
+    },
+    {
+        "label": "modifyAllStatus(status: String)",
+        "documentation": [
+            "모든 행의 상태를 변경 한다.",
+            "*@param* `status` &mdash; 변경할 상태값 (초기상태:\"R\", 갱신:\"U\", 삽입:\"C\", 삭제:\"D\", 삽입 후 삭제:\"V\"). status값 변경으로 데이터를 조작할 수 없는 것이 원칙이므로 \"E\"는 인자값으로 사용할 수 없음."
+        ]
+    },
+    {
+        "label": "modifyMatchedStatus(col: Number||String, dataValue: String, status: String)",
+        "documentation": [
+            "모든 행의 상태를 변경 한다.",
+            "*@param* `col` &mdash; 검사할 컬럼의 index 또는 id",
+            "*@param* `dataValue` &mdash; 비교값",
+            "*@param* `status` &mdash; 변경할 상태값. status값 변경으로 데이터를 조작할 수 없는 것이 원칙이므로 \"E\"는 인자값으로 사용할 수 없음."
+        ]
+    },
+    {
+        "label": "multisort(options: JSON)",
+        "documentation": [
+            "option에 따라서 여러개의 컬럼을 정렬한다.   \n컬럼의 dataType 속성을 기준으로 정렬되므로 숫자형태인 경우 dataType속성을 number로 정의해야한다.",
+            "*@param* `options` &mdash; 정렬에 대한 옵션을 가지고 있는 JSON"
+        ]
+    },
+    {
+        "label": "reform()",
+        "documentation": [
+            "DataList의 originalData를 현재의 데이터로 바꿔주고 모든 행의 상태를 초기화(R)한다."
+        ]
+    },
+    {
+        "label": "removeAll(): Array",
+        "documentation": [
+            "DataList의 모든 데이터를 삭제하고 삭제 된 Data를 1차원 배열로 반환한다.",
+            "*@return*   \n삭제한 행들의 데이터가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "removeColumnFilter(col: Number||String)",
+        "documentation": [
+            "col에 해당하는 컬럼에 적용된 filter를 삭제한다.   \n주의 - 여러 컬럼에 setColumnFilter를 사용한 경우, 해제되지 않는 filter의 operationType(AND, OR 조건)에 따른 결과를 유의하여야 한다.",
+            "*@param* `col` &mdash; filter를 삭제할 컬럼의 index 또는 id"
+        ]
+    },
+    {
+        "label": "removeColumnFilterAll()",
+        "documentation": [
+            "모든 컬럼에 적용된 filter를 삭제한다."
+        ]
+    },
+    {
+        "label": "removeRange(startIdx: Number, endIdx: Number): Array",
+        "documentation": [
+            "startIdx와 endIdx사이의 행을 삭제하고 가지고 있던 data를 1차원 배열로 반환한다.",
+            "*@param* `startIdx` &mdash; 데이터를 삭제할 범위의 시작 행",
+            "*@param* `endIdx` &mdash; 데이터를 삭제할 범위의 끝 행",
+            "*@return*   \n삭제된 범위 사이의 데이터 2차원 배열"
+        ]
+    },
+    {
+        "label": "removeRow(rowIndex: Number): Array",
+        "documentation": [
+            "rowIndex에 해당하는 행을 삭제하고 가지고 있던 data를 1차원 배열로 반환한다.",
+            "*@param* `rowIndex` &mdash; 삭제할 행의 index",
+            "*@return*   \n삭제한 행이 가지고 있던 data 배열"
+        ]
+    },
+    {
+        "label": "removeRows(rowIndexArr: Array): Array",
+        "documentation": [
+            "다건의 row를 index가 담긴 배열을 통해 한번에 삭제하고 가지고 있던 data를 2차원 배열로 반환한다.",
+            "*@param* `rowIndexArr` &mdash; 삭제할 행들의 번호를 저장하는 배열",
+            "*@return*   \n삭제한 행들이 가지고 있던 2차원 배열 data"
+        ]
+    },
+    {
+        "label": "rowMoveDown(rowIndex: Number)",
+        "documentation": [
+            "rowIndex에 해당하는 row을 하나 아래로 내려준다.",
+            "*@param* `rowIndex` &mdash; row의 index"
+        ]
+    },
+    {
+        "label": "rowMoveUp(rowIndex: Number)",
+        "documentation": [
+            "rowIndex에 해당하는 row을 하나 위로 올려준다.",
+            "*@param* `rowIndex` &mdash; row의 index"
+        ]
+    },
+    {
+        "label": "setArray(jsonData: JSON, append?: Boolean)",
+        "documentation": [
+            "1차원 배열의 데이터를 columnInfo의 컬럼 순서대로 DataList에 set한다.(행의 상태는 초기상태인 \"R\"로 변경된다.)",
+            "*@param* `jsonData` &mdash; 컬럼 정보와 1차원 배열 데이터를 담고 있는 JSON",
+            "*@param* `append` &mdash; [default:false, true]append 여부"
+        ]
+    },
+    {
+        "label": "setCellData(rowIndex: Number, colIndex: Number||String, data: String)",
+        "documentation": [
+            "rowIndex와 colIndex에 해당하는 셀에 data를 셋팅한다.",
+            "*@param* `rowIndex` &mdash; 행 index",
+            "*@param* `colIndex` &mdash; 컬럼 index 또는 id",
+            "*@param* `data` &mdash; 셀에 넣어줄 데이터"
+        ]
+    },
+    {
+        "label": "setColumnDefaultValue(colIndex: Number||String, defaultValue: String)",
+        "documentation": [
+            "colIndex에 해당하는 열의 기본값을 defaultValue로 설정한다.   \ninsertRow API 또는 초기 data를 set할 때 컬럼에 값이 할당되지 않을 때 dafaultValue의 값을 할당한다.",
+            "*@param* `colIndex` &mdash; 열의 index 또는 id",
+            "*@param* `defaultValue` &mdash; 열에 설정할 기본값"
+        ]
+    },
+    {
+        "label": "setColumnFilter(filterOptions: JSON)",
+        "documentation": [
+            "colIndex에 해당하는 컬럼에 filter를 적용한다.",
+            "*@param* `filterOptions` &mdash; filter를 적용할 옵션"
+        ]
+    },
+    {
+        "label": "setData(arr: Array||String, append?: Boolean, columnArr?: Array||String)",
+        "documentation": [
+            "1차원 배열 데이터를 set 또는 append 한다. (행의 상태는 초기상태인 \"R\"로 변경된다. 데이터의 순서를 지정해주는 columnArr를 사용할 경우, append는 항상 넣어줘야한다.)",
+            "*@param* `arr` &mdash; 1차원 배열 또는 배열 형태의 문자열(소스 안쪽에서 array로 변환)",
+            "*@param* `append` &mdash; [default:false, true]append 여부",
+            "*@param* `columnArr` &mdash; 데이터를 셋팅할 컬럼의 id가 담긴 배열 또는 배열 형태의 문자열(소스 안쪽에서 array로 변환)"
+        ]
+    },
+    {
+        "label": "setJSON(jsonData: Array, append?: Boolean)",
+        "documentation": [
+            "JSON Data를 set 또는 append 한다. (행의 상태는 초기상태인 \"R\"로 변경된다.)",
+            "*@param* `jsonData` &mdash; JSON 데이터를 담고 있는 배열)",
+            "*@param* `append` &mdash; [default:false, true]append 여부"
+        ]
+    },
+    {
+        "label": "setRowArray(rowIndex: Number, dataObj: JSON, overwrite?: Boolean)",
+        "documentation": [
+            "rowIndex에 해당하는 행에 1건(row)의 배열 데이터를 넣는다.   \noverwrite가 false인 경우에 행을 생성한다.",
+            "*@param* `rowIndex` &mdash; rowData를 넣어줄 행 index",
+            "*@param* `dataObj` &mdash; 행에 넣을 데이터의 정보를 가진 JSON",
+            "*@param* `overwrite` &mdash; [default:false, true]덮어쓰기의 여부로 true인 경우 rowIndex에 해당하는 row에 덮어쓰고 false인 경우 rowIndex에 row가 insert된다."
+        ]
+    },
+    {
+        "label": "setRowData(rowIndex: Number, rowData: Array, overwrite?: Boolean)",
+        "documentation": [
+            "rowIndex에 해당하는 행에 1건(row)의 배역 데이터를 넣는다.   \noverwrite가 false인 경우에 행을 생성한다.",
+            "*@param* `rowIndex` &mdash; rowData를 넣어줄 행 index",
+            "*@param* `rowData` &mdash; DataList에 정의 된 컬럼의 순서대로 데이터가 담긴 1차원 배열",
+            "*@param* `overwrite` &mdash; [default:false, true]덮어쓰기의 여부로 true인 경우 rowIndex에 해당하는 row에 덮어쓰고 false인 경우 rowIndex에 row가 insert된다."
+        ]
+    },
+    {
+        "label": "setRowJSON(rowIndex: Number, rowData: JSON, overwrite?: Boolean)",
+        "documentation": [
+            "rowIndex에 해당하는 행에 1건(row)의 JSON 데이터를 넣는다.   \noverwrite가 false인 경우에 행을 생성한다.",
+            "*@param* `rowIndex` &mdash; rowData를 넣어줄 행 index",
+            "*@param* `rowData` &mdash; 행에 넣을 JSON객체 데이터",
+            "*@param* `overwrite` &mdash; [default:false, true]덮어쓰기의 여부로 true인 경우 rowIndex에 해당하는 row에 덮어쓰고 false인 경우 rowIndex에 row가 insert된다."
+        ]
+    },
+    {
+        "label": "setRowNumData(flag: Boolean)",
+        "documentation": [
+            "DataList의 get관련 API의 return 데이터의 type이 JSON, XML일 경우 row의 number값을 추가 할지 설정.   \n해당 값은 GridView의 rowNumVisible 속성을 true로 설정하면 나오는 값과 동일하며 \"rowNum\"이라는 컬럼(key)명에 할당된다.   \nData의 get관련 API 예시 - getAllJSON, getRowJSON, getAllXML, getRowXML 등",
+            "*@param* `flag` &mdash; [true, flase]설정 여부"
+        ]
+    },
+    {
+        "label": "setRowPosition(position?: Number, noEvent?: Boolean)",
+        "documentation": [
+            "DataList가 GridView와 연결되지 않은 경우 선택 된(focused)row의 위치를 설정한다.   \nGridView와 연결 된 경우에는 본 API가 아닌 GridView의 setFocusedCell API를 사용해야 focus 동기화가 정상적으로 이루어진다.   \n본 API는 Input과 같은 단일 컴포넌트의 ref 속성을 이용하여 value와 DataList의 컬럼값이 연동이 되었을 경우만 사용한다.( gridView를 이용하여 focus 제어를 할 수 없는 경우 )",
+            "*@param* `position` &mdash; 선택 할(focused)row index",
+            "*@param* `noEvent` &mdash; onrowpositionchange이벤트를 설정해 줄것인지에 대한 여부"
+        ]
+    },
+    {
+        "label": "setRowXML(rowIndex: Number, XML: XML, overwrite?: Boolean)",
+        "documentation": [
+            "rowIndex에 해당하는 행에 1건(row)의 XML 데이터를 넣는다.   \noverwrite가 false인 경우에 행을 생성한다.",
+            "*@param* `rowIndex` &mdash; rowData를 넣어줄 행 index",
+            "*@param* `XML` &mdash; rowData 행에 넣을 XML 데이터",
+            "*@param* `overwrite` &mdash; [default:false, true]덮어쓰기의 여부로 true인 경우 rowIndex에 해당하는 row에 덮어쓰고 false인 경우 rowIndex에 row가 insert된다."
+        ]
+    },
+    {
+        "label": "setXML(xmlData: XML, append?: Boolean)",
+        "documentation": [
+            "XML Data를 set 또는 append 한다. (행의 상태는 초기상태인 \"R\"로 변경된다.)",
+            "*@param* `xmlData` &mdash; XML 데이터",
+            "*@param* `append` &mdash; [default:false, true]append 여부"
+        ]
+    },
+    {
+        "label": "sort(bodyColumnID: String, sortType: Number)",
+        "documentation": [
+            "단건의 컬럼을 정렬한다. (다건의 경우 multisort API를 이용)   \n* 본 API는 dataType에 상관없이 text로 간주하여 정렬이 된다. (number 타입의 경우 multisort API를 이용)",
+            "*@param* `bodyColumnID` &mdash; 컬럼의 id",
+            "*@param* `sortType` &mdash; [0,1,2]정렬 옵션 0이면 오름차순 1이면 내림차순 2이면 정렬을 취소"
+        ]
+    },
+    {
+        "label": "trigger(type: String, array?: Array)",
+        "documentation": [
+            "dataList에 등록 된 이벤트를 발생시킨다.",
+            "*@param* `type` &mdash; 발생시킬 이벤트명",
+            "*@param* `array` &mdash; 이벤트 핸들러에 전달할 파라미터 배열"
+        ]
+    },
+    {
+        "label": "unbind(type?: String, function?: Function)",
+        "documentation": [
+            "dataList의 이벤트를 동적으로 제거한다.",
+            "*@param* `type` &mdash; 제거할 이벤트의 이름. 생략할 경우 해당 컴포넌트의 모든 이벤트를 제거한다.",
+            "*@param* `function` &mdash; 제거할 이벤트의 핸들러 함수. 생략할 경우 해당 이벤트 type으로 등록된 모든 핸들러 함수를 제거한다."
+        ]
+    },
+    {
+        "label": "undeleteRow(rowIndex: Number)",
+        "documentation": [
+            "rowIndex에 해당하는 삭제 상태(D,V)를 취소하고 직전 상태값으로 변경한다.   \nremoveRow와 같은 API로 삭제(상태값이 E)한 row는 취소가 되지 않는다.",
+            "*@param* `rowIndex` &mdash; 삭제를 취소할 행 index"
+        ]
+    },
+    {
+        "label": "undoAll()",
+        "documentation": [
+            "전체 데이터를 초기 설정 된 데이터(originalData)로 바꾸고 행의 상태를 초기화(R) 시킨다.   \n\"초기 설정 된 데이터\"란 setJSON, setXML 등과 같은 API들을 통해 설정 된 데이터가 이에 속한다."
+        ]
+    },
+    {
+        "label": "undoRow(rowIndex: Number)",
+        "documentation": [
+            "rowIndex에 해당하는 row의 data와 상태값을 직전 data와 상태값으로 변경한다.",
+            "*@param* `rowIndex` &mdash; data를 변경할 행의 index"
+        ]
+    }
+]

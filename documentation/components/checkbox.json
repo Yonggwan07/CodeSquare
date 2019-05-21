@@ -1,0 +1,347 @@
+[
+    {
+        "label": "addClass(className: String)",
+        "documentation": [
+            "컴포넌트에 class를 추가한다.",
+            "*@param* `className` &mdash; 추가하고 싶은 class의 이름"
+        ]
+    },
+    {
+        "label": "addItem(value: String, label: String, index?: Number): Number",
+        "documentation": [
+            "항목을 추가하는 기능으로 index를 주지 않으면 하위로 추가된다.",
+            "*@param* `value` &mdash; 항목의 value",
+            "*@param* `label` &mdash; 항목의 label",
+            "*@param* `index` &mdash; 항목의 추가될 index",
+            "*@return*  \n추가 된 항목의 index"
+        ]
+    },
+    {
+        "label": "bind(eventType: String, function: Function)",
+        "documentation": [
+            "컴포넌트의 이벤트를 동적으로 할당한다.",
+            "*@param* `eventType` &mdash; 할당 할 이벤트명.",
+            "*@param* `function` &mdash; 동적으로 할당 할 이벤트의 핸들러 function."
+        ]
+    },
+    {
+        "label": "changeClass(oldClassName: String, newClassName: String)",
+        "documentation": [
+            "컴포넌트에서 oldClassName의 이름을 가진 class를 newClassName으로 변경한다.기본 설정은 addClass API를 통해 추가 된 class만 적용되며 컴포넌트의 class 속성에 직접 정의 된 class를 삭제해야하는 경우는 config.xml파일의 설정을 아래와 같이 적용해야한다.<style><removeDefaultClass value=\"true\" /></style>",
+            "*@param* `oldClassName` &mdash; 삭제 할 class의 이름",
+            "*@param* `newClassName` &mdash; 추가 할 class의 이름"
+        ]
+    },
+    {
+        "label": "checkAll(checkFlag: Bollean)",
+        "documentation": [
+            "모든 항목을 선택하거나 해제 시킨다.",
+            "*@param* `checkFlag` &mdash; true일 경우 전체 선택, false일 경우 전체 해제."
+        ]
+    },
+    {
+        "label": "click(index: Number)",
+        "documentation": [
+            "index에 해당하는 항목을 click 한 것과 같은 효과를 내어 해당 항목이 선택/해제된다.또한 onviewchange등의 이벤트도 발생된다.",
+            "*@param* `index` &mdash; click 이벤트를 발생시킬 항목의 index"
+        ]
+    },
+    {
+        "label": "deleteItem(index?: Number): JSON",
+        "documentation": [
+            "index에 해당하는 항목을 삭제한다.",
+            "*@param* `index` &mdash; 삭제할 항목의 index",
+            "*@return*  \n삭제된 항목의 정보가 담긴 JSON\n label : 항목의 label\n value : 항목의 value"
+        ]
+    },
+    {
+        "label": "focus()",
+        "documentation": [
+            "컴포넌트에 focus를 준다."
+        ]
+    },
+    {
+        "label": "getDisabled(): Boolean",
+        "documentation": [
+            "현재 설정되어있는 disabled 속성값을 반환한다.",
+            "*@return*  \ndisabled 속성값"
+        ]
+    },
+    {
+        "label": "getID(): String",
+        "documentation": [
+            "웹스퀘어 컴포넌트의 id를 반환한다.",
+            "*@return*  \n웹스퀘어 컴포넌트의 id"
+        ]
+    },
+    {
+        "label": "getItemCount(): Number",
+        "documentation": [
+            "항목 수를 반환한다.",
+            "*@return*  \n항목 수"
+        ]
+    },
+    {
+        "label": "getItemDisabled(index: Number): Boolean",
+        "documentation": [
+            "index에 해당하는 항목의 활성화(disabled) 여부를 반환한다.",
+            "*@param* `index` &mdash; 항목의 index",
+            "*@return*  \n해당 항목의 비활성화 여부"
+        ]
+    },
+    {
+        "label": "getOpacity(): Integer",
+        "documentation": [
+            "CSS로 정의 된 컴포넌트의 Opacity(불투명도) 값을 반환한다.",
+            "*@return*  \nOpacity 값"
+        ]
+    },
+    {
+        "label": "getPluginName(): String",
+        "documentation": [
+            "웹스퀘어 컴포넌트의 pluginName(컴포넌트명)을 반환한다.",
+            "*@return*  \n웹스퀘어 컴포넌트의 pluginName"
+        ]
+    },
+    {
+        "label": "getPosition(positionName: String): Number",
+        "documentation": [
+            "컴포넌트의 left 또는 top의 위치 값을 반환한다. %로 설정된 경우, 픽셀로 변환하여 반환한다.",
+            "*@param* `positionName` &mdash; [left,top]위치 종류",
+            "*@return*  \n컴포넌트의 위치 값"
+        ]
+    },
+    {
+        "label": "getSelectedIndex(separator?: String): String",
+        "documentation": [
+            "선택 된 항목들의 index를 반환하는 기능으로 항목이 여러 개인 경우 separator를 구분자로 하여 반환한다.separator를 설정하지 않은 경우 공백(space)이 구분자로 사용된다.",
+            "*@param* `separator` &mdash; 항목간 구분자",
+            "*@return*  \n선택 된 항목의 index가 담긴 문자열."
+        ]
+    },
+    {
+        "label": "getSize(sizeName: String): Number",
+        "documentation": [
+            "컴포넌트의 크기 값을 반환합니다.%로 설정된 경우, 픽셀로 변환하여 반환한다.",
+            "*@param* `sizeName` &mdash; [height,innerHeight,outerHeight,outerMarginHeight,width,innerWidth,outerWidth,outerMarginWidth]크기 값의 종류. szieName별 계산 방법은 아래를 참고.",
+            "*@return*  \n컴포넌트의 크기 값"
+        ]
+    },
+    {
+        "label": "getStyle(propertyName: String): String",
+        "documentation": [
+            "컴포넌트에 적용 된 CSS의 propertyName에 해당하는 값을 반환한다.",
+            "*@param* `propertyName` &mdash; 반환 할 style의 property 이름",
+            "*@return*  \nstyle의 속성값"
+        ]
+    },
+    {
+        "label": "getStyleValue(style: String): String",
+        "documentation": [
+            "[deprecated]getStyle로 사용.컴포넌트에 적용 된 CSS의 propertyName에 해당하는 값을 반환한다.",
+            "*@param* `style` &mdash; 정의 된 style에서 사용자가 반환 받고자하는 속성명.",
+            "*@return*  \nstyle 속성에 정의 된 값(색을 반환하는 경우에는 색HexCode로 반환)"
+        ]
+    },
+    {
+        "label": "getText(separator?: String): String",
+        "documentation": [
+            "선택 된 항목들의 label을 반환하는 기능으로 항목이 여러 개인 경우 separator를 구분자로 하여 반환한다.separator를 설정하지 않은 경우 공백(space)이 구분자로 사용된다.",
+            "*@param* `separator` &mdash; 항목 구분자",
+            "*@return*  \n선택 된 항목들의 label이 담긴 문자열"
+        ]
+    },
+    {
+        "label": "getTitle(): String",
+        "documentation": [
+            "title 속성값을 반환한다.",
+            "*@return*  \ntitle 속성값."
+        ]
+    },
+    {
+        "label": "getUserData(key: String): String",
+        "documentation": [
+            "setUserData API로 설정 된 사용자 데이터 또는 소스(화면 XML)에 사용자가 임의의 property로 정의 된 값을 반환한다.",
+            "*@param* `key` &mdash; 임의 데이터의 키",
+            "*@return*  \nkey에 해당하는 데이터"
+        ]
+    },
+    {
+        "label": "getValue(separator?: String): String",
+        "documentation": [
+            "선택 된 항목들의 value를 반환하는 기능으로 항목이 여러 개인 경우 separator를 구분자로 하여 반환한다.separator를 설정하지 않은 경우 공백(space)이 구분자로 사용된다.",
+            "*@param* `separator` &mdash; 항목 구분자",
+            "*@return*  \n컴포넌트의 선택된 항목들들의 value가 담긴 문자열"
+        ]
+    },
+    {
+        "label": "hasClass(className: String): Boolean",
+        "documentation": [
+            "컴포넌트가 parameter로 받은 className의 class를 가지고 있는지의 여부를 반환한다.",
+            "*@param* `className` &mdash; 검색 할 className",
+            "*@return*  \nclass를 가지고 있는지의 여부"
+        ]
+    },
+    {
+        "label": "hide()",
+        "documentation": [
+            "컴포넌트를 화면에서 보이지 않도록 숨긴다.엔진 내부적으로는 CSS를 display:none;과 visibility:hidden;으로 처리한다."
+        ]
+    },
+    {
+        "label": "removeAll()",
+        "documentation": [
+            "모든 항목을 삭제한다."
+        ]
+    },
+    {
+        "label": "removeClass(className: String)",
+        "documentation": [
+            "컴포넌트에 className의 class를 삭제한다.기본 설정은 addClass API를 통해 추가 된 class만 적용되며 컴포넌트의 class 속성에 직접 정의 된 class를 삭제해야하는 경우는 config.xml파일의 설정을 아래와 같이 적용해야한다.<style><removeDefaultClass value=\"true\" /></style>",
+            "*@param* `className` &mdash; 삭제 할 class명"
+        ]
+    },
+    {
+        "label": "reset()",
+        "documentation": [
+            "모든 항목의 체크를 해제한다."
+        ]
+    },
+    {
+        "label": "setDisabled(disabled: Boolean)",
+        "documentation": [
+            "컴포넌트의 disabled 속성을 설정한다. disabled 속성을 활성화 시키려면 true 비활성화 시키려면 false를 입력한다.",
+            "*@param* `disabled` &mdash; disabled 속성을 활성화 시키려면 true 비활성화 시키려면 false"
+        ]
+    },
+    {
+        "label": "setEventPause(evList?: String, flag: Boolean)",
+        "documentation": [
+            "컴포넌트의 이벤트를 disable 또는 enable시킨다.",
+            "*@param* `evList` &mdash; 대상 이벤트 목록. 해당 인자가 주어지지 않을 경우 해당 컴포넌트의 모든 사용자 이벤트가 대상이 된다. (null을 지정하면 된다.)",
+            "*@param* `flag` &mdash; true인 경우 pause시키며, false인 경우 pause를 해제한다."
+        ]
+    },
+    {
+        "label": "setItemDisabled(index: Number, falg: Boolean)",
+        "documentation": [
+            "index에 해당하는 항목을 비활성화시키거나 활성화 시킨다.",
+            "*@param* `index` &mdash; 항목의 index",
+            "*@param* `falg` &mdash; 비활성화 여부"
+        ]
+    },
+    {
+        "label": "setNodeSet(nodeset: String, label?: String, value?: String)",
+        "documentation": [
+            "항목의 itemset 설정을 변경하는 기능으로 DataList와 연동 할 경우 nodeset 파라메터에 \"data:\" prefix를 꼭 붙여야한다.",
+            "*@param* `nodeset` &mdash; DataList의 ID로 \"data:\"이라는 prefix를 붙여야한다. ( 또는 InstanceData의 XPath )",
+            "*@param* `label` &mdash; label에 설정 될 column의 id로 값을 할당하지 않으면 기존에 설정된 값이 그대로 적용된다. ( 또는 label에 설정 할 nodeset 하위의 XPath )",
+            "*@param* `value` &mdash; value에 설정 될 column의 id로 값을 할당하지 않으면 기존에 설정된 값이 그대로 적용된다. ( 또는 value에 설정 할 nodeset 하위의 XPath )"
+        ]
+    },
+    {
+        "label": "setOpacity(value: Number)",
+        "documentation": [
+            "컴포넌트의 CSS Opacity(불투명도)값를 설정한다.",
+            "*@param* `value` &mdash; Opacity 값 (0과 1사이의 실수)"
+        ]
+    },
+    {
+        "label": "setPosition(left: Number, top: Number, mode?: String)",
+        "documentation": [
+            "컴포넌트의 위치(left,top)를 설정한다.",
+            "*@param* `left` &mdash; left의 값 또는 null.",
+            "*@param* `top` &mdash; top의 값 또는 null.",
+            "*@param* `mode` &mdash; [defulat:absolute, delta]absolute이면 x,y로 현재 값을 설정하고 delta이면 현재 값에 x,y값만큼을 더해서 설정."
+        ]
+    },
+    {
+        "label": "setRef(ref: String)",
+        "documentation": [
+            "ref 속성을 설정하는 기능으로 DataCollection과 연동시 \"data:\"라는 prefix를 꼭 붙여야한다.명시하지 않는 경우 InstanceData의 XPath로 인식한다.",
+            "*@param* `ref` &mdash; 적용 할 ref의 경로"
+        ]
+    },
+    {
+        "label": "setSelectedIndex(index: Number)",
+        "documentation": [
+            "index에 해당하는 항목을 check/uncheck(toggle)한다.",
+            "*@param* `index` &mdash; 항목의 index"
+        ]
+    },
+    {
+        "label": "setSize(width: Number, heigth: Number)",
+        "documentation": [
+            "컴포넌트의 크기(width,height)를 설정한다.",
+            "*@param* `width` &mdash; 새로 설정할 컴포넌트의 width값 또는 null",
+            "*@param* `heigth` &mdash; 새로 설정할 컴포넌트의 height값 또는 null"
+        ]
+    },
+    {
+        "label": "setStyle(propertyName: String, value: String)",
+        "documentation": [
+            "컴포넌트의 property별 style을 설정한다.",
+            "*@param* `propertyName` &mdash; style 속성 이름",
+            "*@param* `value` &mdash; 적용 할 style의 값"
+        ]
+    },
+    {
+        "label": "setUserData(key: String, value: String)",
+        "documentation": [
+            "컴포넌트에 사용자 데이터를 설정한다. 컴포넌트에 설정이 가능한 key가 아닌 경우, key 설정이 불가능하며 log에 관련 내용이 출력 된다.",
+            "*@param* `key` &mdash; 임의 데이터의 키",
+            "*@param* `value` &mdash; 임의 데이터의 값"
+        ]
+    },
+    {
+        "label": "setValue(value: String)",
+        "documentation": [
+            "파라메터로 넘어온 value가 항목에 있는 경우 해당 항목이 선택되며 해당값으로 value가 할당된다.다건을 한번에 설정 할 경우 공백(space)를 이용하여 설정하며 value에 해당하는 항목이 없는 경우 아무 동작이 일어나지 않는다.",
+            "*@param* `value` &mdash; 선택하려는 항목의 value 문자열"
+        ]
+    },
+    {
+        "label": "show(displayType?: String)",
+        "documentation": [
+            "컴포넌트를 화면에 보이도록 설정한다.엔진 내부적으로는 CSS를 display속성과 visibility:show;으로 처리한다.",
+            "*@param* `displayType` &mdash; [default:block ,inline ,none ,\"\"]display의 속성 값."
+        ]
+    },
+    {
+        "label": "toggleClass(className: String)",
+        "documentation": [
+            "컴포넌트가 className의 이름을 가진 class를 가지고 있다면 제거하고, 가지고 있지 않다면 추가한다.기본 설정은 addClass API를 통해 추가 된 class만 삭제되며 컴포넌트의 class 속성에 직접 정의 된 class를 삭제해야하는 경우는 config.xml파일의 설정을 아래와 같이 적용해야한다.<style><removeDefaultClass value=\"true\" /></style>",
+            "*@param* `className` &mdash; 설정 할 className"
+        ]
+    },
+    {
+        "label": "trigger(type: String, array?: Array)",
+        "documentation": [
+            "컴포넌트에 등록 된 특정 이벤트를 발생시킨다.",
+            "*@param* `type` &mdash; 발생시킬 이벤트 이름",
+            "*@param* `array` &mdash; 이벤트 핸들러에 전달할 파라미터 배열"
+        ]
+    },
+    {
+        "label": "unbind(type?: String, function?: Function)",
+        "documentation": [
+            "컴포넌트에 등록 된 이벤트를 제거한다.",
+            "*@param* `type` &mdash; 제거할 이벤트 이름. 생략할 경우 해당 컴포넌트의 모든 이벤트를 제거한다.",
+            "*@param* `function` &mdash; 제거할 이벤트의 핸들러 함수. 생략할 경우 해당 이벤트 type으로 등록된 모든 핸들러 함수를 제거한다."
+        ]
+    },
+    {
+        "label": "validate(): Boolean",
+        "documentation": [
+            "컴포넌트의 정의 된 유효성에 관련 속성값을 통해 유효성 검사를 실행한다.유효성 관련 속성 : mandatory",
+            "*@return*  \n유효성 검사 결과 값"
+        ]
+    },
+    {
+        "label": "visible(flag: Boolean)",
+        "documentation": [
+            "[deprecated]show/hide 로 사용하거나 setStyle을 통해 visible 속성을 설정한다.컴포넌트의 style 중 visibility 값을 설정한다. true이면 \"visible\", false이면 \"hidden\"을 설정.",
+            "*@param* `flag` &mdash; visibility 값을 설정할 값(true이면 \"visible\", false이면 \"hidden\"을 설정)"
+        ]
+    }
+]

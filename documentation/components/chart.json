@@ -1,0 +1,455 @@
+[
+    {
+        "label": "addClass(className: String)",
+        "documentation": [
+            "컴포넌트에 class를 추가한다.",
+            "*@param* `className` &mdash; 추가하고 싶은 class의 이름"
+        ]
+    },
+    {
+        "label": "appendData(index: Number, xmlArray: Array)",
+        "documentation": [
+            "index에 해당하는 노드 하위에 사용자 데이터를 기반으로 노드를 추가한다.dynamicAppend속성이 true로 설정되야한다.",
+            "*@param* `index` &mdash; 노드의 index",
+            "*@param* `xmlArray` &mdash; 추가할 노드의 XML 데이터가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "appendNode(parentNode: Object, childNode: Object)",
+        "documentation": [
+            "TreeView에서 반환하는 Node를 기반으로 parentNode 하위에 childNode를 추가한다.dynamicAppend속성이 true로 설정되야하며 일반적으로 TreeView끼리의 노드 추가 시에 사용되며 TreeView의 이벤트 또는 API로 Node를 반환 받아 파라메터로 사용한다.",
+            "*@param* `parentNode` &mdash; 기준 Node",
+            "*@param* `childNode` &mdash; 추가할 Node"
+        ]
+    },
+    {
+        "label": "appendXmlNodes(parentNode: Object, xmlArray: Array)",
+        "documentation": [
+            "TreeView에서 반환하는 Node(parentNode)의 하위에 XML 데이터를 기반으로 노드를 추가한다.dynamicAppend속성이 true로 설정되야한다.",
+            "*@param* `parentNode` &mdash; 기준 Node",
+            "*@param* `xmlArray` &mdash; 추가할 노드의 XML 데이터가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "bind(eventType: String, function: Function)",
+        "documentation": [
+            "컴포넌트의 이벤트를 동적으로 할당한다.",
+            "*@param* `eventType` &mdash; 할당 할 이벤트명.",
+            "*@param* `function` &mdash; 동적으로 할당 할 이벤트의 핸들러 function."
+        ]
+    },
+    {
+        "label": "changeClass(oldClassName: String, newClassName: String)",
+        "documentation": [
+            "컴포넌트에서 oldClassName의 이름을 가진 class를 newClassName으로 변경한다.기본 설정은 addClass API를 통해 추가 된 class만 적용되며 컴포넌트의 class 속성에 직접 정의 된 class를 삭제해야하는 경우는 config.xml파일의 설정을 아래와 같이 적용해야한다.<style><removeDefaultClass value=\"true\" /></style>",
+            "*@param* `oldClassName` &mdash; 삭제 할 class의 이름",
+            "*@param* `newClassName` &mdash; 추가 할 class의 이름"
+        ]
+    },
+    {
+        "label": "checkByValue(value: String, checkValue: Boolean||String, childCheck?: Boolean)",
+        "documentation": [
+            "value를 기반으로 노드(항목)을 찾아 checkbox의 value를 설정한다.trueValue, falseValue 속성의 값을 참조하여 check되며 해당 속성이 정의되지 않은 경우 각 true, false로 제어 가능하다.",
+            "*@param* `value` &mdash; 대상 노드의 value",
+            "*@param* `checkValue` &mdash; checkbox의 value ( trueValue와 falseValue 속성이 정의되지 않은 경우 true, false로 제어가능하다 )",
+            "*@param* `childCheck` &mdash; 선택한 노드의 자녀 노드의 checkbox check여부"
+        ]
+    },
+    {
+        "label": "collapseNode(value: String||Number, hierarchy?: Boolean)",
+        "documentation": [
+            "value 또는 index를 기반으로 찾은 노드(항목)를 접는다. index는 1부터 시작한다.",
+            "*@param* `value` &mdash; 대상 노드의 value 또는 index (index는 1부터 시작한다.)",
+            "*@param* `hierarchy` &mdash; 자식 노드까지 적용할지의 여부"
+        ]
+    },
+    {
+        "label": "disableCheckboxByValue(value: String, checkDisabled: Boolean, childDisalbed?: Boolean)",
+        "documentation": [
+            "value를 기반으로 노드(항목)을 찾아 checkbox의 disabled를 설정한다.",
+            "*@param* `value` &mdash; 대상 노드의 value",
+            "*@param* `checkDisabled` &mdash; checkbox의 disabled 적용 여부",
+            "*@param* `childDisalbed` &mdash; 자녀 노드까지의 적용 여부"
+        ]
+    },
+    {
+        "label": "expandNode(value: String||Number, hierarchy?: Boolean)",
+        "documentation": [
+            "value 또는 index를 기반으로 찾은 노드(항목)를 확장한다. index는 1부터 시작한다.",
+            "*@param* `value` &mdash; value 대상 노드의 value 또는 index (index는 1부터 시작한다.)",
+            "*@param* `hierarchy` &mdash; 자식 노드까지 적용할지의 여부"
+        ]
+    },
+    {
+        "label": "findNodeByIndex(index: String, select?: boolean): Node",
+        "documentation": [
+            "초기에 각 노드에 설정된 index를 기반으로 노드 반환한다. 두번째 인자가 true인 경우 해당 노드를 선택한다.index는 1부터 시작하며 로딩 후 노드의 순서가 변경되도 초기에 설정된 index로 접근해야 한다.",
+            "*@param* `index` &mdash; 초기 로딩 시 할당 된 노드의 index",
+            "*@param* `select` &mdash; [default:true, false]노드를 선택 할지의 여부",
+            "*@return*  \n검색된 Node"
+        ]
+    },
+    {
+        "label": "findNodeByValue(value: String, select?: boolean): Node",
+        "documentation": [
+            "value를 기반으로 노드를 찾아서 해당 노드를 반환한다. 두번째 인자가 true인 경우 해당 노드를 선택한다.반환 된 노드는 appendData, appendNode등의 API의 파라메터로 사용할 수 있다.",
+            "*@param* `value` &mdash; 찾을 node의 value",
+            "*@param* `select` &mdash; [default:true, false]노드를 선택 할지의 여부",
+            "*@return*  \n검색된 Node"
+        ]
+    },
+    {
+        "label": "focus()",
+        "documentation": [
+            "컴포넌트에 focus를 준다."
+        ]
+    },
+    {
+        "label": "getCheckedIndexes(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "documentation": [
+            "checkbox가 체크된 노드들의 index(초기 로딩시 설정)를 배열에 담아 반환한다.로딩 후 노드의 순서가 변경되면 index가 화면에 보여지는 순서와 다르게 반환될 수 있다.",
+            "*@param* `options` &mdash; hierarchy를 포함한 JSON",
+            "*@return*  \n체크된 노드들의 index가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getCheckedLabels(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "documentation": [
+            "checkbox가 체크된 노드들의 label을 배열에 담아 반환한다.",
+            "*@param* `options` &mdash; hierarchy를 포함한 JSON",
+            "*@return*  \n체크된 노드들의 label가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getCheckedNodes(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "documentation": [
+            "checkbox가 체크된 노드들을 배열에 담아 반환한다.로딩 후 노드의 순서가 변경되면 index가 화면에 보여지는 순서와 다르게 반환될 수 있다.",
+            "*@param* `options` &mdash; hierarchy를 포함한 JSON",
+            "*@return*  \n체크된 노드들이 담긴 배열"
+        ]
+    },
+    {
+        "label": "getCheckedValues(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "documentation": [
+            "checkbox가 체크된 노드들의 value를 배열에 담아 반환한다.",
+            "*@param* `options` &mdash; hierarchy를 포함한 JSON",
+            "*@return*  \n체크된 노드들의 value가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getChildData(value: String): Object",
+        "documentation": [
+            "value에 해당하는 node의 자식의 data(model에 존재하는)를 반환합니다.",
+            "*@param* `value` &mdash; 자식의 data를 반환할 node의 value",
+            "*@return*  \n자식의 data를 가지고 있는 배열"
+        ]
+    },
+    {
+        "label": "getDisabled(): Boolean",
+        "documentation": [
+            "현재 설정되어있는 disabled 속성값을 반환한다.",
+            "*@return*  \ndisabled 속성값"
+        ]
+    },
+    {
+        "label": "getID(): String",
+        "documentation": [
+            "웹스퀘어 컴포넌트의 id를 반환한다.",
+            "*@return*  \n웹스퀘어 컴포넌트의 id"
+        ]
+    },
+    {
+        "label": "getOpacity(): Integer",
+        "documentation": [
+            "CSS로 정의 된 컴포넌트의 Opacity(불투명도) 값을 반환한다.",
+            "*@return*  \nOpacity 값"
+        ]
+    },
+    {
+        "label": "getParentValue(value: String): String",
+        "documentation": [
+            "노드의 value를 기반으로 부모 노드를 찾아 value를 반환한다.value로 검색 된 노드가 최상위 노드이거나 검색된 노드가 없을 경우 빈값(emptyString)을 반환한다.",
+            "*@param* `value` &mdash; 노드의 value",
+            "*@return*  \n부모 노드의 vlaue"
+        ]
+    },
+    {
+        "label": "getPluginName(): String",
+        "documentation": [
+            "웹스퀘어 컴포넌트의 pluginName(컴포넌트명)을 반환한다.",
+            "*@return*  \n웹스퀘어 컴포넌트의 pluginName"
+        ]
+    },
+    {
+        "label": "getPosition(positionName: String): Number",
+        "documentation": [
+            "컴포넌트의 left 또는 top의 위치 값을 반환한다. %로 설정된 경우, 픽셀로 변환하여 반환한다.",
+            "*@param* `positionName` &mdash; [left,top]위치 종류",
+            "*@return*  \n컴포넌트의 위치 값"
+        ]
+    },
+    {
+        "label": "getReadOnly(): Boolean",
+        "documentation": [
+            "현재 설정되어있는 readOnly 속성값을 반환한다.",
+            "*@return*  \n현재 설정되어있는 readOnly 속성"
+        ]
+    },
+    {
+        "label": "getSelectedIndex(): String",
+        "documentation": [
+            "선택된 노드의 index(초기 로딩시 설정 된 값)를 반환한다.로딩 후 노드의 순서가 변경되면 보여지는 노드의 순서와 index가 다를 수 있다.",
+            "*@return*  \n선택된 노드의 index(초기 로딩시 설정 된 값)"
+        ]
+    },
+    {
+        "label": "getSelectedLabel(): String",
+        "documentation": [
+            "선택된 노드의 label을 반환한다.선택된 노드가 없는 경우 빈값(emptyString)을 반환한다.",
+            "*@return*  \n선택된 노드의 label"
+        ]
+    },
+    {
+        "label": "getSelectedNode(): Object",
+        "documentation": [
+            "선택된 노드객체를 반환한다.반환된 노드는 appendNode, appendData등의 API에 파라메터로 사용가능하며 노드에 담긴 값을 통해 자식노드, 부모노드 등의 정보를 참조할 수 있다.",
+            "*@return*  \n선택된 노드 - 주요 정보만 명시됨\n"
+        ]
+    },
+    {
+        "label": "getSelectedValue(): String",
+        "documentation": [
+            "선택된 노드의 value를 반환한다.선택된 노드가 없는 경우 빈값(emptyString)을 반환한다.",
+            "*@return*  \n선택된 노드의 value"
+        ]
+    },
+    {
+        "label": "getSize(sizeName: String): Number",
+        "documentation": [
+            "컴포넌트의 크기 값을 반환합니다.%로 설정된 경우, 픽셀로 변환하여 반환한다.",
+            "*@param* `sizeName` &mdash; [height,innerHeight,outerHeight,outerMarginHeight,width,innerWidth,outerWidth,outerMarginWidth]크기 값의 종류. szieName별 계산 방법은 아래를 참고.",
+            "*@return*  \n컴포넌트의 크기 값"
+        ]
+    },
+    {
+        "label": "getStyle(propertyName: String): String",
+        "documentation": [
+            "컴포넌트에 적용 된 CSS의 propertyName에 해당하는 값을 반환한다.",
+            "*@param* `propertyName` &mdash; 반환 할 style의 property 이름",
+            "*@return*  \nstyle의 속성값"
+        ]
+    },
+    {
+        "label": "getStyleValue(style: String): String",
+        "documentation": [
+            "[deprecated]getStyle로 사용.컴포넌트에 적용 된 CSS의 propertyName에 해당하는 값을 반환한다.",
+            "*@param* `style` &mdash; 정의 된 style에서 사용자가 반환 받고자하는 속성명.",
+            "*@return*  \nstyle 속성에 정의 된 값(색을 반환하는 경우에는 색HexCode로 반환)"
+        ]
+    },
+    {
+        "label": "getTitle(): String",
+        "documentation": [
+            "title 속성값을 반환한다.",
+            "*@return*  \ntitle 속성값."
+        ]
+    },
+    {
+        "label": "getUserData(key: String): String",
+        "documentation": [
+            "setUserData API로 설정 된 사용자 데이터 또는 소스(화면 XML)에 사용자가 임의의 property로 정의 된 값을 반환한다.",
+            "*@param* `key` &mdash; 임의 데이터의 키",
+            "*@return*  \nkey에 해당하는 데이터"
+        ]
+    },
+    {
+        "label": "getXPathByValue(value: String): String",
+        "documentation": [
+            "value에 해당하는 노드의 XPath를 반환한다.본 기능은 데이터를 InstanceData로 연동하거나 XML로 데이터를 제어할 때 사용한다.DataList와 연동된 경우 DataList의 baseNode와 repeatNode속성값을 참조하여 XPath를 반환한다.",
+            "*@param* `value` &mdash; 노드의 value",
+            "*@return*  \nXpath"
+        ]
+    },
+    {
+        "label": "hasClass(className: String): Boolean",
+        "documentation": [
+            "컴포넌트가 parameter로 받은 className의 class를 가지고 있는지의 여부를 반환한다.",
+            "*@param* `className` &mdash; 검색 할 className",
+            "*@return*  \nclass를 가지고 있는지의 여부"
+        ]
+    },
+    {
+        "label": "hide()",
+        "documentation": [
+            "컴포넌트를 화면에서 보이지 않도록 숨긴다.엔진 내부적으로는 CSS를 display:none;과 visibility:hidden;으로 처리한다."
+        ]
+    },
+    {
+        "label": "isLeaf(): boolean",
+        "documentation": [
+            "선택된 노드가 leaf인지(자식노드가 없는지)의 여부를 반환한다.",
+            "*@return*  \n[true,false]leaf인지의 여부"
+        ]
+    },
+    {
+        "label": "isOpen(index: String): Node",
+        "documentation": [
+            "초기에 각 노드에 설정된 index를 기반으로 해당 index에 상응하는 노드가 열려있는지 닫혀있는지 여부를 반환한다.자식 노드들이 보여져 있는 상태면 true를, 자식 노드들이 숨겨져 있는 상태면 false를 각각 리턴한다. 자식이 없는 노드의 경우 false를 리턴한다.",
+            "*@param* `index` &mdash; 초기 로딩 시 할당 된 노드의 index",
+            "*@return*  \nindex에 해당하는 Node의 open 여부"
+        ]
+    },
+    {
+        "label": "removeClass(className: String)",
+        "documentation": [
+            "컴포넌트에 className의 class를 삭제한다.기본 설정은 addClass API를 통해 추가 된 class만 적용되며 컴포넌트의 class 속성에 직접 정의 된 class를 삭제해야하는 경우는 config.xml파일의 설정을 아래와 같이 적용해야한다.<style><removeDefaultClass value=\"true\" /></style>",
+            "*@param* `className` &mdash; 삭제 할 class명"
+        ]
+    },
+    {
+        "label": "removeNode(node: Object)",
+        "documentation": [
+            "노드 객체를 기반으로 노드(자식노드 포함)를 삭제한다.",
+            "*@param* `node` &mdash; 노드 객체"
+        ]
+    },
+    {
+        "label": "removeNodeList(nodeList: Array)",
+        "documentation": [
+            "노드 객체를 기반으로 다건의 노드(자식노드 포함)를 삭제한다. 삭제 후 컴포넌트를 다시 그리며 removeNode함수를 여러 번 호출하는 것보다 처리속도가 빠른다.",
+            "*@param* `nodeList` &mdash; 노드가 담긴 1차원 배열"
+        ]
+    },
+    {
+        "label": "setCustomFormatter(userFunction: Function)",
+        "documentation": [
+            "사용자가 지정한 함수를 treeview의 node를 돌면서 각각 한번씩 호출합니다.",
+            "*@param* `userFunction` &mdash; 초기에 세팅된 label값, formattedLabel, node를 각각 인자로 받아 formattedLabel 반환하는 사용자 함수"
+        ]
+    },
+    {
+        "label": "setEventPause(evList?: String, flag: Boolean)",
+        "documentation": [
+            "컴포넌트의 이벤트를 disable 또는 enable시킨다.",
+            "*@param* `evList` &mdash; 대상 이벤트 목록. 해당 인자가 주어지지 않을 경우 해당 컴포넌트의 모든 사용자 이벤트가 대상이 된다. (null을 지정하면 된다.)",
+            "*@param* `flag` &mdash; true인 경우 pause시키며, false인 경우 pause를 해제한다."
+        ]
+    },
+    {
+        "label": "setLabelByIndex(index: Number, label: String)",
+        "documentation": [
+            "노드의 index를 기반으로 label을 변경한다.index값은 초기 로딩 시 설정 된 노드의 index로 1부터 시작한다.",
+            "*@param* `index` &mdash; 노드의 index",
+            "*@param* `label` &mdash; 새로 설정할 label의 값"
+        ]
+    },
+    {
+        "label": "setLabelByValue(value: String, label: String)",
+        "documentation": [
+            "노드의 value를 기반으로 label을 변경한다.",
+            "*@param* `value` &mdash; 노드의 value",
+            "*@param* `label` &mdash; 새로 설정할 label의 값"
+        ]
+    },
+    {
+        "label": "setLabelStyle(index: Number||String, styleName: String, styleValue: String, applyChildNodes?: Boolean)",
+        "documentation": [
+            "해당 node의 label style(node의 글자색, 글자크기, 글꼴 등)을 변경합니다.",
+            "*@param* `index` &mdash; 노드의 index 또는 value",
+            "*@param* `styleName` &mdash; style의 속성명",
+            "*@param* `styleValue` &mdash; style 속성값",
+            "*@param* `applyChildNodes` &mdash; [default:false, true]하위노드 적용 여부"
+        ]
+    },
+    {
+        "label": "setOpacity(value: Number)",
+        "documentation": [
+            "컴포넌트의 CSS Opacity(불투명도)값를 설정한다.",
+            "*@param* `value` &mdash; Opacity 값 (0과 1사이의 실수)"
+        ]
+    },
+    {
+        "label": "setPosition(left: Number, top: Number, mode?: String)",
+        "documentation": [
+            "컴포넌트의 위치(left,top)를 설정한다.",
+            "*@param* `left` &mdash; left의 값 또는 null.",
+            "*@param* `top` &mdash; top의 값 또는 null.",
+            "*@param* `mode` &mdash; [defulat:absolute, delta]absolute이면 x,y로 현재 값을 설정하고 delta이면 현재 값에 x,y값만큼을 더해서 설정."
+        ]
+    },
+    {
+        "label": "setReadOnly(readOnly: Boolean)",
+        "documentation": [
+            "readOnly 속성값을 설정한다. readOnly 속성을 활성화 시키려면 true 비활성화 시키려면 false를 입력합니다.",
+            "*@param* `readOnly` &mdash; readOnly 속성을 활성화 시키려면 true 비활성화 시키려면 false"
+        ]
+    },
+    {
+        "label": "setSize(width: Number, heigth: Number)",
+        "documentation": [
+            "컴포넌트의 크기(width,height)를 설정한다.",
+            "*@param* `width` &mdash; 새로 설정할 컴포넌트의 width값 또는 null",
+            "*@param* `heigth` &mdash; 새로 설정할 컴포넌트의 height값 또는 null"
+        ]
+    },
+    {
+        "label": "setStyle(propertyName: String, value: String)",
+        "documentation": [
+            "컴포넌트의 property별 style을 설정한다.",
+            "*@param* `propertyName` &mdash; style 속성 이름",
+            "*@param* `value` &mdash; 적용 할 style의 값"
+        ]
+    },
+    {
+        "label": "setUserData(key: String, value: String)",
+        "documentation": [
+            "컴포넌트에 사용자 데이터를 설정한다. 컴포넌트에 설정이 가능한 key가 아닌 경우, key 설정이 불가능하며 log에 관련 내용이 출력 된다.",
+            "*@param* `key` &mdash; 임의 데이터의 키",
+            "*@param* `value` &mdash; 임의 데이터의 값"
+        ]
+    },
+    {
+        "label": "show(displayType?: String)",
+        "documentation": [
+            "컴포넌트를 화면에 보이도록 설정한다.엔진 내부적으로는 CSS를 display속성과 visibility:show;으로 처리한다.",
+            "*@param* `displayType` &mdash; [default:block ,inline ,none ,\"\"]display의 속성 값."
+        ]
+    },
+    {
+        "label": "spanAll(openCloseFlag: boolean)",
+        "documentation": [
+            "openCloseFlag에 따라서 모든 자식 노드를 span시켜 준다.",
+            "*@param* `openCloseFlag` &mdash; 자식 노드를 접을지 확장할 지의 여부"
+        ]
+    },
+    {
+        "label": "toggleClass(className: String)",
+        "documentation": [
+            "컴포넌트가 className의 이름을 가진 class를 가지고 있다면 제거하고, 가지고 있지 않다면 추가한다.기본 설정은 addClass API를 통해 추가 된 class만 삭제되며 컴포넌트의 class 속성에 직접 정의 된 class를 삭제해야하는 경우는 config.xml파일의 설정을 아래와 같이 적용해야한다.<style><removeDefaultClass value=\"true\" /></style>",
+            "*@param* `className` &mdash; 설정 할 className"
+        ]
+    },
+    {
+        "label": "trigger(type: String, array?: Array)",
+        "documentation": [
+            "컴포넌트에 등록 된 특정 이벤트를 발생시킨다.",
+            "*@param* `type` &mdash; 발생시킬 이벤트 이름",
+            "*@param* `array` &mdash; 이벤트 핸들러에 전달할 파라미터 배열"
+        ]
+    },
+    {
+        "label": "unbind(type?: String, function?: Function)",
+        "documentation": [
+            "컴포넌트에 등록 된 이벤트를 제거한다.",
+            "*@param* `type` &mdash; 제거할 이벤트 이름. 생략할 경우 해당 컴포넌트의 모든 이벤트를 제거한다.",
+            "*@param* `function` &mdash; 제거할 이벤트의 핸들러 함수. 생략할 경우 해당 이벤트 type으로 등록된 모든 핸들러 함수를 제거한다."
+        ]
+    },
+    {
+        "label": "visible(flag: Boolean)",
+        "documentation": [
+            "[deprecated]show/hide 로 사용하거나 setStyle을 통해 visible 속성을 설정한다.컴포넌트의 style 중 visibility 값을 설정한다. true이면 \"visible\", false이면 \"hidden\"을 설정.",
+            "*@param* `flag` &mdash; visibility 값을 설정할 값(true이면 \"visible\", false이면 \"hidden\"을 설정)"
+        ]
+    }
+]
