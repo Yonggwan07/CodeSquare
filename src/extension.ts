@@ -12,6 +12,7 @@ import { WorkspaceContext } from './WorkspaceContext';
 export function activate(context: vscode.ExtensionContext) {
 
 	vscode.workspace.onDidOpenTextDocument(didOpenTextDocument);
+	vscode.workspace.onDidChangeTextDocument(didOpenTextDocument);
 
 	function didOpenTextDocument(): void {
 
