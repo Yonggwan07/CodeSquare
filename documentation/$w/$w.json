@@ -1,0 +1,486 @@
+[
+    {
+        "label": "ajax(options: JSON)",
+        "documentation": [
+            "submission과 비슷한 기능을 제공하는 통신 모듈로 submission에 비해 자유도가 높다.request/response 데이터의 type은 string이며 js로 된 암/복호화 모듈을 연동하기 쉬운 구조로 되어있다.",
+            "*@param* `options` &mdash; JSON형태 객체"
+        ]
+    },
+    {
+        "label": "clearInterval(keyName: String, force?: Boolean)",
+        "documentation": [
+            "웹스퀘어에서 제공하는 API로 등록 한 Interval 객체를 해제한다. ( $w.setInterval )",
+            "*@param* `keyName` &mdash; key로 지정한 값. ( $w.setInterval API 호출 시 options에 등록 한 key명)",
+            "*@param* `force` &mdash; keyName으로 지정 된 Interval 객체를 해제하기 전 해당 함수를 한 번 실행할지에 대한 여부. 기본값은 false."
+        ]
+    },
+    {
+        "label": "clearPage()",
+        "documentation": [
+            "브라우저를 갱신하여 브라우저를 초기상태로 되돌리는 함수. ( 웹스퀘어 엔진 및 리소스를 새로 로딩한다. )주로 spa 모드에서 브라우저 초기화가 필요한 경우 onpageunload 이벤트에서 이 함수가 사용된다.Editor 컴포넌트나 Chart컴포넌트 등 spa 모드에서 메모리 릭이 존재하는 컴포넌트 사용 시 해당 페이지의 body에 onpageunload이벤트를 등록하고 이 함수를 호출한다.$w.url(WebSquare.baseURI + \"blank.xml\", {spa:true, forceReload:true}); 함수를 호출한 것과 동일하다."
+        ]
+    },
+    {
+        "label": "clearTimeout(key: String, force?: Boolean)",
+        "documentation": [
+            "웹스퀘어에서 제공하는 setTimer API를 이용하여 등록 한 함수를 직접 clearTimeout시킨다. ( $w.setTimer )",
+            "*@param* `key` &mdash; $w.setTimer로 등록할 때 options.key로 지정 한 키값.",
+            "*@param* `force` &mdash; setTimer로 등록된 함수를 실행할지에 대한 여부. 기본값은 false."
+        ]
+    },
+    {
+        "label": "closePopup(id: String)",
+        "documentation": [
+            "웹스퀘어서 제공하는 openPopup, createPopup API를 이용하여 팝업의 id를 할당 한 경우 해당 id의 popup을 찾아 닫는다.",
+            "*@param* `id` &mdash; popup의 id"
+        ]
+    },
+    {
+        "label": "createSubmission(submissionObj: JSON)",
+        "documentation": [
+            "동적으로 submission을 생성한다.",
+            "*@param* `submissionObj` &mdash; 등록할 submission객체. 속성은 아래와 같습니다."
+        ]
+    },
+    {
+        "label": "dateAdd(day1: String, offset: Number): String",
+        "documentation": [
+            "날짜에 지정된 수만큼 더합니다. ( date + offset )",
+            "*@param* `day1` &mdash; 지정 날짜",
+            "*@param* `offset` &mdash; 목표 날짜와의 편차",
+            "*@return* \noffset에 정의 된 수 많큼 더거나 뺀 날짜"
+        ]
+    },
+    {
+        "label": "dateDiff(startDate: String, endDate: String): Number",
+        "documentation": [
+            "두 날짜 사이의 차이를 반환합니다.( to - from )",
+            "*@param* `startDate` &mdash; 시작 날짜",
+            "*@param* `endDate` &mdash; 끝 날짜",
+            "*@return* \n두 날짜의 차이"
+        ]
+    },
+    {
+        "label": "deleteSubmission(submissionID: String)",
+        "documentation": [
+            "등록된 submission을 삭제합니다.",
+            "*@param* `submissionID` &mdash; 삭제하고자 하는 submission의 ID"
+        ]
+    },
+    {
+        "label": "download(actionUrl: String, XML?: String, sendMethod?: String)",
+        "documentation": [
+            "서버에 download 모듈이 구현 되어있는 url을 호출하여 화면에서 download 할 수 있는 인터페이스를 제공한다.",
+            "*@param* `actionUrl` &mdash; 파일 다운로드가 구현되어있는 url.",
+            "*@param* `XML` &mdash; 문자열은 xmlValue라는 이름으로 서버로 올라간다. 값을 지정하지 않은 경우(undefined인 경우) xmlValue라는 값은 제외하고 서버로 전송한다.",
+            "*@param* `sendMethod` &mdash; get, post와 같은 전송 방식, 기본값은 post이다."
+        ]
+    },
+    {
+        "label": "dynamicCreate(id: String, tagName: String, options: Object, parent: Object, itemSet: Object): Object",
+        "documentation": [
+            "웹스퀘어 객체를 동적으로 생성한다. wframe scope=true 인 자식 화면에서 scwin.$w.dynamicCreate 호출 시에 wframe prefix를 자동으로 붙이고 생성된 객체를 wframe의 scope로 등록한다.",
+            "*@param* `id` &mdash; element의 id",
+            "*@param* `tagName` &mdash; element의 tagName",
+            "*@param* `options` &mdash; element의 생성 옵션",
+            "*@param* `parent` &mdash; element의 상위 노드",
+            "*@param* `itemSet` &mdash; element의 itemset",
+            "*@return* \n생성된 웹스퀘어 element"
+        ]
+    },
+    {
+        "label": "executeParallel(submission: array, processMsg?: String, finalCallback?: function, rejectCallback?: function, id?: String)",
+        "documentation": [
+            "workflow 를 생성하지않고 기존 submission들을 parallel 하게 순서를 보장하여 처리하고자 할때 사용submission1 call -> submission2 call -> submission1 callback  -> submission2 callback",
+            "*@param* `submission` &mdash; id array  ex) [\"submission1\", \"submission2\", \"submission3\"]",
+            "*@param* `processMsg` &mdash; ",
+            "*@param* `finalCallback` &mdash; function",
+            "*@param* `rejectCallback` &mdash; function",
+            "*@param* `id` &mdash; "
+        ]
+    },
+    {
+        "label": "executeSerial(submission: array, processMsg?: String, finalCallback?: function, rejectCallback?: function, id?: String)",
+        "documentation": [
+            "workflow 를 생성하지않고 기존 submission들을 serial 하게 순서를 보장하여 처리하고자 할때 사용submission1 call -> submission1 callback -> submission2 call -> submission2 callback",
+            "*@param* `submission` &mdash; id array  ex) [\"submission1\", \"submission2\", \"submission3\"]",
+            "*@param* `processMsg` &mdash; ",
+            "*@param* `finalCallback` &mdash; function",
+            "*@param* `rejectCallback` &mdash; function",
+            "*@param* `id` &mdash; "
+        ]
+    },
+    {
+        "label": "executeSubmission(submissionID: String, requestData?: Object, obj?: Object)",
+        "documentation": [
+            "submissionID에 해당하는 submission을 실행시킨다.",
+            "*@param* `submissionID` &mdash; submission의 id.",
+            "*@param* `requestData` &mdash; 요청 데이터",
+            "*@param* `obj` &mdash; 전송중 disable시킬 컴퍼넌트"
+        ]
+    },
+    {
+        "label": "executeWhilst(submissionId: String, condFn: function, maxRepeat: int, processMsg?: String, resolveCallback?: function, rejectCallback?: function, id?: String)",
+        "documentation": [
+            "workflow 를 생성하지않고 특정 submission을 반복적으로 호출하고자 할때 사용",
+            "*@param* `submissionId` &mdash; submission ID",
+            "*@param* `condFn` &mdash; 실행여부를 체크하는 condition function",
+            "*@param* `maxRepeat` &mdash; 최대실행 회수. conditon으로만 체크가능한 경우에는 무한루프에 대한 제어용으로도 사용가능",
+            "*@param* `processMsg` &mdash; ",
+            "*@param* `resolveCallback` &mdash; finalCallback function",
+            "*@param* `rejectCallback` &mdash; rejectCallback function",
+            "*@param* `id` &mdash; "
+        ]
+    },
+    {
+        "label": "executeWorkflow(workflowId: Object)",
+        "documentation": [
+            "workflowId or workflowObj 을 받아서 workflow 실행",
+            "*@param* `workflowId` &mdash; workflow 아이디 or workflowObj"
+        ]
+    },
+    {
+        "label": "getAllBASE64Parameter()",
+        "documentation": [
+            "Base64로 Encoding 된 get방식의 전체 parameter를 Base64 Decoding하여 JSON 형태로 반환합니다."
+        ]
+    },
+    {
+        "label": "getAllParameter()",
+        "documentation": [
+            "get방식으로 넘어 온 parameter 전체를 JSON 형태로 반환합니다."
+        ]
+    },
+    {
+        "label": "getBASE64Parameter(param?: String): String",
+        "documentation": [
+            "Base64로 Encoding 된 get방식의 parameter(param)를 Base64 Decoding하여 반환합니다.",
+            "*@param* `param` &mdash; 값을 가져올 uri에서 지정된 param",
+            "*@return* \nparam 문자열 반환"
+        ]
+    },
+    {
+        "label": "getComponentById(): Object",
+        "documentation": [
+            "주어진 id에 해당하는 웹스퀘어 컴포넌트를 찾아 반환한다.scope=true 인 다중 wframe 구조에서는 $p의 scope에 해당하는 화면(보통은 이 함수를 호출한 화면)에 있는 객체의 원래 id를 기준으로 찾는다.",
+            "*@return* \nid에 해당하는 컴포넌트 객체 (다중 wframe 구조에서는 $p에 해당하는 wframe 화면 내에서 id와 일치하는 컴포넌트 반환)"
+        ]
+    },
+    {
+        "label": "getCurrentServerDate(pattern?: String): String",
+        "documentation": [
+            "서버(WAS)의 현재 시간을 반환한다.Java의 SimpleDateFormat의 pattern을 인자로 받아서 시간을 표현한다.pattern을 입력하지 않는 경우에는 yyyyMMdd 패턴의 결과를 반환한다.",
+            "*@param* `pattern` &mdash; [default:yyyyMMdd] 날짜 표현식",
+            "*@return* \n서버 날짜(시간) String"
+        ]
+    },
+    {
+        "label": "getFormattedDate(dateObj: DateObject, pattern?: String): String",
+        "documentation": [
+            "javascript의 Date객체를 받아서 지정 된 format으로 반환한다.pattern을 입력하지 않는 경우에는 java의 System.currentTimeMillis API와 같은 값을 반환한다.",
+            "*@param* `dateObj` &mdash; JavaScript의 date객체",
+            "*@param* `pattern` &mdash; 날짜 표현식",
+            "*@return* \n지정된 format으로 시간을 반환"
+        ]
+    },
+    {
+        "label": "getFrame(): Object",
+        "documentation": [
+            "wframe안의 스크립트 영역에서 이 함수를 호출할 경우 자신을 감싼 wframe object를 반환한다. 전역스크립트에서 호출 시에는 null을 반환한다.",
+            "*@return* \nwframe 객체"
+        ]
+    },
+    {
+        "label": "getFrameId(): String",
+        "documentation": [
+            "wframe안의 스크립트 영역에서 이 함수를 호출할 경우 자신을 감싼 wframe id를 반환한다. 전역스크립트에서 호출 시에는 null을 반환한다.",
+            "*@return* \nwframe의 id"
+        ]
+    },
+    {
+        "label": "getIntervalKeyList(): Array",
+        "documentation": [
+            "setInterval API의 key로 등록 된 값 전부를 array로 반환한다.",
+            "*@return* \nsetInterval에 등록 된 key 배열"
+        ]
+    },
+    {
+        "label": "getMaxMinYear(): JSON",
+        "documentation": [
+            "config파일에 설정 된 date 설정의 maxYear 와 minYear 값을 JSON로 반환합니다.",
+            "*@return* \nconfig.xml에 설정 되어있는 maxYear,minYear 값.\n maxYear [defalut:2099] config.xml에 설정 되어있는 maxYear.\n minYear [defalut:1901] config.xml에 설정 되어있는 minYear."
+        ]
+    },
+    {
+        "label": "getMetaValue(key: String)",
+        "documentation": [
+            "head영역에 정의한 Meta key에 해당하는 value를 반환한다.",
+            "*@param* `key` &mdash; Meta정보의 key"
+        ]
+    },
+    {
+        "label": "getParameter(param: String): String|JSON",
+        "documentation": [
+            "get방식으로 넘어 온 parameter 또는 openPopup API의 dataObject에 정의 한 값을 반환합니다.get방식의 경우 한글 parameter는 WebSquare.text.URLEncoder로 값을 인코딩해야 한글이 깨지지 않는다.웹스퀘어의 URLEncoding을 사용 해제를 원할 경우 config 파일에 아래와 같은 설정이 필요하다.<net><websquareDecoder value=\"false\" /><net>",
+            "*@param* `param` &mdash; 값을 가져올 uri에서 지정된 param 또는 openPopup API에 정의 한 dataObject의 name에 정의 한 값.",
+            "*@return* \nurl에 정의 한 param 문자열. 또는 openPopup에 정의 한 dataObject. parameter가 존재하지 않는 경우에는 \"\"이 반환."
+        ]
+    },
+    {
+        "label": "getPopupParam(): String",
+        "documentation": [
+            "openPopup API를 이용하여 popup을 만들때 dataObject 속성 또는 xml 속성에 정의 한 값을 string으로 반환한다.dataObject 속성과 xml 속성이 둘다 정의 된 경우 dataObject의 값만 반환한다.dataObject 속성을 이용한 경우 $w.getParameter(\"dataObject의 name에 할당 한 값\") API를 이용하길 권장한다.",
+            "*@return* \npopup을 만들때 dataObject 속성 또는 xml 속성에 정의 한 값의 string."
+        ]
+    },
+    {
+        "label": "getPopupUrl(): String",
+        "documentation": [
+            "popup으로 열린 화면에서 현재 화면의 url을 가져오는 함수. popup을 wframe으로 띄웠을 경우에 필요한 함수이다.",
+            "*@return* \n현재 화면의 url을 반환한다. wframe내에서 해당 함수 호출 시 wframe 화면의 url을 가져온다."
+        ]
+    },
+    {
+        "label": "getPopupWindow(id: String): Object",
+        "documentation": [
+            "openPopup API에 정의한 id로 검색하여 해당 popup의 window를 반환한다.popup안의 컴포넌트 및 전역변수 등에 접근이 가능한다.",
+            "*@param* `id` &mdash; popup의 id",
+            "*@return* \n해당 popup의 window"
+        ]
+    },
+    {
+        "label": "getRunningWorkflow(workflowID?: String): Object",
+        "documentation": [
+            "실행중인 첫번째 Workflow 객체를 반환합니다.",
+            "*@param* `workflowID` &mdash; workflow 아이디",
+            "*@return* \n실행 중인 workflow object"
+        ]
+    },
+    {
+        "label": "getRunningWorkflowID(): String",
+        "documentation": [
+            "실행중인 Workflow ID를 반환합니다.",
+            "*@return* \n실행중인 workflow ID"
+        ]
+    },
+    {
+        "label": "getRuntimeId(id: string): String",
+        "documentation": [
+            "컴포넌트의 id(화면내에서의 id)를 입력받아 컴포넌트의 실제 id를 반환하는 함수. wframe의 scope기능 사용 시 wframe내의 컴포넌트의 실제 id는 wframe의 id + _ + 컴포넌트id 형태가 되는데, 이 실제 id를 가져오는 함수이다.",
+            "*@param* `id` &mdash; 화면내에서의 컴포넌트 id",
+            "*@return* \n컴포넌트의 실제 id"
+        ]
+    },
+    {
+        "label": "getStringByteSize(str: String): Number",
+        "documentation": [
+            "주어진 string의 byte size를 반환한다. 한글 byte는 config.xml파일의 <byteCheckEncoding value=\"euc-kr\" /> 설정에 따라 다르게 반환한다. euc-kr 인 경우 2byte로, utf-8인 경우 3byte로 계산한다.",
+            "*@param* `str` &mdash; byte size를 알아낼 string",
+            "*@return* \nbyte size"
+        ]
+    },
+    {
+        "label": "getSubmission(submissionID: String): SubmissionObject",
+        "documentation": [
+            "submissionID에 해당하는 submission 객체를 반환한다.정의 된 submission의 action, ref, target 등의 속성을 변경할 수 있다.",
+            "*@param* `submissionID` &mdash; submission의 아이디.",
+            "*@return* \nsubmission id를 통해서 찾은 submission 객체"
+        ]
+    },
+    {
+        "label": "getTimeoutKeyList(): Array",
+        "documentation": [
+            "setTimeout API의 key로 등록 된 값 전부를 array로 반환한다.",
+            "*@return* \nsetTimeout로 등록 된 키 목록"
+        ]
+    },
+    {
+        "label": "getWorkflow(id: String): Object",
+        "documentation": [
+            "id에 해당하는 Workflow 객체를 반환합니다.",
+            "*@param* `id` &mdash; workflow 아이디",
+            "*@return* \nid를 통해서 찾은 workflow"
+        ]
+    },
+    {
+        "label": "hideModal()",
+        "documentation": [
+            "웹스퀘어의 Modal Layer를 hide시킨다."
+        ]
+    },
+    {
+        "label": "isPopup(): boolean",
+        "documentation": [
+            "현재 Window(화면)가 popup인지의 여부를 반환합니다.",
+            "*@return* \n팝업인 경우 true, 팝업이 아닌 경우 false"
+        ]
+    },
+    {
+        "label": "isRunningWorkflow(workflowID?: String): boolean",
+        "documentation": [
+            "실행중인 Workflow 가 있는지 여부를 반환합니다.workflowID 가 전달된 경우에는 해당 id 의 workflow 실행여부를 반환합니다.",
+            "*@param* `workflowID` &mdash; workflow 아이디",
+            "*@return* \n실행여부"
+        ]
+    },
+    {
+        "label": "isWframePopup(): Boolean",
+        "documentation": [
+            "현재 화면이 wframe popup으로 열린 화면인지를 판별하는 함수.",
+            "*@return* \nwframe popup으로 사용된 경우 true, 그렇지 않을 경우 false 반환."
+        ]
+    },
+    {
+        "label": "js(scriptUrl: String, callback?: Function)",
+        "documentation": [
+            "여러 개의 외부 script를 로드할 때 스크립트별 순서제어가 필요한 경우 사용합니다. 인자로 넘어온 script들 loading은 병렬로 진행하면서 실행은 순서대로 실행하는 기능을 제공합니다. 그리고 마지막 인자의 type이 function인 경우, 모든 스크립트 로딩이 끝난 후 해당 function을 실행합니다 (callback)",
+            "*@param* `scriptUrl` &mdash; javascript url주소. 인자 개수는 가변입니다. load할 script를 여러개 지정할 경우 script url주소를 script개수만큼 인자로 전달합니다.",
+            "*@param* `callback` &mdash; 전달된 마지막 인자의 type이 function인 경우, 이전까지 인자로 전달된 모든 스크립트의 실행이 완료된 후에 해당 함수가 실행됩니다. 즉 callback 함수입니다."
+        ]
+    },
+    {
+        "label": "log(msg: String)",
+        "documentation": [
+            "브라우저에서 로그보기 메뉴 또는 브라우저 개발자 도구의 console에 로그를 출력한다.출력하는 값 중 객체의 Type이 Object인 경우는 오류가 발생 할 수 있음으로 String으로 변환한다.브라우저 console에 로그를 출력하기 위해선 config.xml에 아래와 같이 설정(console=\"true\")이 필요하다.<debug value=\"true\" console=\"true\"/>",
+            "*@param* `msg` &mdash; 출력 할 메시지"
+        ]
+    },
+    {
+        "label": "mirrorView()",
+        "documentation": [
+            "현재 화면을 새로운 화면에러 미러링하는 기능이다. (canvas를 이용하여 구형 브라우저에서 동작하지 않는다.)"
+        ]
+    },
+    {
+        "label": "openPopup(url: String, options: Object, params?: Null, target?: Object)",
+        "documentation": [
+            "popup을 속성에 따라 생성한다.",
+            "*@param* `url` &mdash; popup창의 url",
+            "*@param* `options` &mdash; popup의 options. (width, height 등)",
+            "*@param* `params` &mdash; 사용되지 않는 파라메터로 4번째 파라메터를 사용 할 경우 null로 입력.",
+            "*@param* `target` &mdash; window객체. default로 window"
+        ]
+    },
+    {
+        "label": "parent(): Object",
+        "documentation": [
+            "부모의 frame window를 반환하는 함수. 부모가 iframe인 경우에는 iframe window 객체를 반환한다. 부모가 scope=true인 wframe인 경우 wframe의 scope객체를 반환한다.",
+            "*@return* \n전역 window객체 또는 wframe의 scope 객체"
+        ]
+    },
+    {
+        "label": "parseDate(dateStr: String, format?: String): Date",
+        "documentation": [
+            "날짜 포맷을 Date로 변환합니다. (기본 포맷 : yyyyMMdd)",
+            "*@param* `dateStr` &mdash; 날짜 스트링",
+            "*@param* `format` &mdash; 날짜 포맷. 구분기호(delimiter)는 제외한다.",
+            "*@return* \nJavaScript의 Date 객체."
+        ]
+    },
+    {
+        "label": "reinitialize(browserRefresh?: Boolean)",
+        "documentation": [
+            "브라우저 refresh 없이 페이지를 다시 로딩하거나 또는 브라우저를 refresh합니다.",
+            "*@param* `browserRefresh` &mdash; [default:false, true] 브라우저를 refresh할 것인지에 대한 여부."
+        ]
+    },
+    {
+        "label": "reject?: StringWorkflow(reject?: String, workflowID?: String): Object",
+        "documentation": [
+            "실행중인 Workflow 를 Reject 시킵니다. workflowID 가 전달된 경우에는 해당 workflow가 실행중인 경우에만 Reject 시킵니다.",
+            "*@param* `reject` &mdash; 사유 메시지",
+            "*@param* `workflowID` &mdash; ",
+            "*@return* \nReject 된 workflow Object"
+        ]
+    },
+    {
+        "label": "setDisabled(obj: JSON): JSON",
+        "documentation": [
+            "지정한 컴포넌트의 하위로 disabled를 처리한다.",
+            "*@param* `obj` &mdash; disabled 설정이 담긴 객체 ",
+            "*@return* \nJSON형태의 값을 반환한다.\n object.doneComponents 완료한 컴포넌트 ID가 담긴 Array\n object.skipComponents 이미 disabled 처리되어 있어 Skip한 컴포넌트 ID가 담긴 Array"
+        ]
+    },
+    {
+        "label": "setDocumentLang(lang: String)",
+        "documentation": [
+            "html태그의 lang 속성에 언어 코드를 설정 한다.",
+            "*@param* `lang` &mdash; html태그의 lang속성에 설정할 언어 코드. ex) xml:lang=\"ko\""
+        ]
+    },
+    {
+        "label": "setDomain(domain: String)",
+        "documentation": [
+            "document.domain의 속성값을 변경한다.\"www.inswav.com\"을 \"inswave.com\"으로 변경이 가능하나 \"support.inswave.com\"으로는 변경이 불가하다.일반적으로 frame 및 popup 연동 시 host가 다른 domain끼리의 data 통신을 위해 사용된다.( parent 또는 opener의 domain과 iframe,popup의 domain을 동일하게 정의해야한다.)cross-domain이란? 호출하는 도메인과 호출받는 도메인이 다른 경우, 다시말해 서로 다른 도메인에서 자바스크립트로 접근하려 했을 때 혹은 다른 서버에 Ajax통신의 결과를 받을 때 브라우저에서 보안상 접근을 거부하며 \"권한이 없습니다.\"와 같은 오류 메세지를 출력한다.",
+            "*@param* `domain` &mdash; 공통 domain"
+        ]
+    },
+    {
+        "label": "setFullView(zoomResolve: Function)",
+        "documentation": [
+            "현재 화면에 fullview 기능을 세팅합니다. fullview는 기준 너비와 높이에 비한 현재 브라우저의 너비와 높이의 비율을 계산해서 zoom 속성을 제어하는 기능을 말합니다.",
+            "*@param* `zoomResolve` &mdash; baseWidth와 baseHeight를 담은 object 또는 zoom값을 리턴하는 함수"
+        ]
+    },
+    {
+        "label": "setInterval(func: Function, options?: JSON)",
+        "documentation": [
+            "사용자가 지정한 함수가 주기적으로 실행된다.(javascript의 setInterval의 기능을 확장지원) SPA모드에서 페이지 이동 시 자동으로 제거한다.",
+            "*@param* `func` &mdash; 실행할 함수",
+            "*@param* `options` &mdash; options인자로는 아래와 같은 인자가 사용된다."
+        ]
+    },
+    {
+        "label": "setTimeout(func: Function, options?: JSON)",
+        "documentation": [
+            "사용자가 지정한 함수가 일정 시간 후에 실행된다. SPA모드에서 페이지 이동 시 자동으로 제거한다.",
+            "*@param* `func` &mdash; 실행할 함수",
+            "*@param* `options` &mdash; options인자로는 아래와 같은 인자가 사용된다."
+        ]
+    },
+    {
+        "label": "showModal(popupComponents?: Array)",
+        "documentation": [
+            "Modal Layer를 띄우고 지정한 componentID는 popup(enabled)처리한다.",
+            "*@param* `popupComponents` &mdash; Popup할 Component Id가 담긴 Array"
+        ]
+    },
+    {
+        "label": "top(): Object",
+        "documentation": [
+            "frame 중첩구조에서 최상위 frame window를 반환하는 객체. iframe 중첩구조에서는 top을 반환.wframe 중첩구조에서도 top을 반환. (추후 변경가능)",
+            "*@return* \ntop객체"
+        ]
+    },
+    {
+        "label": "toTimestampString(dateObj: Datet): String",
+        "documentation": [
+            "javascript의 Date 객체를 java sql의 Timestamp에서 사용되는 형태와 동일하게 반환한다. (yyyy-mm-dd hh:mm:ss.fffffffff)",
+            "*@param* `dateObj` &mdash; JavaScript date객체",
+            "*@return* \nyyyy-mm-dd hh:mm:ss.fffffffff 형식의 string"
+        ]
+    },
+    {
+        "label": "url(w2xPath: String, options?: JSON)",
+        "documentation": [
+            "화면 전환 시 웹스퀘어 화면(w2xPath에 해당하는)의 경로만 전달하여 페이지를 이동할 수 있게 해주는 함수.  options에 추가 인자를 통해 spa로 페이지를 이동할 수 있다.",
+            "*@param* `w2xPath` &mdash; xml 파일의 경로",
+            "*@param* `options` &mdash; SPA에 관련 된 추가 설정."
+        ]
+    },
+    {
+        "label": "URLEncoder(str: String): String",
+        "documentation": [
+            "주어진 문자열을 application/x-www-form-urlencoded MIME Format문자열로 변환합니다.",
+            "*@param* `str` &mdash; ",
+            "*@return* \n변환된 application/x-www-form-urlencoded MIME Format문자열을 반환합니다"
+        ]
+    },
+    {
+        "label": "watermark(str: String)",
+        "documentation": [
+            "현재 화면에 Watermark를 추가하는 기능이다. (canvas를 이용하여 구형 브라우저에서 동작하지 않는다.)",
+            "*@param* `str` &mdash; watermark생성에 사용할 문자열"
+        ]
+    }
+]

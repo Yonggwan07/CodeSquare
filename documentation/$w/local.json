@@ -1,0 +1,53 @@
+[
+    {
+        "label": "clear()",
+        "documentation": [
+            "동일한 도메인으로 localStorage에 저장 된 데이터를 삭제합니다."
+        ]
+    },
+    {
+        "label": "getAllItem(): JSON",
+        "documentation": [
+            "동일한 도메인으로 localStorage에 저장 된 모든 데이터를 key,value형태의 객체로 반환합니다.",
+            "*@return* \nkey,value가 저장 된 JSON 객체."
+        ]
+    },
+    {
+        "label": "getItem(keyName: String): String",
+        "documentation": [
+            "LocalStorage에서 keyName에 해당하는 값을 반환한다.",
+            "*@param* `keyName` &mdash; 저장 한 key 값.",
+            "*@return* \nkeyName과 매칭 된 데이터가 있으면 value를 반환하며, 그렇지 않을 경우 null을 반환한다."
+        ]
+    },
+    {
+        "label": "key(index: Number): String",
+        "documentation": [
+            "index에 해당하는 키값을 가져옵니다. 저장 된 key의 index(순서)는 브라우저에 정의 된 것에 따라 다르다. 즉, 브라우저마다 key의 index가 다를 수 있다.",
+            "*@param* `index` &mdash; 저장 된 key의 index.",
+            "*@return* \nindex에 해당하는 key값을 반환하며, 그렇지 않을 경우 null을 반환한다."
+        ]
+    },
+    {
+        "label": "length(): Number",
+        "documentation": [
+            "로컬 스토리지의 (key, value)쌍의 데이터의 개수를 나타내는 값.",
+            "*@return* \n로컬 스토리지에 저장 된 데이터(key/value)의 개수."
+        ]
+    },
+    {
+        "label": "removeItem(key: String)",
+        "documentation": [
+            "keyName에 해당하는 데이터(item)을 삭제한다.모든 데이터를 삭제 할 경우 clear()함수를 호출한다.",
+            "*@param* `key` &mdash; 삭제하고자 하는 데이터(item)의 key값"
+        ]
+    },
+    {
+        "label": "setItem(keyName: String, value: String)",
+        "documentation": [
+            "localStorage에 key와 value로 이루어진 데이터(item)를 저장합니다.",
+            "*@param* `keyName` &mdash; 저장 할 key",
+            "*@param* `value` &mdash; 저장 할 value"
+        ]
+    }
+]

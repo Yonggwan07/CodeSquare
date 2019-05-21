@@ -1,0 +1,46 @@
+[
+    {
+        "label": "ajax(options: Object)",
+        "documentation": [
+            "ajax 통신용 함수",
+            "*@param* `options` &mdash; JSON형태 객체"
+        ]
+    },
+    {
+        "label": "download(actionUrl: String, XML: String, sendMethod: String)",
+        "documentation": [
+            "서버에서 파일을 다운로드 받는 함수.",
+            "*@param* `actionUrl` &mdash; 파일을 다운 받기 위해서 접속해야 하는 주소",
+            "*@param* `XML` &mdash; 문자열은 xmlValue라는 이름으로 서버로 올라간다. 값을 지정하지 않은 경우(undefined인 경우) xmlValue라는 값은 제외하고 서버로 전송한다.",
+            "*@param* `sendMethod` &mdash; get, post와 같은 전송 방식, 기본값은 post이다."
+        ]
+    },
+    {
+        "label": "getAllBASE64Parameter()",
+        "documentation": [
+            "get방식으로 넘어온 전체 parameter를 Base64 Encoding방식으로 변환하여 JSON 형태로 반환합니다."
+        ]
+    },
+    {
+        "label": "getAllParameter()",
+        "documentation": [
+            "전체 parameter를 JSON 형태로 반환합니다."
+        ]
+    },
+    {
+        "label": "getBASE64Parameter(param?: String): String",
+        "documentation": [
+            "get방식으로 넘어온 parameter(param)를 Base64 Encoding방식으로 변환하여 반환합니다.",
+            "*@param* `param` &mdash; 값을 가져올 uri에서 지정된 param",
+            "*@return* \nparam 문자열 반환"
+        ]
+    },
+    {
+        "label": "getParameter(param?: String): String",
+        "documentation": [
+            "get방식으로 넘어온 parameter를 String으로 반환합니다.",
+            "*@param* `param` &mdash; 값을 가져올 uri에서 지정된 param",
+            "*@return* \nparam 문자열"
+        ]
+    }
+]

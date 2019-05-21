@@ -1,0 +1,33 @@
+[
+    {
+        "label": "delCookie(sName: String)",
+        "documentation": [
+            "Cookie에서 값을 삭제합니다.",
+            "*@param* `sName` &mdash; cookie name"
+        ]
+    },
+    {
+        "label": "getCookie(sName: String): String",
+        "documentation": [
+            "Cookie에서 값을 조회합니다.",
+            "*@param* `sName` &mdash; cookie name",
+            "*@return* \ncookie의 값"
+        ]
+    },
+    {
+        "label": "setCookie(sName: String, sValue: String)",
+        "documentation": [
+            "Cookie에 값을 저장합니다. Cookie에 저장된 값은 브라우저를 종료하면 삭제됩니다.( Session Cookie )",
+            "*@param* `sName` &mdash; cookie name",
+            "*@param* `sValue` &mdash; cookie의 value"
+        ]
+    },
+    {
+        "label": "setCookieAsync(sName: String, sValue: String)",
+        "documentation": [
+            "Cookie에 값을 비동기로 저장합니다. Cookie에 저장된 값은 브라우저를 종료하면 삭제됩니다.비동기로 저장하는 이유는 Internet Explorer에서 동기로 Cookie에 접근하는 경우 화면의 깜빡임이 발생하기 때문입니다.",
+            "*@param* `sName` &mdash; cookie name",
+            "*@param* `sValue` &mdash; cookie의 value"
+        ]
+    }
+]

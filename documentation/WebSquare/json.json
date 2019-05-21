@@ -1,0 +1,18 @@
+[
+    {
+        "label": "JSON2XML(jsondata: Object): Object",
+        "documentation": [
+            "JSON 형태의 데이터를 웹스퀘어에서 정의된 XML형태로 변환하여 반환한다.",
+            "*@param* `jsondata` &mdash; JSON 데이터",
+            "*@return* \nJSON을 XML로 변환하여, 변환된 XML을 반환한다."
+        ]
+    },
+    {
+        "label": "XML2JSONString(data: Object): String",
+        "documentation": [
+            "입력된 XML을 JSON으로 변환하여 String으로 반환한다.",
+            "*@param* `data` &mdash; JSON변환 대상 XML",
+            "*@return* \nstring XML 데이터를 JSON형태의 String값을 반환 합니다."
+        ]
+    }
+]

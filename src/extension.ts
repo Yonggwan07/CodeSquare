@@ -4,7 +4,7 @@ import { WsObjectCompletionProvider } from './features/WsObjectCompletionProvide
 import { WsMethodCompletionProvider } from './features/WsMethodCompletionProvider';
 import { WsSignatureHelpProvider } from './features/WsSignatureHelpProvider';
 import { WsHoverProvider } from './features/WsHoverProvider';
-import { wsParseObjectInfo, isWsDocument, parseDocumentation } from './parser';
+import { wsParseObjectInfo, isWsDocument, getDocumentation } from './parser';
 import { WorkspaceContext } from './WorkspaceContext';
 
 // this method is called when your extension is activated
@@ -21,8 +21,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}
 
-	// Parsing WebSquare Documentation
-	parseDocumentation();
+	// Get WebSquare API Documentation
+	getDocumentation();
 
 	context.subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(
@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.languages.registerSignatureHelpProvider(
 			{ scheme: 'file', language: 'xml' }, new WsSignatureHelpProvider(), {
-				triggerCharacters: ['('], retriggerCharacters: [',']
+				triggerCharacters: ['(', ','], retriggerCharacters: [',']
 			}
 		)
 	);

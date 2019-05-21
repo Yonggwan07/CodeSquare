@@ -1,0 +1,204 @@
+[
+    {
+        "label": "abort(submissionId: String)",
+        "documentation": [
+            "현재 진행 중인 Submission을 중지합니다.",
+            "*@param* `submissionId` &mdash; 중지할 Submission의 ID"
+        ]
+    },
+    {
+        "label": "copyChildrenNodes(srcXPath: String, destXPath: String, mode: String)",
+        "documentation": [
+            "srcXPath가 가리키는 하위노드들을 destXPath가 가리키는 하위노드들로 복사합니다.    이 때 mode에 따라 완전히 srcXPath의 하위노드로 replace 하는 것과 ( replaceAll )    srcXPath와 destXPath의 하위노드를 merge하는 것과 ( overwrite )    srcXPath의 하위노드와 destXPath의 하위노드 간 합집합을 구하는 것 ( append )    destXPath 하위노드에 존재하는 노드만 값을 세팅하는 것으로 나누어 집니다. ( replaceOnly )",
+            "*@param* `srcXPath` &mdash; 복사할 데이터의 xPath",
+            "*@param* `destXPath` &mdash; 복사할 장소의 XPath",
+            "*@param* `mode` &mdash; ( \"replaceAll\", \"overwrite\", \"replaceOnly\", \"append\" )"
+        ]
+    },
+    {
+        "label": "copyNode(srcXPath: String, destXPath: String)",
+        "documentation": [
+            "srcXPath에 해당하는 Node를 destXPath 에 해당하는 Node의 Child Node로 append합니다.    기존의 destXPath밑에 있던 node들은 사라집니다.",
+            "*@param* `srcXPath` &mdash; append시킬 데이터의 xPath",
+            "*@param* `destXPath` &mdash; append되는 곳의 xPath"
+        ]
+    },
+    {
+        "label": "executeParallel(submission: array, processMsg?: String, resolveCallback?: function, rejectCallback?: function, id?: String)",
+        "documentation": [
+            "workflow 를 생성하지않고 기존 submission들을 parallel 하게 순서를 보장하여 처리하고자 할때 사용    submission1 call -> submission2 call -> submission1 callback  -> submission2 callback",
+            "*@param* `submission` &mdash; id array  ex) [\"submission1\", \"submission2\", \"submission3\"]",
+            "*@param* `processMsg` &mdash; ",
+            "*@param* `resolveCallback` &mdash; function",
+            "*@param* `rejectCallback` &mdash; function",
+            "*@param* `id` &mdash; "
+        ]
+    },
+    {
+        "label": "executeSerial(submission: array, processMsg?: String, resolveCallback?: function, rejectCallback?: function, id?: String)",
+        "documentation": [
+            "workflow 를 생성하지않고 기존 submission들을 serial 하게 순서를 보장하여 처리하고자 할때 사용    submission1 call -> submission1 callback -> submission2 call -> submission2 callback",
+            "*@param* `submission` &mdash; id array  ex) [\"submission1\", \"submission2\", \"submission3\"]",
+            "*@param* `processMsg` &mdash; ",
+            "*@param* `resolveCallback` &mdash; function",
+            "*@param* `rejectCallback` &mdash; function",
+            "*@param* `id` &mdash; "
+        ]
+    },
+    {
+        "label": "executeSubmission(submissionID: String, requestData?: Object, obj?: Object)",
+        "documentation": [
+            "submissionID에 해당하는 submission을 실행시킵니다.",
+            "*@param* `submissionID` &mdash; submission의 아이디",
+            "*@param* `requestData` &mdash; 요청 데이터",
+            "*@param* `obj` &mdash; 전송중 disable시킬 컴퍼넌트"
+        ]
+    },
+    {
+        "label": "executeWhilst(submission: String, condFn: function, maxRepeat: int, processMsg?: String, resolveCallback?: function, rejectCallback?: function, id?: String)",
+        "documentation": [
+            "workflow 를 생성하지않고 특정 submission을 반복적으로 호출하고자 할때 사용",
+            "*@param* `submission` &mdash; ID",
+            "*@param* `condFn` &mdash; 실행여부를 체크하는 pre function",
+            "*@param* `maxRepeat` &mdash; 최대실행 회수. conditon으로만 체크가능한 경우에는 무한루프에 대한 제어용으로도 사용가능",
+            "*@param* `processMsg` &mdash; ",
+            "*@param* `resolveCallback` &mdash; function",
+            "*@param* `rejectCallback` &mdash; function",
+            "*@param* `id` &mdash; "
+        ]
+    },
+    {
+        "label": "executeWorkflow(workflowId: Object)",
+        "documentation": [
+            "workflowId or workflowObj 을 받아서 workflow 실행",
+            "*@param* `workflowId` &mdash; workflow 아이디 or workflowObj"
+        ]
+    },
+    {
+        "label": "findInstanceNode(xpath: String): Xml Element",
+        "documentation": [
+            "xpath에 해당하는 Instance 내부의 노드를 반환합니다. 여러개의 노드가 존재할 때 첫번째 노드를 반환합니다.",
+            "*@param* `xpath` &mdash; 반환될 instance Node의 XPath",
+            "*@return* \nxpath로 찾은 xml element"
+        ]
+    },
+    {
+        "label": "findInstanceNodes(xpath: String): Object",
+        "documentation": [
+            "xpath에 해당하는 Instance 내부의 노드들을 배열 형태로 반환합니다.",
+            "*@param* `xpath` &mdash; 반환될 instance Node의 XPath",
+            "*@return* \nxpath로 찾은Document Element(node)로 이루어진 배열"
+        ]
+    },
+    {
+        "label": "findSerializedNode(xpath: String): String",
+        "documentation": [
+            "WebSquare.ModelUtil.findInstanceNode로 찾은 노드를 serialize해서 반환합니다.",
+            "*@param* `xpath` &mdash; 반환될 instance Node의 XPath",
+            "*@return* \nSerialize된 Document Element(node)"
+        ]
+    },
+    {
+        "label": "getInstanceValue(xpath: String): String",
+        "documentation": [
+            "주어진 xpath에 해당하는 Instance 내부의 노드의 nodeValue를 반환합니다.    만약 이 노드가 element 라면 첫번째 자식노드부터 시작하여 그의 형제 노드들을 검색하는 식으로 하여    노드의 nodevalue를 찾습니다.    만약 노드가 attribute 라면 자식노드를 검색할 필요없이 바로 노드의 nodeValue를 반환합니다.",
+            "*@param* `xpath` &mdash; 반환될 instance Node의 XPath",
+            "*@return* \nxpath로 찾은 노드의 value"
+        ]
+    },
+    {
+        "label": "getRefToReqData(submissionObj: Object)",
+        "documentation": [
+            "submission 객체의 ref를 request String  으로 변환하여 return",
+            "*@param* `submissionObj` &mdash; submission 객체"
+        ]
+    },
+    {
+        "label": "getRunningWorkflow(workflowID?: String): Object",
+        "documentation": [
+            "실행중인 첫번째 Workflow 객체를 반환합니다.",
+            "*@param* `workflowID` &mdash; workflow 아이디",
+            "*@return* \n실행 중인 workflow object"
+        ]
+    },
+    {
+        "label": "getRunningWorkflowID(): String",
+        "documentation": [
+            "실행중인 Workflow ID를 반환합니다.",
+            "*@return* \n실행중인 workflow ID"
+        ]
+    },
+    {
+        "label": "getSubmission(id: String): Object",
+        "documentation": [
+            "id에 해당하는 submission 을 반환합니다.",
+            "*@param* `id` &mdash; submission의 아이디",
+            "*@return* \nid를 통해서 찾은 submission"
+        ]
+    },
+    {
+        "label": "getWorkflow(id: String): Object",
+        "documentation": [
+            "id에 해당하는 Workflow 객체를 반환합니다.",
+            "*@param* `id` &mdash; workflow 아이디",
+            "*@return* \nid를 통해서 찾은 workflow"
+        ]
+    },
+    {
+        "label": "isRunningWorkflow(workflowID?: String): boolean",
+        "documentation": [
+            "실행중인 Workflow 가 있는지 여부를 반환합니다.    workflowID 가 전달된 경우에는 해당 id 의 workflow 실행여부를 반환합니다.",
+            "*@param* `workflowID` &mdash; workflow 아이디",
+            "*@return* \n실행여부"
+        ]
+    },
+    {
+        "label": "reject?: StringWorkflow(reject?: String, workflowID?: String): Object",
+        "documentation": [
+            "실행중인 Workflow 를 Reject 시킵니다. workflowID 가 전달된 경우에는 해당 workflow가 실행중인 경우에만 Reject 시킵니다.",
+            "*@param* `reject` &mdash; 사유 메시지",
+            "*@param* `workflowID` &mdash; ",
+            "*@return* \nReject 된 workflow Object"
+        ]
+    },
+    {
+        "label": "removeChildNodes(xpath: String)",
+        "documentation": [
+            "xpath에 해당하는 부모의 childNode들을 제거합니다.",
+            "*@param* `xpath` &mdash; childNode들을 제거할 부모의 xPath"
+        ]
+    },
+    {
+        "label": "removeInstanceNode(xpath: String)",
+        "documentation": [
+            "xpath에 해당하는 node를 부모로부터 제거합니다.",
+            "*@param* `xpath` &mdash; 제거할 node의 XPath"
+        ]
+    },
+    {
+        "label": "removeInstanceNodes(xpath: String)",
+        "documentation": [
+            "xpath에 해당하는 여러 개의 node를 부모로 부터 제거합니다.",
+            "*@param* `xpath` &mdash; 제거할 node의 xPath"
+        ]
+    },
+    {
+        "label": "setInstanceNode(doc: Object, xpath: String, mode?: StringlID?: String, mode?: String)",
+        "documentation": [
+            "Document 혹은 Element를 Instance의 xpath에 해당하는 경로에 위치시킵니다.    mode가 replace인 경우에 기존에 있던 것들을 삭제하고 새로운 노드를 추가하고    append인 경우 기존의 노드들은 놔두고 새로운 노드를 추가합니다.    mode를 명시하지 않을 경우에는 \"replace\" 모드입니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `xpath` &mdash; 노드를 추가할 경로",
+            "*@param* `modelID` &mdash; 노드를 추가할 경로의 Model ID(현재 사용하지 않는 옵션)",
+            "*@param* `mode` &mdash; mode (\"replace\", \"append\")"
+        ]
+    },
+    {
+        "label": "setInstanceValue(xpath: String, value: String): Boolean",
+        "documentation": [
+            "주어진 xpath에 해당하는 Instance 내부 노드를 찾아 nodeValue를 설정합니다.",
+            "*@param* `xpath` &mdash; instance Node의 XPath",
+            "*@param* `value` &mdash; 설정할 text value",
+            "*@return* \nnode가 존재하지 않을 경우 false, 반영 성공 할 경우 true"
+        ]
+    }
+]

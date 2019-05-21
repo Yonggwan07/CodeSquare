@@ -16,6 +16,7 @@ export interface IObjectDetail {
     dataType: string;
 }
 
+// API Documentation Structure
 export interface IDoc {
     type: string;
     documentation: string;

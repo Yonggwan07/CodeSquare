@@ -1,0 +1,401 @@
+[
+    {
+        "label": "appendingPathComponent(starturl: String, endurl: String): String",
+        "documentation": [
+            "url 경로에 다른 경로를 덧붙이는 함수로 /의 유무에 따라 이상동작하는 것을 핸들링.  \tcase 1 : \"/hoyoon/\" + \"/inswave.xml\" = \"/hoyoon/inswave.xml\" (//에서 / 하나 지운다)  \tcase 2 : \"/hoyoon\" + \"/inswave.xml\" = \"/hoyoon/inswave.xml\" (그냥 붙인다)  \tcase 3 : \"/hoyoon/\" + \"inswave.xml\" = \"/hoyoon/inswave.xml\" (그냥 붙인다)  \tcase 4 : \"/hoyoon\" + \"inswave.xml\" = \"/hoyoon/inswave.xml\" (/ 하나 추가한다)  \tdegenerating case : 뒷부분 컴포넌트에 \"://\" 가 있을 경우(프로토콜이 포함된 절대경로일 경우) 뒷부분만 리턴.",
+            "*@param* `starturl` &mdash; 병합할 url 컴포넌트 앞부분",
+            "*@param* `endurl` &mdash; 병합할 url 컴포넌트 뒷부분",
+            "*@return* \n병합된 url"
+        ]
+    },
+    {
+        "label": "clearInterval(key: String, force?: Boolean)",
+        "documentation": [
+            "WebSquare.util.setInterval로 등록한 함수를 직접 clearInterval시킨다.",
+            "*@param* `key` &mdash; WebSquare.util.setInterval로 등록할 때 options.key로 지정한 키값.",
+            "*@param* `force` &mdash; setInterval로 등록된 함수를 한 번 실행할지에 대한 여부. 기본값은 false."
+        ]
+    },
+    {
+        "label": "clearPage()",
+        "documentation": [
+            " 브라우저를 갱신하여 브라우저를 초기상태로 되돌리는 함수.\n 주로 spa 모드에서 브라우저 초기화가 필요한 경우 onpageunload 이벤트에서 이 함수가 사용된다.\n Editor 컴포넌트나 Chart컴포넌트 등 spa 모드에서 메모리 릭이 존재하는 컴포넌트 사용 시 해당 페이지의 body에 onpageunload이벤트를 등록하고 이 함수를 호출한다.\n WebSquare.util.url(WebSquare.baseURI + \"blank.xml\", {\"spa\":true, \"forceReload\":true}); 함수를 호출한 것과 동일하다."
+        ]
+    },
+    {
+        "label": "clearTimeout(key: String, force?: Boolean)",
+        "documentation": [
+            "WebSquare.util.setTimer로 등록한 함수를 직접 clearTimeout시킨다.",
+            "*@param* `key` &mdash; WebSquare.util.setTimer로 등록할 때 options.key로 지정한 키값.",
+            "*@param* `force` &mdash; setTimer로 등록된 함수를 실행할지에 대한 여부. 기본값은 false."
+        ]
+    },
+    {
+        "label": "closePopup(id: String)",
+        "documentation": [
+            "id를 찾아서 popup을 닫아줍니다.",
+            "*@param* `id` &mdash; popup의 id"
+        ]
+    },
+    {
+        "label": "createPopup(id: String, type?: String, popupName?: String, style?: String, useIFrame?: String, modal?: String, srcORurl: String, srcData?: String, destData?: String, xml?: Array)",
+        "documentation": [
+            "popup을 속성에 따라 만드는 함수입니다.",
+            "*@param* `id` &mdash; popup 객체의 ID",
+            "*@param* `type` &mdash; popup 객체의 type으로 litewindow, window, browser 중 하나",
+            "*@param* `popupName` &mdash; popup 객체의 이름으로 popup 프레임의 표시줄에 나타납니다.",
+            "*@param* `style` &mdash; popup 객체의 style",
+            "*@param* `useIFrame` &mdash; true, false 두 개의 값을 가질 수 있다.",
+            "*@param* `modal` &mdash; true, false 두 개의 값을 가질 수 있다.  ",
+            "*@param* `srcORurl` &mdash; popup 객체의 type 이 litewindow, window 인 경우 : 표시될 WebSuqare xml 파일의 이름",
+            "*@param* `srcData` &mdash; popup 객체의 type 이 window 일 때 Parent 에서 넘길 xpath",
+            "*@param* `destData` &mdash; popup 객체의 type 이 window 일 때 popup 에 설정할 xpath",
+            "*@param* `xml` &mdash; popup 객체에 적용될 xml 문서"
+        ]
+    },
+    {
+        "label": "dbltoHexacode(dbl: Number): String",
+        "documentation": [
+            "주어진 정수값을 RGB 색상을 표현하기 위한 hexa code 형태로 변환하여 반환니다.",
+            "*@param* `dbl` &mdash; 정수 형태의 RGB 값",
+            "*@return* \nhexa code로 변환된 값"
+        ]
+    },
+    {
+        "label": "first(elem: Object): Object",
+        "documentation": [
+            "주어진 html 객체의 첫 번째 child node를 반환합니다.",
+            "*@param* `elem` &mdash; 하위 노드를 검사할 객체",
+            "*@return* \nelem의 첫 번째 child node"
+        ]
+    },
+    {
+        "label": "getBoolean(boolstr: String): Boolean",
+        "documentation": [
+            "\"ture\"면 true를 반환하고 \"false\"면 false를 반환합니다.",
+            "*@param* `boolstr` &mdash; boolean string",
+            "*@return* \n\"ture\"면 true, \"false\"면 false"
+        ]
+    },
+    {
+        "label": "getChildNodeAt(obj: Object, idx: Number): Object",
+        "documentation": [
+            "객체 obj의 idx 번째 child node를 반환합니다.",
+            "*@param* `obj` &mdash; 하위 객체를 조사할 객체",
+            "*@param* `idx` &mdash; 하위 객체의 index",
+            "*@return* \nobj의 idx 번째 child node"
+        ]
+    },
+    {
+        "label": "getChildren(component?: Object, options?: Object): Object",
+        "documentation": [
+            "특정 component의 자식 component들을 배열로 반환합니다.",
+            "*@param* `component` &mdash; 부모 component. 인자값이 없는 경우 body component가 됩니다.",
+            "*@param* `options` &mdash; options 속성은 아래와 같습니다. ",
+            "*@return* \ncomponent가 담긴 배열"
+        ]
+    },
+    {
+        "label": "getComponentById(id: String): Object",
+        "documentation": [
+            "주어진 id에 해당하는 웹스퀘어 컴포넌트를 찾아 반환합니다.",
+            "*@param* `id` &mdash; 웹스퀘어 컴포넌트의 ID",
+            "*@return* \n웹스퀘어 컴포넌트 객체"
+        ]
+    },
+    {
+        "label": "getData(key: String): Object",
+        "documentation": [
+            "특정 key로 등록된 data를 가져온다.",
+            "*@param* `key` &mdash; 꺼내오고자 하는 data의 key값",
+            "*@return* \nkey에 해당하는 data"
+        ]
+    },
+    {
+        "label": "getDate(str: String): String",
+        "documentation": [
+            "Date String에서 '/'를 제거합니다.",
+            "*@param* `str` &mdash; Date String",
+            "*@return* \n입력받은 str에서 '/'를 제거한 String"
+        ]
+    },
+    {
+        "label": "getDocumentSize(sizeName: String): Number",
+        "documentation": [
+            "scroll bar 영역의 사이즈는 제외한 document의 width나 height를 구합니다.",
+            "*@param* `sizeName` &mdash; \"width\"나 \"height\"에 해당하는 string",
+            "*@return* \ndocument의 크기 값"
+        ]
+    },
+    {
+        "label": "getGlobalFunction(str: String): Function",
+        "documentation": [
+            "global 영역에서 함수를 찾아와 반환합니다. 함수가 객체 내부에 있을 경우에도 찾아옵니다.",
+            "*@param* `str` &mdash; 함수를 나타내는 string",
+            "*@return* \n반환할 함수"
+        ]
+    },
+    {
+        "label": "getIntervalKeyList(): Object",
+        "documentation": [
+            "WebSquare.util.setIntervalKey로 등록된 키값 전부를 array로 반환한다.",
+            "*@return* \ngetIntervalKey로 등록된 키값"
+        ]
+    },
+    {
+        "label": "getKeyCode(comp: Object, e: Event): Number",
+        "documentation": [
+            "key event가 발생하는 컴포넌트 객체와 event객체를 입력 받아서 keyCode값 또는 unicode값을 반환한다.   keyCode가 발생하는경우에는 keyCode값을, keyCode가 발생하지 않는 경우에는 unicode값을 10진수형태로 반환한다.",
+            "*@param* `comp` &mdash; 컴포넌트 객체",
+            "*@param* `e` &mdash; event 객체",
+            "*@return* \nkeyCode의 경우 keyCode, uniCode의 경우에는 uniCode값 반환"
+        ]
+    },
+    {
+        "label": "getMetaValue(key: String)",
+        "documentation": [
+            "head영역에 정의한 Meta key에 해당하는 value를 반환한다.",
+            "*@param* `key` &mdash; Meta정보의 key"
+        ]
+    },
+    {
+        "label": "getNumber(str: String): Number",
+        "documentation": [
+            "입력된 String에서 콤마(',')를 제거한후 parseInt/parseFloat를 실행한 결과를 반환합니다.",
+            "*@param* `str` &mdash; string 형태의 숫자",
+            "*@return* \n입력된 string을 숫자로 변환 한 값"
+        ]
+    },
+    {
+        "label": "getPopup(id: String): Object",
+        "documentation": [
+            "id를 찾아서 해당 popup component를 반환합니다.",
+            "*@param* `id` &mdash; popup의 id",
+            "*@return* \n해당 popup component"
+        ]
+    },
+    {
+        "label": "getPopupParam(): String",
+        "documentation": [
+            "popup을 만들때 xml 속성으로 넘긴 xmlDocument의 string를 반환합니다.",
+            "*@return* \npopup을 만들때 xml 속성으로 넘긴 xmlDocument의 string"
+        ]
+    },
+    {
+        "label": "getPopupWindow(id: String): Object",
+        "documentation": [
+            "id를 찾아서 해당 popup의 window를 반환합니다.",
+            "*@param* `id` &mdash; popup의 id",
+            "*@return* \n해당 popup의 window"
+        ]
+    },
+    {
+        "label": "getStringByteSize(str: String, ignoreChar?: String): Number",
+        "documentation": [
+            "주어진 string의 byte size를 반환합니다.",
+            "*@param* `str` &mdash; byte size를 알아낼 string",
+            "*@param* `ignoreChar` &mdash; byte size 체크시 무시할 문자",
+            "*@return* \nbyte size"
+        ]
+    },
+    {
+        "label": "getSubmissionURL(url: String): String",
+        "documentation": [
+            "submissionURL 정보를 읽어들여서 필요시 경로처리하는 함수. appendingPathComponent 사용함.",
+            "*@param* `url` &mdash; 기본 url 주소",
+            "*@return* \nsubmissionURL 처리 된 url"
+        ]
+    },
+    {
+        "label": "getTextNodeValue(element: Object): String",
+        "documentation": [
+            "주어진 html element의 text node 값을 반환합니다.",
+            "*@param* `element` &mdash; html element",
+            "*@return* \ntext node string"
+        ]
+    },
+    {
+        "label": "getTime(str: String): String",
+        "documentation": [
+            "Time String에서 ':'을 제거합니다.",
+            "*@param* `str` &mdash; Time String",
+            "*@return* \n입력받은 str에서 ':'를 제거한 String"
+        ]
+    },
+    {
+        "label": "getTimeoutKeyList(): Object",
+        "documentation": [
+            "WebSquare.util.setTimer로 등록된 키값 전부를 array로 반환한다.",
+            "*@return* \nsetTimer로 등록된 키값"
+        ]
+    },
+    {
+        "label": "hexacodetoDbl(hexa: String): Number",
+        "documentation": [
+            "주어진 hexa code 값을 정수로 변환하여 반환합니다.",
+            "*@param* `hexa` &mdash; hexa code 값",
+            "*@return* \n정수로 변환된 값"
+        ]
+    },
+    {
+        "label": "isEmptyObject(obj: Object): Boolean",
+        "documentation": [
+            "인자로 넘어온 객체가 빈 객체이면 true를 반환하고 빈 객체가 아닐 경우 false를 반환하는 함수이다.",
+            "*@param* `obj` &mdash; 빈 객체인지를 검사할 객체=",
+            "*@return* \n빈 객체이면 true, 빈 객체가 아니면 false"
+        ]
+    },
+    {
+        "label": "isHybrid(): Boolean",
+        "documentation": [
+            "브라우저 실행환경이 모바일 하이브리드 앱인지를 판별하는 함수. 모바일에서 실행되는 경우여도 일반 브라우저 앱에서 실행되는 경우는 false이다.",
+            "*@return* \n하이브리드앱에서 실행되는 경우 true, 아닌 경우 false를 반환."
+        ]
+    },
+    {
+        "label": "isInteger(num: String): Boolean",
+        "documentation": [
+            "주어진 숫자가 정수인지 판별합니다.",
+            "*@param* `num` &mdash; Number 또는 Number String",
+            "*@return* \n정수라면 true, 정수가 아니면 false"
+        ]
+    },
+    {
+        "label": "isMobile(): Boolean",
+        "documentation": [
+            "현재 동작중인 기기가 모바일 기기인지 판별. 아이폰, 아이패드, 아이팟터치, 안드로이드, 블랙베리를 판별 가능.",
+            "*@return* \n모바일 기기인 경우 true, 아닌 경우 false를 반환."
+        ]
+    },
+    {
+        "label": "isNull(value: Obejct): Boolean",
+        "documentation": [
+            "주어진 값이 null인지 체크합니다.",
+            "*@param* `value` &mdash; null 체크를 할 값",
+            "*@return* \nnull이라면 true, 아니라면 false"
+        ]
+    },
+    {
+        "label": "isNumber(value: Obejct): Boolean",
+        "documentation": [
+            "주어진 값의 타입이 Number인지 체크합니다.",
+            "*@param* `value` &mdash; type 체크를 할 값",
+            "*@return* \ntype이 Number라면 true, 아니라면 false"
+        ]
+    },
+    {
+        "label": "isOdd(num: String): Boolean",
+        "documentation": [
+            "주어진 정수가 홀수인지 판별합니다.",
+            "*@param* `num` &mdash; Number String",
+            "*@return* \n홀수라면 true, 짝수라면 false"
+        ]
+    },
+    {
+        "label": "isPopup(): boolean",
+        "documentation": [
+            "현재 Window가 popup이면 true 아니면 false를 반환합니다.",
+            "*@return* \n팝업창인지 여부를 반환합니다."
+        ]
+    },
+    {
+        "label": "isString(value: Obejct): Boolean",
+        "documentation": [
+            "주어진 값의 타입이 String인지 체크합니다.",
+            "*@param* `value` &mdash; type 체크를 할 값",
+            "*@return* \ntype이 String라면 true, 아니라면 false"
+        ]
+    },
+    {
+        "label": "js(scriptUrl: String, callback?: Function)",
+        "documentation": [
+            "여러 개의 외부 script를 로드할 때 스크립트별 순서제어가 필요한 경우 사용합니다. 인자로 넘어온 script들 loading은 병렬로 진행하면서 실행은 순서대로 실행하는 기능을 제공합니다. 그리고 마지막 인자의 type이 function인 경우, 모든 스크립트 로딩이 끝난 후 해당 function을 실행합니다 (callback)",
+            "*@param* `scriptUrl` &mdash; javascript url주소. 인자 개수는 가변입니다. load할 script를 여러개 지정할 경우 script url주소를 script개수만큼 인자로 전달합니다.",
+            "*@param* `callback` &mdash; 전달된 마지막 인자의 type이 function인 경우, 이전까지 인자로 전달된 모든 스크립트의 실행이 완료된 후에 해당 함수가 실행됩니다. 즉 callback 함수입니다."
+        ]
+    },
+    {
+        "label": "last(elem: Object): Object",
+        "documentation": [
+            "주어진 html 객체의 마지막 child node를 반환합니다.",
+            "*@param* `elem` &mdash; 하위 노드를 검사할 객체",
+            "*@return* \nelem의 마지막 child node"
+        ]
+    },
+    {
+        "label": "multipleDataListDownload(options: Object, infoArr?: Object)",
+        "documentation": [
+            "DataList의 데이터를 엑셀 파일로 저장합니다. sheetName은 중복되지 않게 설정해야 합니다. (JDK 1.5이상에서 사용 가능)",
+            "*@param* `options` &mdash; JSON형태로 저장된 dataList의 엑셀 다운로드 옵션",
+            "*@param* `infoArr` &mdash; dataList에 대한 내용을 추가로 다른 셀에 표현하는 경우 사용하는 배열"
+        ]
+    },
+    {
+        "label": "multipleExcelDownload(options: Object, infoArr?: Object)",
+        "documentation": [
+            "그리드의 데이터를 엑셀 파일로 저장합니다. provider 설정시에만 동작 합니다. sheetName은 중복되지 않게 설정해야 합니다. (JDK 1.5이상에서 사용 가능)",
+            "*@param* `options` &mdash; JSON형태로 저장된 그리드의 엑셀 다운로드 옵션",
+            "*@param* `infoArr` &mdash; 그리드에 대한 내용을 추가로 다른 셀에 표현하는 경우 사용하는 배열"
+        ]
+    },
+    {
+        "label": "next(elem: Object): Object",
+        "documentation": [
+            "텍스트 노드를 제외한 다음 노드 검색해서 반환합니다.",
+            "*@param* `elem` &mdash; 다음 노드를 검색할 객체",
+            "*@return* \nelem의 다음 노드"
+        ]
+    },
+    {
+        "label": "openPopup(url: String, <Object:Y>: Object, params?: Object, target?: Object)",
+        "documentation": [
+            "popup을 속성에 따라 만드는 함수입니다. createPopup과 인자만 다르고 같은 함수입니다.",
+            "*@param* `url` &mdash; popup창의 url",
+            "*@param* `<Object:Y>` &mdash; options popup의 options. (width, height 등)",
+            "*@param* `params` &mdash; 팝업창에 넘길 parameter",
+            "*@param* `target` &mdash; window객체. default로 window"
+        ]
+    },
+    {
+        "label": "parent(elem: Object, num?: Number): Object",
+        "documentation": [
+            "주어진 html 객체에서 숫자 num 만큼(없으면 한 단계 위) 상위인 노드를 찾아 반환합니다.",
+            "*@param* `elem` &mdash; 부모 노드를 검사할 객체",
+            "*@param* `num` &mdash; 상위 노드를 탐색할 횟수",
+            "*@return* \nelem의 상위 노드"
+        ]
+    },
+    {
+        "label": "parseFloat(str: String, defaultValue?: Number): Number",
+        "documentation": [
+            "parseFloat를 호출합니다. defaultValue가 주어지고 parseFloat결과가 NaN이면 defaultValue를 반환합니다.",
+            "*@param* `str` &mdash; Number string",
+            "*@param* `defaultValue` &mdash; parseFloat 결과가 NaN일때 반환할 기본 값",
+            "*@return* \n주어진 문자를 숫자로 변환한 값"
+        ]
+    },
+    {
+        "label": "parseInt(str: String, defaultValue?: Number): Number",
+        "documentation": [
+            "parseInt를 호출합니다. defaultValue가 주어지고 parseInt결과가 NaN이면 defaultValue를 반환합니다.",
+            "*@param* `str` &mdash; Number string",
+            "*@param* `defaultValue` &mdash; parseInt 결과가 NaN일때 반환할 기본 값",
+            "*@return* \n주어진 문자를 숫자로 변환한 값"
+        ]
+    },
+    {
+        "label": "prev(elem: Object): Object",
+        "documentation": [
+            "텍스트 노드를 제외한 이전 노드 검색해서 반환합니다.",
+            "*@param* `elem` &mdash; 이전 노드를 검색할 객체",
+            "*@return* \nelem의 이전 노드"
+        ]
+    },
+    {
+        "label": "reinitialize(refresh?: Boolean)",
+        "documentation": [
+            "브라우저 refresh 없이 페이지를 다시 로딩하거나 또는 브라우저를 refresh합니다.",
+            "*@param* `refresh` &mdash; 브라우저를 refresh할 것인지에 대한 여부. ( default값은 false )"
+        ]
+    }
+]

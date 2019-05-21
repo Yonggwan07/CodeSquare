@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import fs = require('fs');
 
@@ -11,20 +11,23 @@ export class WorkspaceContext {
 
     public static openNewWsPage() {
         // 현재 활성화된 document를 확인
-        if (!window.activeTextEditor)
+        if (!window.activeTextEditor) {
             return;
+        }
 
         // Websquare Object Parsing
         wsParseObjectInfo();
 
-        if (docObjects.length <= 0)
+        if (docObjects.length <= 0) {
             return;
+        }
 
         // 원본 xml 파일에서 javascript 부분만 파싱
         let jsFilePath = wsParseJavascript();
 
-        if (jsFilePath == '')
+        if (jsFilePath === '') {
             return;
+        }
 
         workspace.openTextDocument(jsFilePath).then(document => {
             jsDocs.push(document);
@@ -33,13 +36,15 @@ export class WorkspaceContext {
     }
 
     public static onSave() {
-        if (!window.activeTextEditor)
+        if (!window.activeTextEditor) {
             return;
+        }
 
         let jsDoc = window.activeTextEditor.document;
 
-        if (jsDoc.fileName.indexOf("(CodeSquare)") == -1)
+        if (jsDoc.fileName.indexOf("(CodeSquare)") === -1) {
             return;
+        }
 
         let we = new WorkspaceEdit();
 
@@ -57,12 +62,14 @@ export class WorkspaceContext {
             let originFileName = originDocs[i].fileName.substring(
                 originDocs[i].fileName.lastIndexOf("\\") + 1, originDocs[i].fileName.length);
 
-            if (fileName == originFileName)
+            if (fileName === originFileName) {
                 originDoc = originDocs[i];
+            }
         }
 
-        if (originDoc == null)
+        if (originDoc === null) {
             return;
+        }
 
         let startWord = '';
 
@@ -105,14 +112,14 @@ export class WorkspaceContext {
     }
  
     public static onClose(doc: TextDocument) {
-        if (doc.uri.scheme == 'git') {
+        if (doc.uri.scheme === 'git') {
             return;
         }
 
         let jsDoc = null;
 
         for (let i = 0; i < jsDocs.length; i++) {
-            if (jsDocs[i].fileName == doc.fileName) {
+            if (jsDocs[i].fileName === doc.fileName) {
                 jsDoc = jsDocs[i];
 
                 originDocs.splice(i, 1);
@@ -120,17 +127,20 @@ export class WorkspaceContext {
             }
         }
 
-        if (jsDoc == null)
+        if (!jsDoc) {
             return;
+        }
 
-        if (!doc.isClosed)
+        if (!doc.isClosed) {
             return;
+        }
 
         fs.unlink(jsDoc.fileName, (err) => { });
     }
 
     public static deactivate() {
-        for (let i = 0; i < jsDocs.length; i++)
+        for (let i = 0; i < jsDocs.length; i++) {
             fs.unlink(jsDocs[i].fileName, (err) => { });
+        }
     }
 }

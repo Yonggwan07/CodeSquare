@@ -1,0 +1,187 @@
+[
+    {
+        "label": "appendChild(descNode: Object, srcNode: Object)",
+        "documentation": [
+            "destNode의 하위 노드로 srcNode를 추가합니다.",
+            "*@param* `descNode` &mdash; 부모 노드",
+            "*@param* `srcNode` &mdash; 자식 노드"
+        ]
+    },
+    {
+        "label": "decode(s: String): String",
+        "documentation": [
+            "decode하는 함수로써 < > ' \" & \\n에 해당하는 문자들은 decode합니다.",
+            "*@param* `s` &mdash; decode 대상 문자열",
+            "*@return* \nstring"
+        ]
+    },
+    {
+        "label": "encode(s: String): String",
+        "documentation": [
+            "encode하는 함수로써 & < > ' \" CR LF 를 encode 합니다.",
+            "*@param* `s` &mdash; encode 대상 문자열",
+            "*@return* \nstring"
+        ]
+    },
+    {
+        "label": "findNode(doc: Document, path: String): Object",
+        "documentation": [
+            "XPath로 검색하여 일치하는 노드 중 첫번째 노드를 반환합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `path` &mdash; XPath 문자열",
+            "*@return* \nDocument Element(node) 또는 null"
+        ]
+    },
+    {
+        "label": "findNodes(doc: Document, path: String): Array",
+        "documentation": [
+            "XPath로 검색하여 일치하는 노드 목록을 Array로 반환합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `path` &mdash; ",
+            "*@return* \nDocument Element(node)를 담은 Array 또는 null"
+        ]
+    },
+    {
+        "label": "getAttribute(doc: Document, key: String, attribute: String): String",
+        "documentation": [
+            "첫번째 인자로 주어진 Document 또는 Element를 기준으로 attribute를 조회합니다.마지막 인자(attribute)가 없는 경우 현재 Element(Document의 경우 최상위 Element)에 두번째 인자(key)를이용하여 attribute를 조회하고마지막 인자(attribute)가 있는 경우 두번째 인자(key)를 XPath로 사용하여 조회한 node에 세번째 인자(attribute)를 이용하여 attribute를 조회합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath. attribute가 설정되어 있지 않으면 값을 설정할 attribute로 사용됨. 이 경우 Attribute로 사용될 수 있는 문자만 지정되어야 함.",
+            "*@param* `attribute` &mdash; 값을 조회할 attribute이름.",
+            "*@return* \n조회 결과 값. 값이 없으면 빈 문자열 반환."
+        ]
+    },
+    {
+        "label": "getCDataNodeValue(element: Object): String",
+        "documentation": [
+            "element의 CData Node 값을, 존재하지 않으면 null을 반환.",
+            "*@param* `element` &mdash; Document Element(node)",
+            "*@return* \nCDataNode Value 또는 null"
+        ]
+    },
+    {
+        "label": "getChildren(doc: Document, key: String): Array",
+        "documentation": [
+            "xpath로 노드를 검색하여 하위 노드를 반환합니다. 반환되는 값은 다음과 같은 형태입니다. [{\"@tagName\" : \"Node\" , \"value\" : \"value1\" } , {\"@tagName\" : \"Node\" , \"value\" : \"value2\" }]",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath 문자열",
+            "*@return* \nXML정보가 들어있는 Oject Array"
+        ]
+    },
+    {
+        "label": "getChildrenByTagName(element: Document, name: String, uri: String): Array",
+        "documentation": [
+            "element의 하위 노드 중 tagName이 인자와 일치하는 node들을 반환합니다.",
+            "*@param* `element` &mdash; Document 또는 Document Element(node)",
+            "*@param* `name` &mdash; nodeName 문자열",
+            "*@param* `uri` &mdash; namespace uri ( 존재 할 경우 namespace 일치 여부도 확인 )",
+            "*@return* \n일치하는 Document Element(node) 들의 Array"
+        ]
+    },
+    {
+        "label": "getFirstChildElement(element: Object): Object",
+        "documentation": [
+            "element에서 하위 노드들 중 첫번째 element node를 반환합니다. Element node가 존재하지 않으면 null을 반환합니다.",
+            "*@param* `element` &mdash; Document Element(node)",
+            "*@return* \nDocument Element(node) 또는 없을 경우 null"
+        ]
+    },
+    {
+        "label": "getFirstChildElements(element: Object): Array",
+        "documentation": [
+            "element에서 하위 노드를 배열로 반환합니다. Element node가 존재하지 않으면 빈 Array를 반환합니다.",
+            "*@param* `element` &mdash; Document Element(node)",
+            "*@return* \n자식 Element(node)들의 Array"
+        ]
+    },
+    {
+        "label": "getString(doc: Document, key: String): String",
+        "documentation": [
+            "XPath로 검색한 node element에서 value Attribute 값을 조회합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath 문자열",
+            "*@return* \n조회 결과 값. 값이 없으면 빈 문자열 반환."
+        ]
+    },
+    {
+        "label": "getTextNodeValue(element: Object): String",
+        "documentation": [
+            "element의 Text Node를, 존재하지 않으면 null을 반환합니다.",
+            "*@param* `element` &mdash; Document Element(node)",
+            "*@return* \nTextNode Value 또는 null"
+        ]
+    },
+    {
+        "label": "getValue(doc: Document, key: String, attribute: String): String",
+        "documentation": [
+            "첫번째 인자로 주어진 Document 또는 Element를 기준으로 XPath로 조회한 node의 attribute나 text노드의 값을 조회합니다. 마지막 인자(attribute)가 없는 경우 Text Node나 CData Node를 조회하고, 마지막 인자가 있는 경우 attribute 값을 조회합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath 문자열",
+            "*@param* `attribute` &mdash; 값을 조회할 attribut e이름. 지정하지 않으면 Text 노드나 CData 노드에서 값을 조회한다.",
+            "*@return* \n조회 결과 값. 값이 없으면 빈 문자열 반환."
+        ]
+    },
+    {
+        "label": "hasChildElement(domNode: Document): Boolean",
+        "documentation": [
+            "element가 하위 노드를 가지는지 여부를 반환합니다.",
+            "*@param* `domNode` &mdash; Document 또는 Document Element(node)",
+            "*@return* \nchildNode 가 존재하는지 여부"
+        ]
+    },
+    {
+        "label": "indent(obj: Document, type: String): String",
+        "documentation": [
+            "XML Document를 XML String으로 변환합니다. serialize 함수와 다르게 줄바꿈을 제공합니다.",
+            "*@param* `obj` &mdash; XML String으로 변환할 문자열",
+            "*@param* `type` &mdash; type을 적지 않았을 경우 WebSquare.xml.serialize을 실행하여 그 결과에 줄 바꿈 문자를 넣고, type이 'undefined'가 아닐 경우 재귀적으로 xml을 파싱한다.",
+            "*@return* \nXML String"
+        ]
+    },
+    {
+        "label": "parse(obj: String, namespace?: Boolean): Document",
+        "documentation": [
+            "XML String을 XML Document로 변환합니다.",
+            "*@param* `obj` &mdash; XML Document로 변환할 문자열",
+            "*@param* `namespace` &mdash; namespace를 파싱 할 지 여부",
+            "*@return* \nXML Document"
+        ]
+    },
+    {
+        "label": "serialize(dom: Document): String",
+        "documentation": [
+            "XML Document를 XML String으로 변환합니다.",
+            "*@param* `dom` &mdash; XML String으로 변환할 XML Document",
+            "*@return* \nXML String"
+        ]
+    },
+    {
+        "label": "setAttribute(doc: Document, key: String, value1: String, value2: String)",
+        "documentation": [
+            "첫번째 인자로 주어진 Document 또는 Element를 기준으로 attribute를 설정합니다.마지막 인자(value2)가 없는 경우 현재 Element(Document의 경우 최상위 Element)에 속성값을 설정하고마지막 인자(value2)가 있는 경우 두번째 인자(key)를 XPath로 사용하여 조회한 node에 속성값을 설정합니다.XPath로 검색한 node element에서 Attribute를 조회합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath. value2가 설정되어 있지 않으면 값을 설정할 attribute로 사용됨. 이 경우 Attribute로 사용될 수 있는 문자만 지정되어야 함.",
+            "*@param* `value1` &mdash; 값을 설정할 attribute이름. value2가 설정되어 있지 않으면 설정할 값으로 사용됨",
+            "*@param* `value2` &mdash; 설정할 값"
+        ]
+    },
+    {
+        "label": "setString(doc: Document, key: String, value: String)",
+        "documentation": [
+            "XPath로 검색한 node element에서 value Attribute 값을 설정합니다.",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath 문자열",
+            "*@param* `value` &mdash; 설정할 값"
+        ]
+    },
+    {
+        "label": "setValue(doc: Document, key: String, value1: String, value2: String)",
+        "documentation": [
+            "첫번째 인자로 주어진 Document 또는 Element를 기준으로 XPath로 조회한 node에 attribute나 text노드를 추가합니다.마지막 인자가 없는 경우 value1값을 Text Node에 추가하고, 마지막 인자가 있는 경우 value1을 attribute이름으로 사용합니다.             XPath로 조회한 node가 존재하지 않으면 생성을 시도한 다음 작업을 수행합니다. 노드를 생성하기 위해서는 XPath가 노드명으로만 구성되어야 합니다. 노드를 생성하지 못하게 되면 아무런 작업을 수행하지 않습니다.(에러도 발생하지 않습니다.)",
+            "*@param* `doc` &mdash; Document 또는 Document Element(node)",
+            "*@param* `key` &mdash; XPath 문자열",
+            "*@param* `value1` &mdash; 값을 설정할 attribute 이름. value2가 지정되어 있지 않으면 Text 노드 값으로 사용된다.",
+            "*@param* `value2` &mdash; 추가할 값. 지정하지 않으면 Text 노드나 CData 노드를 삭제한 후 value1의 값을 Text 노드에 추가"
+        ]
+    }
+]

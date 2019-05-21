@@ -1,0 +1,32 @@
+[
+    {
+        "label": "getAttribute(key: String): Object",
+        "documentation": [
+            "최상위 웹스퀘어 객체의 사용자 정의 값을 가져옵니다.",
+            "*@param* `key` &mdash; 브라우저 세션에서의 키값",
+            "*@return* \nretType에 해당하는 인스턴스"
+        ]
+    },
+    {
+        "label": "removeAttribute(key: String): Object",
+        "documentation": [
+            "최상위 웹스퀘어 객체의 사용자 정의 값을 삭제합니다. 기존에 저장된 값은 return으로 반환합니다.",
+            "*@param* `key` &mdash; 브라우저 세션에서의 키값",
+            "*@return* \n삭제된 세션의 값"
+        ]
+    },
+    {
+        "label": "removeSession()",
+        "documentation": [
+            "최상위 웹스퀘어 객체의 사용자 정의 정보, 전체를 삭제합니다."
+        ]
+    },
+    {
+        "label": "setAttribute(key: String, value: String)",
+        "documentation": [
+            "최상위 웹스퀘어 객체의 사용자 정의 정보 값을 설정합니다. 기존 값이 존재하면 덮어쓰여집니다.",
+            "*@param* `key` &mdash; 브라우저 세션에서의 이름",
+            "*@param* `value` &mdash; 브라우저 세션에서의 키값"
+        ]
+    }
+]

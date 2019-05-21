@@ -1,0 +1,15 @@
+[
+    {
+        "label": "hideModal()",
+        "documentation": [
+            "Modal Layer를 hide시킨다."
+        ]
+    },
+    {
+        "label": "showModal(popupComponents?: Array)",
+        "documentation": [
+            "Modal Layer를 띄우고 넘어온 componentId는 popup(show)처리한다.",
+            "*@param* `popupComponents` &mdash; Popup할 Component Id Array"
+        ]
+    }
+]

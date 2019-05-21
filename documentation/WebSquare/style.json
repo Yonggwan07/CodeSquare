@@ -1,0 +1,20 @@
+[
+    {
+        "label": "getSize(Element: Element, sizeName: String): Number",
+        "documentation": [
+            "컴포넌트의 크기 값을 반환합니다.",
+            "*@param* `Element` &mdash; 설정할 Element",
+            "*@param* `sizeName` &mdash; 위치 값의 종류",
+            "*@return* \n크기값 반환"
+        ]
+    },
+    {
+        "label": "setSize(element: Element, width: Integer, heigth: Integer)",
+        "documentation": [
+            "Element의 크기를 설정합니다.",
+            "*@param* `element` &mdash; 설정할 Element",
+            "*@param* `width` &mdash; 새로 설정할 컴포넌트의 width값",
+            "*@param* `heigth` &mdash; 새로 설정할 컴포넌트의 height값"
+        ]
+    }
+]
