@@ -88,7 +88,18 @@ export class WsHoverProvider implements HoverProvider {
 
             case "Method":
                 let mIdx = -1;
-                const methods = documentation[objType];
+
+                let methods: any = "";
+
+                documentation.components.forEach(element => {
+
+                    if (element['type'] == objType)
+                        methods = JSON.parse(element['documentation']);
+
+                });
+
+                if (methods === undefined || methods === "")
+                    return undefined;
 
                 for (let i = 0; i < methods.length; i++) {
 

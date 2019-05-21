@@ -1,12 +1,15 @@
 import { window, TextDocument } from "vscode";
-import { IObject, IObjectDetail } from './structure'
+import { IObject, IObjectDetail, IDoc } from './structure'
 
 import * as xml2js from 'xml2js';
 import fs = require('fs');
 import os = require('os');
 
-const docJson = require('../documentation.json');
-export const documentation = docJson;
+let docComponents: IDoc[] = [];
+
+export let documentation = {
+    components: docComponents
+}
 
 export const docLink = "https://docs.inswave.com/support/api/w5_sp2/5.0_2.3503B.20190305.163115/";
 export const docPrefix = "WebSquare.uiplugin.";
@@ -245,6 +248,20 @@ export function isWsDocument(): Boolean {
     });
 
     return retVal;
+}
+
+export function parseDocumentation() {
+
+    fs.readdirSync(__dirname + '/../documentation/components').forEach(element => {
+
+        const json = fs.readFileSync(__dirname + '/../documentation/components/' + element).toString();
+
+        docComponents.push({
+            type: element.substring(0, element.length - 5),
+            documentation: json
+        });
+
+    });
 }
 
 /**

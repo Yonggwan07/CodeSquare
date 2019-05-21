@@ -4,7 +4,7 @@ import { WsObjectCompletionProvider } from './features/WsObjectCompletionProvide
 import { WsMethodCompletionProvider } from './features/WsMethodCompletionProvider';
 import { WsSignatureHelpProvider } from './features/WsSignatureHelpProvider';
 import { WsHoverProvider } from './features/WsHoverProvider';
-import { wsParseObjectInfo, isWsDocument } from './parser';
+import { wsParseObjectInfo, isWsDocument, parseDocumentation } from './parser';
 import { WorkspaceContext } from './WorkspaceContext';
 
 // this method is called when your extension is activated
@@ -20,6 +20,9 @@ export function activate(context: vscode.ExtensionContext) {
 			wsParseObjectInfo();
 		}
 	}
+
+	// Parsing WebSquare Documentation
+	parseDocumentation();
 
 	context.subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(

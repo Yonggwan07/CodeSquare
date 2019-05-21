@@ -22,7 +22,14 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
         }
 
         // Method 목록
-        const methods = documentation[objType];
+        let methods: any = "";
+
+        documentation.components.forEach(element => {
+
+            if (element['type'] == objType)
+                methods = JSON.parse(element['documentation']);
+
+        });
 
         for (let i = 0; i < methods.length; i++) {
             const methodName = methods[i]['label'].substring(0, methods[i]['label'].indexOf('('));

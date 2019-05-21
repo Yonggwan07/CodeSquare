@@ -15,3 +15,8 @@ export interface IObjectDetail {
     name: string;
     dataType: string;
 }
+
+export interface IDoc {
+    type: string;
+    documentation: string;
+}

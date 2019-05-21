@@ -29,7 +29,16 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
         }
 
         let mIdx = -1;  // Method Index
-        const methods = documentation[objType];
+        
+        let methods: any = "";
+
+        documentation.components.forEach(element => {
+
+            if (element['type'] == objType)
+                methods = JSON.parse(element['documentation']);
+
+        });
+
         const linePrefix = document.lineAt(position).text.substr(0, position.character);
 
         // Method 목록에서 해당되는 Method를 검색
