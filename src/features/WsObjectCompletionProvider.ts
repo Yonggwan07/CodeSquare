@@ -1,6 +1,6 @@
 'use strict';
 
-import { TextDocument, ProviderResult, CompletionItem, CompletionItemProvider, CompletionItemKind, MarkdownString } from "vscode";
+import { ProviderResult, CompletionItem, CompletionItemProvider, CompletionItemKind, MarkdownString } from "vscode";
 import { docObjects } from '../parser';
 
 // Websquare Object Completion Provider Class
@@ -17,7 +17,6 @@ export class WsObjectCompletionProvider implements CompletionItemProvider {
         // $w
         const w = new CompletionItem('$w', CompletionItemKind.Class);
         w.detail = '$w';
-        w.documentation = 'WebSquare에서 많이 쓰이는 Util성 API를 제공한다.\n본래는 WebSquare 객체 하위로 패키지 단위로 API가 구성되있으며 개발자의 편의성을 위해 API를 단축하여 제공하고 있다.';
         retCompletionItems.push(w);
 
         // WebSquare

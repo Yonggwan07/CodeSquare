@@ -52,7 +52,7 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
 
             appendToCompletionItem(methods, retCompletionItems, '$w');
 
-        } else if (objType === 'WebSquare' && !objType.match(/\./)) {    // WebSquare Utils
+        } else if (objType === 'WebSquare') {    // WebSquare
             utils_WebSquare.forEach(util => {
                 const comItem = new CompletionItem(util, CompletionItemKind.Class);
                 comItem.detail = "WebSquare." + util;
@@ -72,7 +72,7 @@ export class WsMethodCompletionProvider implements CompletionItemProvider {
                         methods = JSON.parse(element['documentation']);
                     }
                 });
-            } else if (objType.match('WebSquare.')) {  // WebSquare Utils 인 경우
+            } else if (objType.match('WebSquare.')) {  // WebSquare
                 const type = objType.substring(objType.indexOf('.') + 1);
 
                 documentation.WebSquare.forEach(element => {
@@ -108,7 +108,7 @@ function appendToCompletionItem(list: any[], completionItem: CompletionItem[], o
         }
 
         // WebSquare API 문서 Link
-        if (objType.match('WebSquare.') || objType.match(/\$w/)) {
+        if (objType.match(/\$w/) || objType.match('WebSquare')) {
             md.appendMarkdown("@Link &mdash; [" + methodName + "]("
                 + docLink + objType + "/" + objType + ".html#" + methodName + ")");
         } else {

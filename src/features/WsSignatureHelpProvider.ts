@@ -1,6 +1,6 @@
 'use strict';
 
-import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation, Range } from 'vscode';
+import { SignatureHelpProvider, TextDocument, Position, ProviderResult, SignatureHelp, SignatureInformation, ParameterInformation } from 'vscode';
 import { getObjectType } from '../util';
 import { docObjects, documentation } from '../parser';
 
@@ -38,7 +38,7 @@ export class WsSignatureHelpProvider implements SignatureHelpProvider {
         let methods: any = "";
 
         // Get Methods List
-        if (objType.match(/\$w/)) {
+        if (objType.match(/\$w/)) { // $w
 
             documentation.$w.forEach(element => {
 

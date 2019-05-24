@@ -1,6 +1,6 @@
 'use strict';
 
-import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownString, Range } from "vscode";
+import { HoverProvider, TextDocument, Position, ProviderResult, Hover, MarkdownString } from "vscode";
 import { docObjects, documentation } from "../parser";
 import { utils_w, utils_WebSquare, docLink, docPrefix } from "../util";
 
@@ -33,6 +33,7 @@ export class WsHoverProvider implements HoverProvider {
         }
 
         // Hover중인 word가 Object인지 Method인지 구분
+        // Hover 중인 문구 다음 문자
         const suffix = document.lineAt(position.line).text.charAt(hoveredWordRange.end.character);
         if (suffix === '(') {
             wordType = "Method";
@@ -49,7 +50,6 @@ export class WsHoverProvider implements HoverProvider {
                     new Position(position.line, document.lineAt(position.line).text.lastIndexOf(objName) - 1), /[A-Za-z0-9_\$]+/));
 
                 objName = preword + '.' + objName;
-
                 objType = objName;
                 objIdx = 1;
             } else if (objName === '$w') {
@@ -62,7 +62,7 @@ export class WsHoverProvider implements HoverProvider {
             objName = hoveredWord;
         }
 
-        // Object의 Type과 Index를 확인
+        // WebSquare Utils ('$w', 'WebSquare')이 아닌 경우 Object의 Type과 Index를 확인
         if (objType === '') {
             for (let i = 0; i < docObjects.length; i++) {
 
@@ -105,7 +105,7 @@ export class WsHoverProvider implements HoverProvider {
 
                 let methods: any = "";
 
-                if (objType.match(/\$w/)) {
+                if (objType.match(/\$w/)) { // '$w'
                     const type = objType.substring(objType.indexOf('.') + 1);
 
                     documentation.$w.forEach(element => {
@@ -113,7 +113,7 @@ export class WsHoverProvider implements HoverProvider {
                             methods = JSON.parse(element['documentation']);
                         }
                     });
-                } else if (objType.match('WebSquare.')) {  // WebSquare Utils 인 경우
+                } else if (objType.match('WebSquare.')) {  // 'WebSquare'
                     const type = objType.substring(objType.indexOf('.') + 1);
 
                     documentation.WebSquare.forEach(element => {
@@ -134,7 +134,6 @@ export class WsHoverProvider implements HoverProvider {
                 }
 
                 for (let i = 0; i < methods.length; i++) {
-
                     if (methodName === methods[i]['label'].substring(0, methods[i]['label'].indexOf('('))) {
                         mIdx = i;
                         break;
@@ -145,7 +144,7 @@ export class WsHoverProvider implements HoverProvider {
                     return undefined;
                 }
 
-                if (objType.match(/\$w/) || objType.match('WebSquare.')) {  // $w 또는 WebSquare Utils
+                if (objType.match(/\$w/) || objType.match('WebSquare.')) {  // $w 또는 WebSquare
                     md.appendCodeblock("(method) " + objType + '.' + methods[mIdx]['label'], 'javascript');
                 } else {    // Object
                     md.appendCodeblock("(method) " + docObjects[objIdx]['type'] + '.' + methods[mIdx]['label'], 'javascript');

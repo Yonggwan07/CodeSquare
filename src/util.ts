@@ -1,4 +1,4 @@
-import { TextDocument, Position, Range } from "vscode";
+import { TextDocument, Position } from "vscode";
 import { docObjects } from "./parser";
 
 export const utils_w = ['data', 'local', 'top'];
