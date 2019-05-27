@@ -105,7 +105,7 @@
         ]
     },
     {
-        "label": "getCheckedIndexes(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "label": "getCheckedIndexes(options: JSON): Array",
         "documentation": [
             "checkbox가 체크된 노드들의 index(초기 로딩시 설정)를 배열에 담아 반환한다.로딩 후 노드의 순서가 변경되면 index가 화면에 보여지는 순서와 다르게 반환될 수 있다.",
             "*@param* `options` &mdash; hierarchy를 포함한 JSON",
@@ -113,7 +113,7 @@
         ]
     },
     {
-        "label": "getCheckedLabels(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "label": "getCheckedLabels(options: JSON): Array",
         "documentation": [
             "checkbox가 체크된 노드들의 label을 배열에 담아 반환한다.",
             "*@param* `options` &mdash; hierarchy를 포함한 JSON",
@@ -121,7 +121,7 @@
         ]
     },
     {
-        "label": "getCheckedNodes(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "label": "getCheckedNodes(options: JSON): Array",
         "documentation": [
             "checkbox가 체크된 노드들을 배열에 담아 반환한다.로딩 후 노드의 순서가 변경되면 index가 화면에 보여지는 순서와 다르게 반환될 수 있다.",
             "*@param* `options` &mdash; hierarchy를 포함한 JSON",
@@ -129,7 +129,7 @@
         ]
     },
     {
-        "label": "getCheckedValues(options: JSON> options hierarchy를 포함한 JSON\n | <Boolean>  options.hierarchy ): Array",
+        "label": "getCheckedValues(options: JSON): Array",
         "documentation": [
             "checkbox가 체크된 노드들의 value를 배열에 담아 반환한다.",
             "*@param* `options` &mdash; hierarchy를 포함한 JSON",
