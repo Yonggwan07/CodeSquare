@@ -62,9 +62,8 @@ export function wsParseJavascript(): string {
     }
 
     // 파싱된 데이터를 통해 임시파일 생성
-    let originName = originDoc.fileName;
-    let jsFile = originName.replace(/.xml/, ".js");
-    jsFile = [jsFile.slice(0, jsFile.length - 3), " (CodeSquare)", jsFile.slice(jsFile.length - 3)].join('');
+    let jsFile = originDoc.fileName.replace(/.xml/, ".js");
+    jsFile = jsFile.slice(0, jsFile.length - 3) + " (CodeSquare)" + jsFile.slice(jsFile.length - 3);
     jsFile = jsFile.substring(jsFile.lastIndexOf("\\"), jsFile.length);
 
     jsFilePath += jsFile;
