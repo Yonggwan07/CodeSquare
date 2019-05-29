@@ -6,11 +6,11 @@ import fs = require('fs');
 import os = require('os');
 
 // API Documentation
-let doc$w: IDoc[] = [];
-let docWebSquare: IDoc[] = [];
-let docComponents: IDoc[] = [];
+const doc$w: IDoc[] = [];
+const docWebSquare: IDoc[] = [];
+const docComponents: IDoc[] = [];
 
-export let documentation = {
+export const documentation = {
     $w: doc$w,
     WebSquare: docWebSquare,
     components: docComponents
@@ -19,8 +19,8 @@ export let documentation = {
 export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 export let originDocs: TextDocument[] = []; // 원본 xml 파일
 
-export const startRegex = /<script type="(text\/)?javascript"><!\[CDATA\[/g;
-export const endRegex = /\]\]><\/script>/g;
+const isWsRegex = /xmlns:w2.*inswave.*websquare/;
+const regex = /<(script)\s+type="(text\/)?javascript">\s*<!\[CDATA\[([\s\S]*)(\]\]>\s*<\/\1>)/i;
 
 // 파싱하고자 하는 Websquare Component List
 const ws = require('../wsComponent.json');
@@ -37,25 +37,15 @@ export function wsParseJavascript(): string {
     }
 
     let originDoc = window.activeTextEditor.document;
-
-    originDocs.push(originDoc);
-    let pickedDoc = originDoc.getText();
-
-    let startIdx = pickedDoc.search(startRegex);
-    let endIdx = pickedDoc.search(endRegex);
-
-    if (startIdx === -1) {
+    if (!originDoc.getText().match(isWsRegex)) {
         window.showErrorMessage("This is not Websquare Format document.");
         return '';
     } else {
-        let matches = pickedDoc.match(startRegex);
-        startIdx += matches ? matches[0].length : 0;
+        originDocs.push(originDoc);
     }
 
-    let pickedJS = pickedDoc.substring(startIdx, endIdx);
-    pickedJS = pickedJS.trimRight();
-
-    if (pickedJS === null) {
+    const matches = originDoc.getText().match(regex);
+    if (!matches) {
         return '';
     }
 
@@ -79,7 +69,7 @@ export function wsParseJavascript(): string {
 
     jsFilePath += jsFile;
 
-    fs.writeFile(jsFilePath, pickedJS, (err) => {
+    fs.writeFile(jsFilePath, matches[3], (err) => {
         if (err) {
             throw err;
         }
