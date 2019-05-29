@@ -3,7 +3,7 @@
 import fs = require('fs');
 
 import { TextDocument, window, workspace, WorkspaceEdit, Range } from 'vscode';
-import { wsParseObjectInfo, docObjects, wsParseJavascript, originDocs, startWords, endWord } from './parser';
+import { wsParseObjectInfo, docObjects, wsParseJavascript, originDocs, startRegex, endRegex } from './parser';
 
 let jsDocs: TextDocument[] = [];			// 임시 js 파일
 
@@ -76,25 +76,19 @@ export class WorkspaceContext {
         for (let lineNumber = 0; lineNumber < originDoc.lineCount; lineNumber++) {
             let lineText = originDoc.lineAt(lineNumber);
 
-            let tests = -1;
+            let matches;
 
-            if (lineText.text.indexOf(startWords[0]) > -1) {
-                tests = lineText.text.indexOf(startWords[0]);
-                startWord = startWords[0];
-            } else {
-                tests = lineText.text.indexOf(startWords[1]);
-                startWord = startWords[1];
-            }
+            matches = lineText.text.match(startRegex);
 
-            if (tests > -1) {
+            if (matches !== null && !matches.index) {
+                startWord = matches[0];
                 startLine = lineNumber;
             }
 
-            tests = lineText.text.indexOf(endWord);
+            matches = lineText.text.match(endRegex);
 
-            if (tests > -1) {
+            if (matches !== null && !matches.index) {
                 endLine = lineNumber;
-
                 break;
             }
         }

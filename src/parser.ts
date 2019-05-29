@@ -19,9 +19,8 @@ export let documentation = {
 export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, dataList...)
 export let originDocs: TextDocument[] = []; // 원본 xml 파일
 
-export const startWords: string[] = ["<script type=\"javascript\"><![CDATA[",
-    "<script type=\"text/javascript\"><![CDATA["];
-export const endWord = "]]></script>";
+export const startRegex = /<script type="(text\/)?javascript"><!\[CDATA\[/g;
+export const endRegex = /\]\]><\/script>/g;
 
 // 파싱하고자 하는 Websquare Component List
 const ws = require('../wsComponent.json');
@@ -42,25 +41,15 @@ export function wsParseJavascript(): string {
     originDocs.push(originDoc);
     let pickedDoc = originDoc.getText();
 
-    let startIdx = -1;
-
-    if (pickedDoc.indexOf(startWords[0]) !== -1 ||
-        pickedDoc.indexOf(startWords[1]) !== -1) {
-
-        if (pickedDoc.indexOf(startWords[0]) > -1) {
-            startIdx = pickedDoc.indexOf(startWords[0])	// javascript
-                + new String(startWords[0]).length;
-        } else {
-            startIdx = pickedDoc.indexOf(startWords[1])	// text/javascript
-                + new String(startWords[1]).length;
-        }
-
-    }
-    let endIdx = pickedDoc.indexOf(endWord, startIdx);
+    let startIdx = pickedDoc.search(startRegex);
+    let endIdx = pickedDoc.search(endRegex);
 
     if (startIdx === -1) {
         window.showErrorMessage("This is not Websquare Format document.");
         return '';
+    } else {
+        let matches = pickedDoc.match(startRegex);
+        startIdx += matches !== null ? matches[0].length : 0;
     }
 
     let pickedJS = pickedDoc.substring(startIdx, endIdx);
