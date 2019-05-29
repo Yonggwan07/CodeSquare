@@ -75,7 +75,7 @@ export class WorkspaceContext {
             return;
         }
 
-        let startWord = '';
+        let startIdx = 0;
         let endIdx = 0;
 
         for (let lineNumber = 0; lineNumber < originDoc.lineCount; lineNumber++) {
@@ -84,7 +84,7 @@ export class WorkspaceContext {
             let matches;
             
             if ((matches = lineText.text.match(startRegex)) !== null) {
-                startWord = matches[0];
+                startIdx = matches[0].length;
                 startLine = lineNumber;
             }
 
@@ -97,7 +97,7 @@ export class WorkspaceContext {
 
         let jsText = jsDoc.getText();
 
-        we.replace(originDoc.uri, new Range(startLine, startWord.length, endLine, endIdx), jsText);
+        we.replace(originDoc.uri, new Range(startLine, startIdx, endLine, endIdx), jsText);
 
         workspace.applyEdit(we);
         
