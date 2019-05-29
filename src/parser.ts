@@ -49,7 +49,7 @@ export function wsParseJavascript(): string {
         return '';
     } else {
         let matches = pickedDoc.match(startRegex);
-        startIdx += matches !== null ? matches[0].length : 0;
+        startIdx += matches ? matches[0].length : 0;
     }
 
     let pickedJS = pickedDoc.substring(startIdx, endIdx);

@@ -80,14 +80,14 @@ export class WorkspaceContext {
 
             matches = lineText.text.match(startRegex);
 
-            if (matches !== null && !matches.index) {
+            if (matches) {
                 startWord = matches[0];
                 startLine = lineNumber;
             }
 
             matches = lineText.text.match(endRegex);
 
-            if (matches !== null && !matches.index) {
+            if (matches) {
                 endLine = lineNumber;
                 break;
             }
