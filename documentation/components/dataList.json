@@ -49,7 +49,7 @@
         ]
     },
     {
-        "label": "getCellData(rowIndex: Number , colInfo: Number||String): String ",
+        "label": "getCellData(rowIndex: Number , colInfo: Number | String): String ",
         "documentation": [
             "rowIndex와 colInfo( 컬럼의 index 또는 ID )에 해당하는 셀의 데이터를 반환한다.",
             "*@param* `rowIndex` &mdash; 셀의 행 index",
@@ -58,7 +58,7 @@
         ]
     },
     {
-        "label": "getColData(colInfo: Number||String): Array",
+        "label": "getColData(colInfo: Number | String): Array",
         "documentation": [
             "컬럼의 index 또는 ID에 해당하는 열의 데이터(filter나 sort가 적용 되지 않은)를 배열로 반환한다.",
             "*@param* `colInfo` &mdash; 데이터를 가져올 열 index 혹은 컬럼 ID",
@@ -66,7 +66,7 @@
         ]
     },
     {
-        "label": "getColumnDistinctDataArray(colInfo: Number||String): Array",
+        "label": "getColumnDistinctDataArray(colInfo: Number | String): Array",
         "documentation": [
             "컬럼의 index 또는 ID에 해당하는 컬럼의 데이터를 중복 데이터를 제거하여 오름차순으로 정렬 된 data를 배열로 반환한다.",
             "*@param* `colInfo` &mdash; index 또는 ID",
@@ -98,7 +98,7 @@
         ]
     },
     {
-        "label": "getColumnName(columnInfo: String||Number): String",
+        "label": "getColumnName(columnInfo: String | Number): String",
         "documentation": [
             "DataList에 정의 된 컬럼의 index 또는 ID 를 받아 컬럼에 정의 된 name을 반환한다.",
             "*@param* `columnInfo ` &mdash; 컬럼의 ID 또는 index",
@@ -219,7 +219,7 @@
         ]
     },
     {
-        "label": "getMatchedArray(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): JSON",
+        "label": "getMatchedArray(colInfo: Number | String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): JSON",
         "documentation": [
             "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colInfo에 해당하는 값이 dataValue와 같은 행들의 컬럼 정보 및 data를 담은 JSON을 반환한다.",
             "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
@@ -231,7 +231,7 @@
         ]
     },
     {
-        "label": "getMatchedColumnData(matchCol: Number||String, dataValue: String, targetCol: Number||String, exactMatch?: Booleanm, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "label": "getMatchedColumnData(matchCol: Number | String, dataValue: String, targetCol: Number | String, exactMatch?: Booleanm, stRowIndex?: Number, lastRowIndex?: Number): Array",
         "documentation": [
             "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 matchCol에 해당하는 값이 dataValue와 같은 행들을 찾아서 targetCol에 해당하는 값을 1차원 배열로 반환한다.",
             "*@param* `matchCol` &mdash; 데이터를 검색 할 컬럼 index 또는 컬럼 ID",
@@ -244,7 +244,7 @@
         ]
     },
     {
-        "label": "getMatchedData(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "label": "getMatchedData(colInfo: Number | String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
         "documentation": [
             "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 colInfo의 값이 dataValue와 같은 행들의 data를 2차원 배열로 반환한다.",
             "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
@@ -256,7 +256,7 @@
         ]
     },
     {
-        "label": "getMatchedIndex(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "label": "getMatchedIndex(colInfo: Number | String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
         "documentation": [
             "stRowIndex부터 lastRowIndex 까지의 범위의 행중에서 conInfo의 값이 dataValue와 같은 행들의 index를 반환한다.",
             "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
@@ -268,7 +268,7 @@
         ]
     },
     {
-        "label": "getMatchedJSON(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
+        "label": "getMatchedJSON(colInfo: Number | String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): Array",
         "documentation": [
             "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colInfo의 값이 dataValue와 같은 행들의 JSON 데이터를 배열에 담아 반환한다.",
             "*@param* `colInfo` &mdash; 데이터를 검색할 열 index 또는 id",
@@ -280,7 +280,7 @@
         ]
     },
     {
-        "label": "getMatchedXML(colInfo: Number||String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): XML",
+        "label": "getMatchedXML(colInfo: Number | String, dataValue: String, exactMatch?: Boolean, stRowIndex?: Number, lastRowIndex?: Number): XML",
         "documentation": [
             "stRowIndex부터 lastRowIndex까지의 범위의 행중에서 colInfo의 값이 dataValue와 같은 행들의 data를 XML로 반환한다.",
             "*@param* `colInfo` &mdash; 데이터를 검사할 컬럼 index 혹은 컬럼 ID",
@@ -379,7 +379,7 @@
         ]
     },
     {
-        "label": "getOriginalCellData(rowIndex: Number, colIndex: String||Number): String",
+        "label": "getOriginalCellData(rowIndex: Number, colIndex: String | Number): String",
         "documentation": [
             "rowIndex와 colInfo에 해당하는 셀의 초기 데이터(최초에 설정된 데이터)를 반환한다.",
             "*@param* `rowIndex` &mdash; 셀의 초기 행 index",
@@ -520,7 +520,7 @@
         ]
     },
     {
-        "label": "getUnmatchedColumnData(matchCol: Number||String, dataValue: String, targetCol: Number||String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "label": "getUnmatchedColumnData(matchCol: Number | String, dataValue: String, targetCol: Number | String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
         "documentation": [
             "matchCol에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들을 찾아서 targetCol에 해당하는 컬럼의 데이터들를 배열로 반환한다.",
             "*@param* `matchCol` &mdash; 데이터를 검사할 컬럼 index 또는 id",
@@ -533,7 +533,7 @@
         ]
     },
     {
-        "label": "getUnmatchedData(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "label": "getUnmatchedData(col: Number | String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
         "documentation": [
             "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 data를 배열 변환하여 배열에 담아 반환한다.",
             "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
@@ -545,7 +545,7 @@
         ]
     },
     {
-        "label": "getUnmatchedIndex(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "label": "getUnmatchedIndex(col: Number | String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
         "documentation": [
             "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 index를 배열로 반환한다.",
             "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
@@ -557,7 +557,7 @@
         ]
     },
     {
-        "label": "getUnmatchedJSON(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
+        "label": "getUnmatchedJSON(col: Number | String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): Array",
         "documentation": [
             "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 data를 JSON으로 변환하여 배열에 담아 반환한다.",
             "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
@@ -569,7 +569,7 @@
         ]
     },
     {
-        "label": "getUnmatchedXML(col: Number||String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): XML",
+        "label": "getUnmatchedXML(col: Number | String, dataValue: String, exactMatch: Boolean, stRowIndex: Number, lastRowIndex: Number): XML",
         "documentation": [
             "col에 해당하는 컬럼의 rowIndex가 stRowIndex부터 lastRowIndex 까지의 범위중에서 데이터가 dataValue와 다른 행들의 데이터를 XML로 반환한다.",
             "*@param* `col` &mdash; 데이터를 검사할 컬럼 index 또는 id",
@@ -689,7 +689,7 @@
         ]
     },
     {
-        "label": "modifyMatchedStatus(col: Number||String, dataValue: String, status: String)",
+        "label": "modifyMatchedStatus(col: Number | String, dataValue: String, status: String)",
         "documentation": [
             "모든 행의 상태를 변경 한다.",
             "*@param* `col` &mdash; 검사할 컬럼의 index 또는 id",
@@ -718,7 +718,7 @@
         ]
     },
     {
-        "label": "removeColumnFilter(col: Number||String)",
+        "label": "removeColumnFilter(col: Number | String)",
         "documentation": [
             "col에 해당하는 컬럼에 적용된 filter를 삭제한다.   \n주의 - 여러 컬럼에 setColumnFilter를 사용한 경우, 해제되지 않는 filter의 operationType(AND, OR 조건)에 따른 결과를 유의하여야 한다.",
             "*@param* `col` &mdash; filter를 삭제할 컬럼의 index 또는 id"
@@ -778,7 +778,7 @@
         ]
     },
     {
-        "label": "setCellData(rowIndex: Number, colIndex: Number||String, data: String)",
+        "label": "setCellData(rowIndex: Number, colIndex: Number | String, data: String)",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀에 data를 셋팅한다.",
             "*@param* `rowIndex` &mdash; 행 index",
@@ -787,7 +787,7 @@
         ]
     },
     {
-        "label": "setColumnDefaultValue(colIndex: Number||String, defaultValue: String)",
+        "label": "setColumnDefaultValue(colIndex: Number | String, defaultValue: String)",
         "documentation": [
             "colIndex에 해당하는 열의 기본값을 defaultValue로 설정한다.   \ninsertRow API 또는 초기 data를 set할 때 컬럼에 값이 할당되지 않을 때 dafaultValue의 값을 할당한다.",
             "*@param* `colIndex` &mdash; 열의 index 또는 id",
@@ -802,7 +802,7 @@
         ]
     },
     {
-        "label": "setData(arr: Array||String, append?: Boolean, columnArr?: Array||String)",
+        "label": "setData(arr: Array | String, append?: Boolean, columnArr?: Array | String)",
         "documentation": [
             "1차원 배열 데이터를 set 또는 append 한다. (행의 상태는 초기상태인 \"R\"로 변경된다. 데이터의 순서를 지정해주는 columnArr를 사용할 경우, append는 항상 넣어줘야한다.)",
             "*@param* `arr` &mdash; 1차원 배열 또는 배열 형태의 문자열(소스 안쪽에서 array로 변환)",

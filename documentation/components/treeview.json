@@ -47,7 +47,7 @@
         ]
     },
     {
-        "label": "checkByValue(value: String, checkValue: Boolean||String, childCheck?: Boolean)",
+        "label": "checkByValue(value: String, checkValue: Boolean | String, childCheck?: Boolean)",
         "documentation": [
             "value를 기반으로 노드(항목)을 찾아 checkbox의 value를 설정한다.trueValue, falseValue 속성의 값을 참조하여 check되며 해당 속성이 정의되지 않은 경우 각 true, false로 제어 가능하다.",
             "*@param* `value` &mdash; 대상 노드의 value",
@@ -56,7 +56,7 @@
         ]
     },
     {
-        "label": "collapseNode(value: String||Number, hierarchy?: Boolean)",
+        "label": "collapseNode(value: String | Number, hierarchy?: Boolean)",
         "documentation": [
             "value 또는 index를 기반으로 찾은 노드(항목)를 접는다. index는 1부터 시작한다.",
             "*@param* `value` &mdash; 대상 노드의 value 또는 index (index는 1부터 시작한다.)",
@@ -73,7 +73,7 @@
         ]
     },
     {
-        "label": "expandNode(value: String||Number, hierarchy?: Boolean)",
+        "label": "expandNode(value: String | Number, hierarchy?: Boolean)",
         "documentation": [
             "value 또는 index를 기반으로 찾은 노드(항목)를 확장한다. index는 1부터 시작한다.",
             "*@param* `value` &mdash; value 대상 노드의 value 또는 index (index는 1부터 시작한다.)",
@@ -352,7 +352,7 @@
         ]
     },
     {
-        "label": "setLabelStyle(index: Number||String, styleName: String, styleValue: String, applyChildNodes?: Boolean)",
+        "label": "setLabelStyle(index: Number | String, styleName: String, styleValue: String, applyChildNodes?: Boolean)",
         "documentation": [
             "해당 node의 label style(node의 글자색, 글자크기, 글꼴 등)을 변경합니다.",
             "*@param* `index` &mdash; 노드의 index 또는 value",

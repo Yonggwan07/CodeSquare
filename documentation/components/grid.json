@@ -1634,7 +1634,7 @@
         ]
     },
     {
-        "label": "spanAll(openFlag: Boolean||Number)",
+        "label": "spanAll(openFlag: Boolean | Number)",
         "documentation": [
             "drilldown을 사용하는 grid에서 전체 데이터를 모두 펼치거나 모두 접는다. 인자로 숫자를 넣는 경우 해당 depth까지 데이터를 펼친다.",
             "*@param* `openFlag` &mdash; [true, false]open 여부, 숫자를 넣는 경우 해당 depth까지 데이터를 펼친다."

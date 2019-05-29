@@ -78,7 +78,7 @@
         ]
     },
     {
-        "label": "getCellBackgroundColor(rowIndex: Number, colIndex: String||Number): String",
+        "label": "getCellBackgroundColor(rowIndex: Number, colIndex: String | Number): String",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀의 배경색을 반환한다. API로 별도의 BackgroundColor를 지정하지 않은 경우 \"\"(empty string)이 반환된다.",
             "*@param* `rowIndex` &mdash; 배경색을 반환할 행 index",
@@ -87,7 +87,7 @@
         ]
     },
     {
-        "label": "getCellChecked(rowIndex: Number, colIndex: Number||String): Boolean",
+        "label": "getCellChecked(rowIndex: Number, colIndex: Number | String): Boolean",
         "documentation": [
             "rowIndex와 colIndex로 해당하는 셀의 check여부를 반환한다.",
             "*@param* `rowIndex` &mdash; 셀의 행 index",
@@ -96,7 +96,7 @@
         ]
     },
     {
-        "label": "getCellColor(rowIndex: Number, colIndex: String||Number): String",
+        "label": "getCellColor(rowIndex: Number, colIndex: String | Number): String",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀의 글자색을 반환한다. API로 별도의 글자색을 지정하지 않은 경우 \"\"(empty string)이 반환된다.",
             "*@param* `rowIndex` &mdash; 글자색을 반환할 행 index",
@@ -105,7 +105,7 @@
         ]
     },
     {
-        "label": "getCellDisabled(rowIndex: Number, colIndex: String||Number): Boolean",
+        "label": "getCellDisabled(rowIndex: Number, colIndex: String | Number): Boolean",
         "documentation": [
             "colIndex와 rowIndex 해당하는 셀의 disabled속성 값을 반환한다. disable을 별도로 지정하지 않은 경우 \"\"(empty string)이 반환된다.",
             "*@param* `rowIndex` &mdash; disabled속성을 가져올 행 index",
@@ -114,7 +114,7 @@
         ]
     },
     {
-        "label": "getCellDisplayData(rowIndex: Number, colIndex: String||Number): String",
+        "label": "getCellDisplayData(rowIndex: Number, colIndex: String | Number): String",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀의 화면에 보이는 데이터를 반환한다.(displayFormat등이 적용 된 data)",
             "*@param* `rowIndex` &mdash; 셀의 행 번호",
@@ -123,7 +123,7 @@
         ]
     },
     {
-        "label": "getCellPosition(row: Number, colIndex: String||Number, propertyName: String): Number",
+        "label": "getCellPosition(row: Number, colIndex: String | Number, propertyName: String): Number",
         "documentation": [
             "셀의 위치 정보(top 또는 left)를 반환한다.",
             "*@param* `row` &mdash; 셀의 행 index(세로 스크롤 위치와는 무관하게 현재 그리드에서 최상단 행에 위치한 셀의 행 index를 0으로 보고 계산해야 한다)",
@@ -133,7 +133,7 @@
         ]
     },
     {
-        "label": "getCellReadOnly(rowIndex: Number, colIndex: String||Number): Boolean",
+        "label": "getCellReadOnly(rowIndex: Number, colIndex: String | Number): Boolean",
         "documentation": [
             "colIndex와 rowIndex에 해당하는 셀의 readonly속성 값을 반환한다. 별도로 readonly 속성을 지정하지 않은 경우 \"\"(empty string)을 반환한다.",
             "*@param* `rowIndex` &mdash; readonly속성을 가져올 행 index",
@@ -142,7 +142,7 @@
         ]
     },
     {
-        "label": "getCellSize(row: Number, colIndex: String||Number, sizeName: String): Number",
+        "label": "getCellSize(row: Number, colIndex: String | Number, sizeName: String): Number",
         "documentation": [
             "셀의 크기 정보(width나 height)를 반환한다.",
             "*@param* `row` &mdash; 셀의 행 index",
@@ -152,7 +152,7 @@
         ]
     },
     {
-        "label": "getCheckedData(colIndex: Number||String): Array",
+        "label": "getCheckedData(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열이 radio/checkbox일 경우 check된 행의 data를 배열로 반환한다. 해당 컬럼이 checkbox가 아닐 경우 비어있는 배열을 반환한다.",
             "*@param* `colIndex` &mdash; 열 index 또는 id",
@@ -160,7 +160,7 @@
         ]
     },
     {
-        "label": "getCheckedIndex(colIndex: Number||String): Array",
+        "label": "getCheckedIndex(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열의 inputType속성이 radio/checkbox인 경우 check된 행의 index를 배열로 반환한다.",
             "*@param* `colIndex` &mdash; 컬럼의 index 또는 id",
@@ -168,7 +168,7 @@
         ]
     },
     {
-        "label": "getCheckedJSON(colIndex: Number||String): Array",
+        "label": "getCheckedJSON(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열이 radio/checkbox일 경우 check된 행의 JSON Data를 Array에 담아 반환한다. 해당 컬럼이 checkbox가 아닐경우 비어있는 배열을 반환한다.",
             "*@param* `colIndex` &mdash; 열 index 또는 id",
@@ -176,7 +176,7 @@
         ]
     },
     {
-        "label": "getCheckedXML(colIndex: Number||String): XML",
+        "label": "getCheckedXML(colIndex: Number | String): XML",
         "documentation": [
             "colIndex에 해당하는 열이 radio/checkbox일 경우 check된 행의 data를 XML로 반환한다.",
             "*@param* `colIndex` &mdash; 열 index 또는 id",
@@ -200,7 +200,7 @@
         ]
     },
     {
-        "label": "getColumnBackgroundColor(colIndex: String||Number): String",
+        "label": "getColumnBackgroundColor(colIndex: String | Number): String",
         "documentation": [
             "colIndex에 해당하는 열의 배경색을 반환한다. API로 별도의 backgroundColor를 지정하지 않은 경우 \"\"(empty string)을 반환한다.",
             "*@param* `colIndex` &mdash; 배경색을 반환할 열 index 또는 id",
@@ -208,7 +208,7 @@
         ]
     },
     {
-        "label": "getColumnColor(colIndex: String||Number): String",
+        "label": "getColumnColor(colIndex: String | Number): String",
         "documentation": [
             "colIndex에 해당하는 열의 글자색을 반환한다. API로 별도의 글자색을 지정하지 않은 경우 \"\"(empty string)을 반환한다.",
             "*@param* `colIndex` &mdash; 글자색을 반환 할 열 index 또는 id",
@@ -216,7 +216,7 @@
         ]
     },
     {
-        "label": "getColumnDisabled(colIndex: String||Number): Boolean",
+        "label": "getColumnDisabled(colIndex: String | Number): Boolean",
         "documentation": [
             "colIndex에 해당하는 열에 disabled속성 값을 반환한다. 별도로 disable을 지정하지 않은 경우 \"\"(empty string)을 반환한다.",
             "*@param* `colIndex` &mdash; disabled속성을 가져올 열 index 또는 id",
@@ -248,7 +248,7 @@
         ]
     },
     {
-        "label": "getColumnReadOnly(colIndex: String||Number): Boolean",
+        "label": "getColumnReadOnly(colIndex: String | Number): Boolean",
         "documentation": [
             "colIndex에 해당하는 열에 적용된 readonly속성 값을 반환한다.별도의 readonly가 지정되지 않은 경우 \"\"(empty string)을 반환한다.",
             "*@param* `colIndex` &mdash; 열 index 또는 id",
@@ -256,7 +256,7 @@
         ]
     },
     {
-        "label": "getColumnType(colIndex: String||Number): String",
+        "label": "getColumnType(colIndex: String | Number): String",
         "documentation": [
             "colIndex에 해당하는 열의 inputType속성값을 반환한다.",
             "*@param* `colIndex` &mdash; column id 또는 index",
@@ -264,7 +264,7 @@
         ]
     },
     {
-        "label": "getColumnVisible(colIndex: Number||String): Boolean",
+        "label": "getColumnVisible(colIndex: Number | String): Boolean",
         "documentation": [
             "colIndex에 해당하는 열의 visible여부를 반환한다.",
             "*@param* `colIndex` &mdash; visible여부를 반환할 colunm의 index 또는 id",
@@ -286,7 +286,7 @@
         ]
     },
     {
-        "label": "getDisabled(type: String, rowIndex: Number, colIndex: Number||String): Boolean",
+        "label": "getDisabled(type: String, rowIndex: Number, colIndex: Number | String): Boolean",
         "documentation": [
             "type에 따라 세부 disabled 속성을 반환한다.type에 따른 세부 내용- all :  gridView 전체, row, column, cell 에 지정된 disabled 속성값들을 전부 체크하여 해당 cell에 적용된 실제 disabled 속성값을 반환한다.- grid : gridView 전체에 disabled 속성의 적용여부를 반환한다.- row :  해당 row에 disabled 속성의 적용여부를 반환하며 getRowDisabled API와 동일하다.  gridView 전체에 disabled속성을 넣더라도 해당 row에 disabled속성을 직접 넣은 경우가 아닌 경우 false를 반환한다.- column : 해당 column에 disabled 속성의 적용여부를 반환하며 getColumnDisabled API와 동일하다.  gridView 전체에 disabled속성을 넣더라도 해당 column에 disabled속성을 직접 넣은 경우가 아닌 경우 false를 반환한다.- cell : 해당 cell에 disabled 속성의 적용여부를 반환하며 getCellDisabled API와 동일하다.gridView 전체 또는 해당 cell을 포함하는 row나 column에 disabled속성을 넣더라도 해당 cell에 disabled속성을 직접 넣은 경우가 아닌 경우 false를 반환한다.",
             "*@param* `type` &mdash; [default:grid, row, column, cell, all]disabled 속성을 가져 올 type.",
@@ -324,7 +324,7 @@
         ]
     },
     {
-        "label": "getFooterData(footerId: String||Number, display?: String): string",
+        "label": "getFooterData(footerId: String | Number, display?: String): string",
         "documentation": [
             "footerId에 해당하는 footer의 값을 반환한다. inputType이 expression인 경우 계산된 값을 반환한다.",
             "*@param* `footerId` &mdash; footer의 id 혹은 index",
@@ -333,7 +333,7 @@
         ]
     },
     {
-        "label": "getFooterStyle(footerId: Number||String, style: String)",
+        "label": "getFooterStyle(footerId: Number | String, style: String)",
         "documentation": [
             "그리드의 footerId에 해당하는 footer의 스타일 속성값을 가져온다.",
             "*@param* `footerId` &mdash; 그리드 컬럼의 index 또는 id",
@@ -436,7 +436,7 @@
         ]
     },
     {
-        "label": "getReadOnly(type: String, rowIndex: Number, colIndex: Number||String): Boolean",
+        "label": "getReadOnly(type: String, rowIndex: Number, colIndex: Number | String): Boolean",
         "documentation": [
             "type에 따라 readOnly 속성을 반환한다.type에 따른 세부 내용- grid : gridView 전체에 readOnly 속성의 적용여부를 반환한다.- row :  해당 row에 readOnly 속성의 적용여부를 반환하며 getRowReadOnly API와 동일한다.gridView 전체에 readOnly속성을 넣더라도 해당 row에 readOnly속성을 직접 넣은 경우가 아닌 경우 false를 반환한다.- column : 해당 column에 readOnly 속성의 적용여부를 반환하며 getColumnReadOnly API와 동일하다.gridView 전체에 readOnly속성을 넣더라도 해당 column에 readOnly속성을 직접 넣은 경우가 아닌 경우 false를 반환한다.- cell : 해당 cell에 readOnly 속성의 적용여부를 반환하며 getCellReadOnly API와 동일하다.gridView 전체 또는 해당 cell을 포함하는 row나 column에 readOnly속성을 넣더라도 해당 cell에 readOnly속성을 직접 넣은 경우가 아닌 경우 false를 반환한다.- all :  gridView 전체, row, column, cell에 지정된 readOnly 속성값들을 전부 계산하여 해당 cell에 적용된 실제 readOnly 속성값을 반환한다.",
             "*@param* `type` &mdash; [default:grid, row, column, cell, all]readOnly 속성을 가져올 type",
@@ -507,7 +507,7 @@
         ]
     },
     {
-        "label": "getUncheckedData(colIndex: Number||String): Array",
+        "label": "getUncheckedData(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열이 radio/checkbox일 경우 uncheck된 행의 data를 배열로 반환한다.",
             "*@param* `colIndex` &mdash; ckeck여부를 검사할 컬럼 index 또는 id",
@@ -515,7 +515,7 @@
         ]
     },
     {
-        "label": "getUncheckedIndex(colIndex: Number||String): Array",
+        "label": "getUncheckedIndex(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열의 inputType속성이 radio/checkbox인 경우 uncheck된 행의 index를 배열로 반환한다.",
             "*@param* `colIndex` &mdash; 컬럼의 index 혹은 컬럼 id",
@@ -523,7 +523,7 @@
         ]
     },
     {
-        "label": "getUncheckedJSON(colIndex: Number||String): Array",
+        "label": "getUncheckedJSON(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열이 radio/checkbox일 경우 uncheck된 행의 data를 JSON으로 변환하여 배열에 담아 반환한다.",
             "*@param* `colIndex` &mdash; ckeckbox여부를 검사할 열 index 또는 id",
@@ -531,7 +531,7 @@
         ]
     },
     {
-        "label": "getUncheckedXML(colIndex: Number||String): XML",
+        "label": "getUncheckedXML(colIndex: Number | String): XML",
         "documentation": [
             "colIndex에 해당하는 열의 inputType속성이 radio/checkbox인 경우 uncheck된 행의 data를 XML로 반환한다.",
             "*@param* `colIndex` &mdash; 컬럼의 index 또는 id",
@@ -539,7 +539,7 @@
         ]
     },
     {
-        "label": "getVisibleColData(colIndex: Number||String): Array",
+        "label": "getVisibleColData(colIndex: Number | String): Array",
         "documentation": [
             "colIndex에 해당하는 열의 화면에 보이는 데이터(filter나 sort가 반영 된)를 배열로 반환한다.",
             "*@param* `colIndex` &mdash; 데이터를 가져올 컬럼의 index 혹은 컬럼 id",
@@ -606,7 +606,7 @@
         ]
     },
     {
-        "label": "redrawColumn(colIndex: String||Number, valid?: Boolean)",
+        "label": "redrawColumn(colIndex: String | Number, valid?: Boolean)",
         "documentation": [
             "col에 해당하는 열을 다시 그려(reset)준다.",
             "*@param* `colIndex` &mdash; 컬럼의 id 또는 index",
@@ -655,7 +655,7 @@
         ]
     },
     {
-        "label": "setCellBackgroundColor(rowIndex: Number, colIndex: Number||String, color: String)",
+        "label": "setCellBackgroundColor(rowIndex: Number, colIndex: Number | String, color: String)",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀의 배경색을 설정한다.",
             "*@param* `rowIndex` &mdash; 배경색을 설정할 행 index",
@@ -664,7 +664,7 @@
         ]
     },
     {
-        "label": "setCellChecked(rowIndex: Number, colIndex: String||Number, flag: Boolean)",
+        "label": "setCellChecked(rowIndex: Number, colIndex: String | Number, flag: Boolean)",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀의 inputType이 checkbox/radio인 경우 flag에 따라 true이면 check, false이면 uncheck해 줍니다.",
             "*@param* `rowIndex` &mdash; 셀의 행의 index",
@@ -673,7 +673,7 @@
         ]
     },
     {
-        "label": "setCellColor(rowIndex: Number, colIndex: Number||String, color: String)",
+        "label": "setCellColor(rowIndex: Number, colIndex: Number | String, color: String)",
         "documentation": [
             "rowIndex와 colIndex에 해당하는 셀의 글자색을 설정한다.",
             "*@param* `rowIndex` &mdash; 글자색을 설정할 행 index",
@@ -682,7 +682,7 @@
         ]
     },
     {
-        "label": "setCellDisabled(rowIndex: Number, colIndex: Number||String, disabled: Boolean)",
+        "label": "setCellDisabled(rowIndex: Number, colIndex: Number | String, disabled: Boolean)",
         "documentation": [
             "colIndex와 rowIndex에 해당하는 셀의 disabled속성 값을 설정한다.",
             "*@param* `rowIndex` &mdash; disabled 속성을 설정할 행 번호",
@@ -691,7 +691,7 @@
         ]
     },
     {
-        "label": "setCellReadOnly(rowIndex: Number, colIndex: Number||String, readOnly: Boolean)",
+        "label": "setCellReadOnly(rowIndex: Number, colIndex: Number | String, readOnly: Boolean)",
         "documentation": [
             "colIndex와 rowIndex에 해당하는 셀의 readonly속성 값을 설정한다.",
             "*@param* `rowIndex` &mdash; readonly 속성을 설정할 행 index",
@@ -700,7 +700,7 @@
         ]
     },
     {
-        "label": "setColumnBackgroundColor(colIndex: Number||String, color: String)",
+        "label": "setColumnBackgroundColor(colIndex: Number | String, color: String)",
         "documentation": [
             "colIndex에 해당하는 열의 배경색을 일괄 설정한다.",
             "*@param* `colIndex` &mdash; 배경색을 설정할 열 index 또는 id",
@@ -717,7 +717,7 @@
         ]
     },
     {
-        "label": "setColumnColor(colIndex: Number||String, color: String)",
+        "label": "setColumnColor(colIndex: Number | String, color: String)",
         "documentation": [
             "colIndex에 해당하는 열의 글자색을 일괄 설정한다.",
             "*@param* `colIndex` &mdash; 글자색을 설정할 열 index 또는 id",
@@ -725,7 +725,7 @@
         ]
     },
     {
-        "label": "setColumnDisabled(colIndex: Number||String, disabled: Boolean)",
+        "label": "setColumnDisabled(colIndex: Number | String, disabled: Boolean)",
         "documentation": [
             "colIndex에 해당하는 열에 disabled속성을 일괄 설정한다.",
             "*@param* `colIndex` &mdash; disabled속성을 설정할 열 index 또는 id",
@@ -740,7 +740,7 @@
         ]
     },
     {
-        "label": "setColumnReadOnly(colIndex: Number||String, readOnly: Boolean)",
+        "label": "setColumnReadOnly(colIndex: Number | String, readOnly: Boolean)",
         "documentation": [
             "colIndex에 해당하는 열에 readonly속성을 설정한다.",
             "*@param* `colIndex` &mdash; readonly속성을 설정할 열 index 또는 id",
@@ -748,7 +748,7 @@
         ]
     },
     {
-        "label": "setColumnVisible(colIndex: Number||String, colVisibleFlag: Boolean)",
+        "label": "setColumnVisible(colIndex: Number | String, colVisibleFlag: Boolean)",
         "documentation": [
             "column의 hidden 여부를 설정한다.",
             "*@param* `colIndex` &mdash; hidden 여부를 설정한 column의 index 또는 id",
@@ -756,7 +756,7 @@
         ]
     },
     {
-        "label": "setColumnWidth(colIndex: String||Number, size: Number)",
+        "label": "setColumnWidth(colIndex: String | Number, size: Number)",
         "documentation": [
             "컬럼의 width을 변경한다.",
             "*@param* `colIndex` &mdash; 폭을 변경할 column의 index 또는 id",
@@ -764,7 +764,7 @@
         ]
     },
     {
-        "label": "setDisabled(type: String, rowIndex: Number, colIndex: Number||String, disableFlag: Boolean)",
+        "label": "setDisabled(type: String, rowIndex: Number, colIndex: Number | String, disableFlag: Boolean)",
         "documentation": [
             "type에 따라 disabled 속성 값을 설정한다.",
             "*@param* `type` &mdash; [grid, row, column, cell]disabled 속성을 설정할 type",
@@ -774,7 +774,7 @@
         ]
     },
     {
-        "label": "setDisplayFormat(colIndex: Number||String, displayFormat: String)",
+        "label": "setDisplayFormat(colIndex: Number | String, displayFormat: String)",
         "documentation": [
             "컬럼의 displayFormat속성을 설정한다.displayFormat의 경우 dataList에 정의 된 컬럼의 dataType 속성에 따라 적용 범위가 다르므로 확인하여 적용해야한다.",
             "*@param* `colIndex` &mdash; 컬럼의 index 또는 id",
@@ -782,7 +782,7 @@
         ]
     },
     {
-        "label": "setDisplayFormatter(colIndex: Number||String, displayFormatter: String)",
+        "label": "setDisplayFormatter(colIndex: Number | String, displayFormatter: String)",
         "documentation": [
             "컬럼의 displayFormatter 속성을 설정한다.",
             "*@param* `colIndex` &mdash; 컬럼의 index 또는 id",
@@ -797,7 +797,7 @@
         ]
     },
     {
-        "label": "setFocusedCell(rowIndex: Number, colIndex: Number||String, editMode: Boolean)",
+        "label": "setFocusedCell(rowIndex: Number, colIndex: Number | String, editMode: Boolean)",
         "documentation": [
             "셀로 포커스(선택)를 주고 해당 셀로 이동한다.",
             "*@param* `rowIndex` &mdash; 포커스를 이동할 셀의 행 index",
@@ -813,7 +813,7 @@
         ]
     },
     {
-        "label": "setFooterData(footerId: Number||String, data: String)",
+        "label": "setFooterData(footerId: Number | String, data: String)",
         "documentation": [
             "footer의 inputType이 text인 경우 data를 footer에 넣어준다.",
             "*@param* `footerId` &mdash; footer의 index 또는 id",
@@ -821,7 +821,7 @@
         ]
     },
     {
-        "label": "setFooterDisplayFormat(footerId: Number||String, displayFormat: String)",
+        "label": "setFooterDisplayFormat(footerId: Number | String, displayFormat: String)",
         "documentation": [
             "footer의 displayFormat을 설정한다.displayFormat은 dataType속성값에 따라 동작이 다르므로 주의한다.",
             "*@param* `footerId` &mdash; 컬럼의 index 또는 id",
@@ -829,7 +829,7 @@
         ]
     },
     {
-        "label": "setFooterStyle(footerId: String||Number, style: String, value: String)",
+        "label": "setFooterStyle(footerId: String | Number, style: String, value: String)",
         "documentation": [
             "footer cell의 스타일 속성을 설정한다.",
             "*@param* `footerId` &mdash; 그리드 footer cell의 id 또는 index(rowNum 컬럼은 \"$rowNum\", rowStatus 컬럼은 \"$rowStatus\"로 지정)",
@@ -838,7 +838,7 @@
         ]
     },
     {
-        "label": "setFooterValue(footerId: String||Number, data: String)",
+        "label": "setFooterValue(footerId: String | Number, data: String)",
         "documentation": [
             "footer의 inputType이 text인 경우만 적용되며 data의 값을 footer에 설정한다.",
             "*@param* `footerId` &mdash; footer의 id 또는 index",
@@ -875,7 +875,7 @@
         ]
     },
     {
-        "label": "setHeaderBackgroundColor(headerId: String||Number, color: String)",
+        "label": "setHeaderBackgroundColor(headerId: String | Number, color: String)",
         "documentation": [
             "header 셀의 배경 색상을 설정한다.",
             "*@param* `headerId` &mdash; header cell의 id 또는 index",
@@ -883,7 +883,7 @@
         ]
     },
     {
-        "label": "setHeaderColor(headerId: String||Number, color: String)",
+        "label": "setHeaderColor(headerId: String | Number, color: String)",
         "documentation": [
             "header 셀의 글씨 색상을 설정한다.",
             "*@param* `headerId` &mdash; header cell의 id 또는 index",
@@ -891,7 +891,7 @@
         ]
     },
     {
-        "label": "setHeaderDisabled(headerId: Number||String, disabled: Boolean)",
+        "label": "setHeaderDisabled(headerId: Number | String, disabled: Boolean)",
         "documentation": [
             "header의 disalbled를 설정한다.",
             "*@param* `headerId` &mdash; header의 index 또는 id",
@@ -925,7 +925,7 @@
         ]
     },
     {
-        "label": "setHeaderStyle(headerId: String||Number, style: String, value: String)",
+        "label": "setHeaderStyle(headerId: String | Number, style: String, value: String)",
         "documentation": [
             "그리드의 headerId에 해당하는 header cell의 스타일을 설정한다.",
             "*@param* `headerId` &mdash; 그리드 header cell의 id 또는 index(rowNum 컬럼은 \"$rowNum\", rowStatus 컬럼은 \"$rowStatus\"로 설정)",
@@ -949,7 +949,7 @@
         ]
     },
     {
-        "label": "setReadOnly(type: String, rowIndex: Number, colIndex: Number||String, readOnlyFlag: Boolean)",
+        "label": "setReadOnly(type: String, rowIndex: Number, colIndex: Number | String, readOnlyFlag: Boolean)",
         "documentation": [
             "type에 따라 readOnly 속성값을 설정한다.",
             "*@param* `type` &mdash; [grid, row, column, cell]readOnly 속성을 설정할 type",
@@ -1034,7 +1034,7 @@
         ]
     },
     {
-        "label": "spanAll(openFlag: Boolean||Number)",
+        "label": "spanAll(openFlag: Boolean | Number)",
         "documentation": [
             "drilldown을 사용하는 gridView에서 전체 데이터를 모두 펼치거나 모두 접는다. 인자로 숫자를 넣는 경우 해당 depth까지 데이터를 펼친다.",
             "*@param* `openFlag` &mdash; [true, false]open 여부, 숫자를 넣는 경우 해당 depth까지 데이터를 펼친다."
