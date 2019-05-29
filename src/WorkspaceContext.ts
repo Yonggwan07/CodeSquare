@@ -3,9 +3,12 @@
 import fs = require('fs');
 
 import { TextDocument, window, workspace, WorkspaceEdit, Range } from 'vscode';
-import { wsParseObjectInfo, docObjects, wsParseJavascript, originDocs, startRegex, endRegex } from './parser';
+import { wsParseObjectInfo, docObjects, wsParseJavascript, originDocs } from './parser';
 
-let jsDocs: TextDocument[] = [];			// 임시 js 파일
+const startRegex = /<script type="(text\/)?javascript"><!\[CDATA\[(\s*)/i;
+const endRegex = /\]\]><\/script>/i;
+
+const jsDocs: TextDocument[] = [];			// 임시 js 파일
 
 export class WorkspaceContext {
 
@@ -68,36 +71,33 @@ export class WorkspaceContext {
         }
 
         if (originDoc === null) {
+            window.showErrorMessage("[CodeSquare] ERROR: Can not saved.");
             return;
         }
 
         let startWord = '';
+        let endIdx = 0;
 
         for (let lineNumber = 0; lineNumber < originDoc.lineCount; lineNumber++) {
             let lineText = originDoc.lineAt(lineNumber);
 
             let matches;
-
-            matches = lineText.text.match(startRegex);
-
-            if (matches) {
+            
+            if ((matches = lineText.text.match(startRegex)) !== null) {
                 startWord = matches[0];
                 startLine = lineNumber;
             }
 
-            matches = lineText.text.match(endRegex);
-
-            if (matches) {
+            if((matches = lineText.text.match(endRegex)) !== null) {
+                endIdx = matches.index ? matches.index : 0;
                 endLine = lineNumber;
                 break;
             }
         }
 
-        let jsText = jsDoc.getText() + '\n';
+        let jsText = jsDoc.getText();
 
-        we.replace(originDoc.uri, new Range(
-            startLine, startWord.length +
-            originDoc.lineAt(startLine).text.split(' ').length - 1, endLine, 0), jsText);
+        we.replace(originDoc.uri, new Range(startLine, startWord.length, endLine, endIdx), jsText);
 
         workspace.applyEdit(we);
         
