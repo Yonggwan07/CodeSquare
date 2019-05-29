@@ -5,7 +5,7 @@ import fs = require('fs');
 import { TextDocument, window, workspace, WorkspaceEdit, Range } from 'vscode';
 import { wsParseObjectInfo, docObjects, wsParseJavascript, originDocs } from './parser';
 
-const startRegex = /<script type="(text\/)?javascript"><!\[CDATA\[(\s*)/i;
+const startRegex = /<script\s+type="(text\/)?javascript">\s*<!\[CDATA\[(\s*)/i;
 const endRegex = /\]\]><\/script>/i;
 
 const jsDocs: TextDocument[] = [];			// 임시 js 파일
