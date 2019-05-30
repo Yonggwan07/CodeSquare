@@ -85,7 +85,7 @@ export function wsParseJavascript(): string {
 export function wsParseObjectInfo() {
 
     if (!window.activeTextEditor) {
-        return [];
+        return;
     }
 
     docObjects = [];
@@ -110,14 +110,13 @@ export function wsParseObjectInfo() {
             // Key 값에 따른 Object 검색
             searchByKey(parsedJson, wsComponents[i]['Tag']);
 
-            for (let j = 0; j < searchedObj.length; j++) {
-                if (getNodeType(searchedObj[j][0]) === 'String') {
-                    if (getNodeType(searchedObj[j][1]) !== 'Array') {
-                        resultObj.push(searchedObj[j][1]);
-                    }
-                    else {
-                        for (let k = 0; k < searchedObj[j][1].length; k++) {
-                            resultObj.push(searchedObj[j][1][k]);
+            for (let i = 0; i < searchedObj.length; i++) {
+                if (getNodeType(searchedObj[i][0]) === 'String') {
+                    if (getNodeType(searchedObj[i][1]) !== 'Array') {
+                        resultObj.push(searchedObj[i][1]);
+                    } else {
+                        for (let k = 0; k < searchedObj[i][1].length; k++) {
+                            resultObj.push(searchedObj[i][1][k]);
                         }
                     }
                 }
@@ -129,7 +128,7 @@ export function wsParseObjectInfo() {
                 continue;
             }
 
-            for (var obj of objs) {
+            for (let obj of objs) {
 
                 if (obj['$'] === undefined) {
                     continue;
@@ -220,9 +219,9 @@ export function isWsDocument(): Boolean {
 }
 
 /**
- * get API Documentation
+ * load API Documentation
  */
-export function getDocumentation() {
+export function loadDocumentation() {
 
     // $w
     fs.readdirSync(__dirname + '/../documentation/$w/').forEach(element => {

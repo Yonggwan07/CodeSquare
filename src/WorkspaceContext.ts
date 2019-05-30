@@ -18,9 +18,7 @@ export class WorkspaceContext {
             return;
         }
 
-        // Websquare Object Parsing
-        wsParseObjectInfo();
-
+        // extension activate 시 파싱된 object 확인
         if (docObjects.length <= 0) {
             return;
         }
