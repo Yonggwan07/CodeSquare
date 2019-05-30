@@ -211,34 +211,12 @@ export function wsParseObjectInfo() {
  * 현재 활성화된 Document가 WebSquare Document 인지 확인
  */
 export function isWsDocument(): Boolean {
-
-    let retVal = false;
-
+    
     if (!window.activeTextEditor) {
-        return retVal;
+        return false;
     }
 
-    const fileName = window.activeTextEditor.document.fileName;
-    const parser = new xml2js.Parser({ explicitArray: false });
-    const xml = fs.readFileSync(fileName, 'utf-8');
-
-    parser.parseString(xml, function (err: string, result: string) {
-
-        let parsedJson = JSON.parse(JSON.stringify(result));
-
-        try {
-
-            if (parsedJson['html']['$']['xmlns:w2'] === 'http://www.inswave.com/websquare') {
-                retVal = true;
-            }
-
-        } catch (error) {
-            return retVal;
-        }
-
-    });
-
-    return retVal;
+    return window.activeTextEditor.document.getText().match(isWsRegex) ? true : false;
 }
 
 /**
