@@ -3,7 +3,7 @@
 import fs = require('fs');
 
 import { TextDocument, window, workspace, WorkspaceEdit, Range } from 'vscode';
-import { wsParseObjectInfo, docObjects, wsParseJavascript, originDocs } from './parser';
+import { docObjects, wsParseJavascript, originDocs } from './parser';
 
 const startRegex = /<script\s+type="(text\/)?javascript">\s*<!\[CDATA\[(\s*)/i;
 const endRegex = /\]\]><\/script>/i;
