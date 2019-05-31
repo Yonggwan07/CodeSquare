@@ -20,7 +20,7 @@ export let docObjects: IObject[] = [];   // Websquare Objects (ex. dataMap, data
 export let originDocs: TextDocument[] = []; // 원본 xml 파일
 
 const isWsRegex = /xmlns:w2.*inswave.*websquare/;
-const regex = /<(script)\s+type="(text\/)?javascript">\s*<!\[CDATA\[([\s\S]*)(\]\]>\s*<\/\1>)/i;
+const regex = /<(script)\s+type=[\"\'](text\/)?javascript[\"\']>\s*<!\[CDATA\[([\s\S]*)(\]\]>\s*<\/\1>)/i;
 
 // 파싱하고자 하는 Websquare Component List
 const ws = require('../wsComponent.json');
@@ -90,127 +90,146 @@ export function wsParseObjectInfo() {
 
     docObjects = [];
 
-    const fileName = window.activeTextEditor.document.fileName;
-    const parser = new xml2js.Parser({ explicitArray: false });
-    const xml = fs.readFileSync(fileName, 'utf-8');
+    const docText = window.activeTextEditor.document.getText();
 
     let objects: IObject[] = [];
 
-    parser.parseString(xml, function (err: string, result: string) {
+    for (let i = 0; i < wsComponents.length; i++) {
+        let resultObj: string[] = [];
 
-        let parsedJson = JSON.parse(JSON.stringify(result));
+        const regex1 = "<";
+        const regex2 = "[^<]*?id=[\"\']([a-zA-Z0-9_]+)[\"\'][^>]*?>";
 
-        for (let i = 0; i < wsComponents.length; i++) {
+        const reg = new RegExp(regex1 + wsComponents[i]['Tag'] + regex2, 'g');
 
-            // 매 반복마다 searchedObj 초기화
-            searchedObj = [];
+        if (!window.activeTextEditor) {
+            return;
+        }
 
-            let resultObj = [];
+        let matches;
 
-            // Key 값에 따른 Object 검색
-            searchByKey(parsedJson, wsComponents[i]['Tag']);
+        while ((matches = reg.exec(docText)) !== null) {
+            for (let i = 1; i < matches.length; i++) {
+                resultObj.push(matches[i]);
+            }
+        }
 
-            for (let i = 0; i < searchedObj.length; i++) {
-                if (getNodeType(searchedObj[i][0]) === 'String') {
-                    if (getNodeType(searchedObj[i][1]) !== 'Array') {
-                        resultObj.push(searchedObj[i][1]);
-                    } else {
-                        for (let k = 0; k < searchedObj[i][1].length; k++) {
-                            resultObj.push(searchedObj[i][1][k]);
-                        }
+        let objs = resultObj;
+
+        if (objs.length === 0) {
+            continue;
+        }
+
+        for (let obj of objs) {
+
+            let objDetails = undefined;
+
+            if (wsComponents[i]['Name'] === 'dataList') {
+                const dtlRegex = new RegExp("<(w2:dataList).*?" + obj + "[\\s\\S]*?<\\/\\1>");
+                const idRegex = /<w2:column [^<]*?id=[\"\']([a-zA-Z0-9_]+?)[\"\'][^>]*?>/g;
+                const nameRegex = /<w2:column [^<]*?name=[\"\'](.+?)[\"\'][^>]*?>/g;
+
+                const colInfo: IObjectDetail[] = [];
+
+                let id;
+                let name;
+                let dtlMatch;
+                if ((dtlMatch = dtlRegex.exec(docText)) !== null) {
+                    const ids: string[] = [];
+                    const names: string[] = [];
+
+                    while ((id = idRegex.exec(dtlMatch[0])) !== null) {
+                        ids.push(id[1]);
                     }
-                }
-            }
-
-            let objs = resultObj;
-
-            if (objs.length === 0) {
-                continue;
-            }
-
-            for (let obj of objs) {
-
-                if (obj['$'] === undefined) {
-                    continue;
-                }
-
-                if (obj['$']['id'] === undefined || obj['$']['id'] === '') {
-                    continue;
-                }
-
-                let objDetails = undefined;
-
-                if (wsComponents[i]['Name'] === 'dataList') {
-                    let dtlCols = obj['w2:columnInfo']['w2:column'];
-
-                    if (typeof dtlCols === 'undefined') {    // comlumn이 없는 경우
-                        dtlCols = [];
-                    } else if (dtlCols.constructor !== [].constructor) {    // comlumn이 1개인 경우
-                        dtlCols = [dtlCols];
+                    while ((name = nameRegex.exec(dtlMatch[0])) !== null) {
+                        names.push(name[1]);
                     }
 
-                    let colInfo: IObjectDetail[] = [];
-
-                    for (let k = 0; k < dtlCols.length; k++) {
-                        colInfo[k] = {
-                            id: dtlCols[k]['$']['id'],
-                            name: dtlCols[k]['$']['name'],
-                            dataType: dtlCols[k]['$']['dataType'],
+                    for (let i = 0; i < ids.length; i++) {
+                        colInfo[i] = {
+                            id: ids[i],
+                            name: names[i]
                         };
                     }
 
                     objDetails = colInfo;
 
-                } else if (wsComponents[i]['Name'] === 'dataMap') {
-                    let dtmKeys = obj['w2:keyInfo']['w2:key'];
+                    objects.push({ type: wsComponents[i]['Name'], id: obj, objDetail: objDetails });
+                }
 
-                    if (typeof dtmKeys === 'undefined') {    // key가 없는 경우
-                        dtmKeys = [];
-                    } else if (dtmKeys.constructor !== [].constructor) {    // key가 1개인 경우
-                        dtmKeys = [dtmKeys];
+                continue;
+
+            } else if (wsComponents[i]['Name'] === 'dataMap') {
+                const dtmRegex = new RegExp("<(w2:dataMap).*?" + obj + "[\\s\\S]*?<\\/\\1>");
+                const idRegex = /<w2:key [^<]*?id=[\"\']([a-zA-Z0-9_]+?)[\"\'][^>]*?>/g;
+                const nameRegex = /<w2:key [^<]*?name=[\"\'](.+?)[\"\'][^>]*?>/g;
+
+                const keyInfo: IObjectDetail[] = [];
+
+                let id;
+                let name;
+                let dtmMatch;
+                if ((dtmMatch = dtmRegex.exec(docText)) !== null) {
+                    const ids: string[] = [];
+                    const names: string[] = [];
+
+                    while ((id = idRegex.exec(dtmMatch[0])) !== null) {
+                        ids.push(id[1]);
+                    }
+                    while ((name = nameRegex.exec(dtmMatch[0])) !== null) {
+                        names.push(name[1]);
                     }
 
-                    let keyInfo: IObjectDetail[] = [];
-
-                    for (let k = 0; k < dtmKeys.length; k++) {
-                        keyInfo[k] = {
-                            id: dtmKeys[k]['$']['id'],
-                            name: dtmKeys[k]['$']['name'],
-                            dataType: dtmKeys[k]['$']['dataType'],
+                    for (let i = 0; i < ids.length; i++) {
+                        keyInfo[i] = {
+                            id: ids[i],
+                            name: names[i]
                         };
                     }
 
                     objDetails = keyInfo;
+
+                    objects.push({ type: wsComponents[i]['Name'], id: obj, objDetail: objDetails });
                 }
 
-                // 같은 xf:select1 태그를 사용하는 radio, selectbox에 대한 구분 처리
-                if (wsComponents[i]['Name'] === 'radio') {
+                continue;
+            }
 
-                    switch (obj['$']['appearance']) {
-                        case "full":
-                            objects.push({ type: 'radio', id: obj['$']['id'], objDetail: objDetails });
-                            break;
+            // 같은 xf:select1 태그를 사용하는 radio, selectbox에 대한 구분 처리
+            if (wsComponents[i]['Name'] === 'radio') {
+                const radioRegex = /<(xf:select1)[\s\S]*?id=\"([a-zA-Z0-9_]+)\"[\s\S]*?<\/\1>/g;
+                const apRegex = /<xf:select1.*appearance=[\"\']([^\"\']+)[\"\'][\s\S]*?>/;    // appearance tag
 
-                        case "minimal":
-                            objects.push({ type: 'selectbox', id: obj['$']['id'], objDetail: objDetails });
-                            break;
+                let radioMatch;
+                let apMatch;
+                while ((radioMatch = radioRegex.exec(docText)) !== null) {
+                    if (radioMatch[2] === obj && (apMatch = apRegex.exec(radioMatch[0])) !== null) {
+                        switch (apMatch[1]) {
+                            case "full":
+                                objects.push({ type: 'radio', id: obj, objDetail: objDetails });
+                                break;
+
+                            case "minimal":
+                                objects.push({ type: 'selectbox', id: obj, objDetail: objDetails });
+                                break;
+                        }
                     }
-
-                } else {
-                    objects.push({ type: wsComponents[i]['Name'], id: obj['$']['id'], objDetail: objDetails });
                 }
+
+            } else {
+                objects.push({ type: wsComponents[i]['Name'], id: obj, objDetail: objDetails });
             }
         }
+    }
 
-        docObjects = objects;
-    });
+    docObjects = objects;
 }
 
 /**
  * 현재 활성화된 Document가 WebSquare Document 인지 확인
  */
 export function isWsDocument(): Boolean {
-    
+
     if (!window.activeTextEditor) {
         return false;
     }
@@ -225,7 +244,7 @@ export function loadDocumentation() {
 
     // $w
     fs.readdirSync(__dirname + '/../documentation/$w/').forEach(element => {
-        
+
         const json = fs.readFileSync(__dirname + '/../documentation/$w/' + element).toString();
 
         doc$w.push({

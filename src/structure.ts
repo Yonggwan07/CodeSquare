@@ -13,7 +13,6 @@ export interface IObject {
 export interface IObjectDetail {
     id: string;
     name: string;
-    dataType: string;
 }
 
 // API Documentation Structure

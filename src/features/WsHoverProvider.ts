@@ -88,11 +88,11 @@ export class WsHoverProvider implements HoverProvider {
                 let objD = docObjects[objIdx]['objDetail'];
 
                 if (objD !== undefined) {
-                    md.appendMarkdown("|id|name|DataType|  \n");
-                    md.appendMarkdown("|---|---|---|  \n");
+                    md.appendMarkdown("|id|name|  \n");
+                    md.appendMarkdown("|---|---|  \n");
 
                     for (let i = 0; i < objD.length; i++) {
-                        md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
+                        md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|   \n');
                     }
                 }
 

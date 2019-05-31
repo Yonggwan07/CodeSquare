@@ -35,11 +35,11 @@ export class WsObjectCompletionProvider implements CompletionItemProvider {
 
             if (objD !== undefined && objD.length > 0) {
                 const md = new MarkdownString();
-                md.appendMarkdown("|id|name|DataType|  \n");
-                md.appendMarkdown("|---|---|---|  \n");
+                md.appendMarkdown("|id|name|  \n");
+                md.appendMarkdown("|---|---|  \n");
 
                 for (let i = 0; i < objD.length; i++) {
-                    md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|`' + objD[i].dataType + '`|   \n');
+                    md.appendMarkdown('|`' + objD[i].id + '`|' + objD[i].name + '|   \n');
                 }
 
                 comItem.documentation = md;
