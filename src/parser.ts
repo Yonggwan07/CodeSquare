@@ -98,7 +98,7 @@ export function wsParseObjectInfo() {
         let resultObj: string[] = [];
 
         const regex1 = "<";
-        const regex2 = "[^<]*?id=[\"\']([a-zA-Z0-9_]+)[\"\'][^>]*?>";
+        const regex2 = "\\s[^<]*?id=[\"\']([a-zA-Z0-9_]+)[\"\'][^>]*?>";
 
         const reg = new RegExp(regex1 + wsComponents[i]['Tag'] + regex2, 'g');
 
