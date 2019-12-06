@@ -83,11 +83,12 @@ export class WsHoverProvider implements HoverProvider {
 
         switch (wordType) {
             case "Object":
-                md.appendCodeblock('(' + docObjects[objIdx]['type'] + ') ' + docObjects[objIdx]['id'] + '  \n  \n');
+                md.appendCodeblock('(' + docObjects[objIdx]['type'] + ') ' + docObjects[objIdx]['id']);
 
                 let objD = docObjects[objIdx]['objDetail'];
 
                 if (objD !== undefined) {
+                    md.appendMarkdown("  \n  \n");
                     md.appendMarkdown("|id|name|  \n");
                     md.appendMarkdown("|---|---|  \n");
 
